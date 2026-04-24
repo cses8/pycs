@@ -7,6 +7,13 @@ $frontend_port = env("FRONTEND_PORT");
 $frontend_url = $frontend_port
 	? "$frontend_http://$frontend_domain:$frontend_port"
 	: "$frontend_http://$frontend_domain";
+$allowed_origins = array_values(array_unique([
+	$frontend_url,
+	'http://localhost:3000',
+	'http://localhost:4000',
+	'http://127.0.0.1:3000',
+	'http://127.0.0.1:4000',
+]));
 
 return [
 
@@ -28,7 +35,7 @@ return [
 	'allowed_methods' => ['*'],
 
 	'allowed_origins' => [
-		$frontend_url
+		...$allowed_origins,
 	],
 
 	'allowed_origins_patterns' => [],
