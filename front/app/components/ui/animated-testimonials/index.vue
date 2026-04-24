@@ -37,12 +37,13 @@
           >
             <div class="rounded-3xl">
               <Image
-                :src="testimonial.image"
+                :src="getTestimonialImage(testimonial)"
                 :alt="testimonial.name"
                 width="500"
                 height="500"
                 preview
                 class="size-full rounded-3xl object-cover object-center"
+                @error="markImageAsFailed(testimonial)"
               />
             </div>
           </Motion>
@@ -148,7 +149,9 @@ const props = withDefaults(defineProps<Props>(), {
   duration: 5000,
 })
 
+const FALLBACK_TESTIMONIAL_IMAGE = '/images/no-image.svg'
 const active = ref(0)
+const failedImages = ref<Set<string>>(new Set())
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const interval = ref<any>()
@@ -168,6 +171,28 @@ onUnmounted(() => {
     clearInterval(interval.value)
   }
 })
+
+function getTestimonialImage(testimonial?: Testimonial) {
+  const image = testimonial?.image?.trim()
+
+  if (!image || failedImages.value.has(image)) {
+    return FALLBACK_TESTIMONIAL_IMAGE
+  }
+
+  return image
+}
+
+function markImageAsFailed(testimonial: Testimonial) {
+  const image = testimonial.image?.trim()
+
+  if (!image || image === FALLBACK_TESTIMONIAL_IMAGE) {
+    return
+  }
+
+  const nextFailedImages = new Set(failedImages.value)
+  nextFailedImages.add(image)
+  failedImages.value = nextFailedImages
+}
 
 function handleNext() {
   active.value = (active.value + 1) % props.testimonials.length

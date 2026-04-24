@@ -21,3 +21,17 @@
 Long-lived project documentation belongs in:
 
 - `tasks/project-blueprint.md`
+
+## Announcement Image Fallback
+
+- [x] Locate the active announcement image rendering path.
+- [x] Add a default no-image fallback for missing or failed image loads.
+- [x] Verify frontend quality gate and browser rendering.
+- [x] Record review/results.
+
+## Review / Results
+
+- Added `/images/no-image.svg` as the announcement fallback image.
+- Updated the active announcement carousel image renderer to use the fallback when an image URL is missing or fails to load.
+- Verified typecheck, production build, and browser rendering at desktop, tablet, and mobile sizes.
+- `bun run quality:check` could not run because `front/package.json` has no `quality:check` script.

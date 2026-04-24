@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" role="img" aria-labelledby="title desc">
+  <title id="title">No image available</title>
+  <desc id="desc">Default placeholder shown when an image cannot be loaded.</desc>
+  <rect width="640" height="640" fill="#E5E7EB"/>
+  <rect x="72" y="96" width="496" height="360" rx="32" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="12"/>
+  <circle cx="214" cy="214" r="52" fill="#CBD5E1"/>
+  <path d="M116 408l128-128 92 92 56-56 132 132H116z" fill="#94A3B8"/>
+  <path d="M178 520h284" stroke="#64748B" stroke-width="24" stroke-linecap="round"/>
+  <text x="320" y="574" text-anchor="middle" font-family="Arial, sans-serif" font-size="40" font-weight="700" fill="#475569">No image</text>
+</svg>
