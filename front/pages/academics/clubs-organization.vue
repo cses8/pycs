@@ -1,0 +1,794 @@
+<template>
+  <div class="bg-surface-0 dark:bg-surface-950">
+    <div
+      class="bg-cover bg-center h-[420px] flex flex-col justify-end gap-4"
+      style="
+        background: linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 1) 0%,
+            oklch(42.4% 0.199 265.638 / 0.8) 100%
+          ),
+          url('/images/banner1.webp');
+      "
+    >
+      <div class="px-6 md:px-12 lg:px-20">
+        <div class="grid grid-cols-12 gap-8">
+          <div class="hidden lg:block col-span-2" />
+
+          <div
+            class="col-span-12 lg:col-span-8 py-4 lg:py-8 flex flex-col gap-4"
+          >
+            <h1 class="text-3xl lg:text-5xl font-bold text-white leading-tight">
+              Clubs / Organization
+            </h1>
+            <p class="text-sm lg:text-base text-white leading-normal">
+              Explore student groups and activities.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="px-6 md:px-12 lg:px-20 py-4">
+      <div class="grid grid-cols-12 gap-4 lg:gap-8">
+        <div class="col-span-12 lg:col-span-2"></div>
+
+        <div class="col-span-12 lg:col-span-8 flex flex-col gap-8 py-4">
+          <div class="flex flex-col gap-6">
+            <div class="flex flex-col gap-6">
+              <h1
+                class="text-3xl font-black text-blue-900 dark:text-blue-500 leading-tight"
+              ></h1>
+
+              <div
+                class="text-lg font-light text-surface-500 dark:text-surface-400 leading-normal"
+              >
+                Clubs and activities are a great way for learners to find where
+                they belong in their school social community and to find their
+                niche among their schoolmates with similar interests and goals.
+                In addition, school extra-curricular activities allow the
+                learners to pursue their current interests and passions and
+                perhaps even find ones they did not know they had.
+              </div>
+
+              <div
+                class="text-lg font-light text-surface-500 dark:text-surface-400 leading-normal"
+              >
+                Clubs at Philippine Yuh Chiau School are categorized into three
+                (3): Umbrella Organizations, Academic Clubs, and Hobby/Interest
+                Clubs. Each category has unique components to cater the diverse
+                interests, if not all Yuh Chiauians, majority of them.
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-6">
+              <h1
+                class="text-3xl font-black text-blue-900 dark:text-blue-500 leading-tight"
+              >
+                ACADEMIC CLUBS
+              </h1>
+
+              <div
+                class="text-lg font-light text-surface-500 dark:text-surface-400 leading-normal"
+              >
+                Clubs at Philippine Yuh Chiau School are categorized into three
+                (3): Umbrella Organizations, Academic Clubs, and Hobby/Interest
+                Clubs. Each category has unique components to cater the diverse
+                interests, if not all Yuh Chiauians, majority of them.
+              </div>
+
+              <div
+                class="text-lg font-light text-surface-500 dark:text-surface-400 leading-normal"
+              >
+                <ul>
+                  <li>
+                    <div class="inline-flex">
+                      <span>
+                        <Icon
+                          name="material-symbols:circle"
+                          size="1.5rem"
+                          class="text-red-500"
+                        />
+                      </span>
+                      <span class="mx-3">&nbsp;</span>
+                      <span class="mb-5">
+                        <div
+                          class="text-xl font-semibold text-blue-900 dark:text-blue-500 leading-tight mb-1"
+                        >
+                          Robotics Club
+                        </div>
+
+                        <div class="mb-5">
+                          Robotics is an interdisciplinary research area at the
+                          interface of computer science and engineering. It
+                          involves design, construction, operation, and use of
+                          robots. Its goal is to design intelligent machines
+                          that can help and assist humans in their day-to-day
+                          lives and keep everyone safe.
+                        </div>
+                        <div>
+                          PYCS; however, started allowing and supporting able
+                          Yuh Chiauians to join different Robotics-related
+                          competitions not only in the country but in other
+                          countries as well. This program is open to learners in
+                          the primary school & middle school to senior high school.
+                        </div>
+                      </span>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="inline-flex">
+                      <span>
+                        <Icon
+                          name="material-symbols:circle"
+                          size="1.5rem"
+                          class="text-red-500"
+                        />
+                      </span>
+                      <span class="mx-3">&nbsp;</span>
+                      <span class="mb-5">
+                        <div
+                          class="text-xl font-semibold text-blue-900 dark:text-blue-500 leading-tight mb-1"
+                        >
+                          Math-Gen Club
+                        </div>
+
+                        <div class="mb-5">
+                          This club is conceived for learners whose interests
+                          are sparked by math concepts and problem solving.
+                          Learners may not have all the knowledge that they need
+                          to be competitive, and joining Mathletes is a great
+                          way for them to get ahead in their math classes and
+                          possible compete with a team once they are ready.
+                        </div>
+                      </span>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="inline-flex">
+                      <span>
+                        <Icon
+                          name="material-symbols:circle"
+                          size="1.5rem"
+                          class="text-red-500"
+                        />
+                      </span>
+                      <span class="mx-3">&nbsp;</span>
+                      <span class="mb-5">
+                        <div
+                          class="text-xl font-semibold text-blue-900 dark:text-blue-500 leading-tight mb-1"
+                        >
+                          Science Olympiad Club
+                        </div>
+
+                        <div class="mb-5">
+                          This club is conceived for learners who have
+                          inclination to science- related field or if science
+                          really interest them. This club aims the learners be
+                          ready for the different contested activities during
+                          the Science-Technology Fair.
+                        </div>
+                      </span>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="inline-flex">
+                      <span>
+                        <Icon
+                          name="material-symbols:circle"
+                          size="1.5rem"
+                          class="text-red-500"
+                        />
+                      </span>
+                      <span class="mx-3">&nbsp;</span>
+                      <span class="mb-5">
+                        <div
+                          class="text-xl font-semibold text-blue-900 dark:text-blue-500 leading-tight mb-1"
+                        >
+                          Journalism Club
+                        </div>
+
+                        <div class="mb-5">
+                          Journalism is the activity of gathering, assessing,
+                          creating, and presenting news and information
+                          regarding a given concern, topic, or issue. Its goal
+                          is to give every learner the opportunity to learn the
+                          basic journalism skills, and to influence the use of
+                          social media for disseminating factual, not fake, news
+                          and information for the benefit of mental health.
+                        </div>
+                        <div>
+                          Journalism Club supports the learners’ freedom to
+                          express themselves in a manner that is respectful,
+                          thoughtful, and accepted. It also allows the teachers
+                          and administrators to monitor the content to ensure
+                          appropriateness and relevance of the subject concern.
+                        </div>
+                      </span>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="inline-flex">
+                      <span>
+                        <Icon
+                          name="material-symbols:circle"
+                          size="1.5rem"
+                          class="text-red-500"
+                        />
+                      </span>
+                      <span class="mx-3">&nbsp;</span>
+                      <span class="mb-5">
+                        <div
+                          class="text-xl font-semibold text-blue-900 dark:text-blue-500 leading-tight mb-1"
+                        >
+                          Speech And Debate Club
+                        </div>
+
+                        <div class="mb-5">
+                          This is for learners who are good at public speaking,
+                          reporting on current events, and making effective
+                          arguments. Through this club, learners have the
+                          opportunity to hone their skills in preparation for
+                          college or university, and competitions too.
+                        </div>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-6">
+              <h1
+                class="text-3xl font-black text-blue-900 dark:text-blue-500 leading-tight"
+              >
+                HOBBY / INTEREST CLUBS
+              </h1>
+
+              <div
+                class="text-lg font-light text-surface-500 dark:text-surface-400 leading-normal"
+              >
+                These are clubs that focus on specific hobbies or interest of
+                the Yuh Chiauians.
+              </div>
+
+              <div
+                class="text-lg font-light text-surface-500 dark:text-surface-400 leading-normal"
+              >
+                <ul>
+                  <li>
+                    <div class="inline-flex">
+                      <span>
+                        <Icon
+                          name="material-symbols:circle"
+                          size="1.5rem"
+                          class="text-red-500"
+                        />
+                      </span>
+                      <span class="mx-3">&nbsp;</span>
+                      <span class="mb-5">
+                        <div
+                          class="text-xl font-semibold text-blue-900 dark:text-blue-500 leading-tight mb-1"
+                        >
+                          Future Scientist Club
+                        </div>
+
+                        <div class="mb-5">
+                          This club is designed for learners who love scientific
+                          research works, and in preparation for science fair.
+                          Learners learn about groundbreaking studies in various
+                          fields, and possibly network with various experts
+                          working in actual labs to make them well-equipped for
+                          any research-related competitions.
+                        </div>
+                      </span>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="inline-flex">
+                      <span>
+                        <Icon
+                          name="material-symbols:circle"
+                          size="1.5rem"
+                          class="text-red-500"
+                        />
+                      </span>
+                      <span class="mx-3">&nbsp;</span>
+                      <span class="mb-5">
+                        <div
+                          class="text-xl font-semibold text-blue-900 dark:text-blue-500 leading-tight mb-1"
+                        >
+                          Book Club
+                        </div>
+
+                        <div class="mb-5">
+                          This club is for learners who enjoy and love reading
+                          without the hustle and bustle of a busy academic
+                          schedule. It is a great way for the learners to get
+                          book suggestions and keeping them accountable for
+                          keeping up with their reading. They will be able to
+                          engage in critical discussions of each book, and
+                          allowing them to share their thoughts with other
+                          members.
+                        </div>
+                      </span>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="inline-flex">
+                      <span>
+                        <Icon
+                          name="material-symbols:circle"
+                          size="1.5rem"
+                          class="text-red-500"
+                        />
+                      </span>
+                      <span class="mx-3">&nbsp;</span>
+                      <span class="mb-5">
+                        <div
+                          class="text-xl font-semibold text-blue-900 dark:text-blue-500 leading-tight mb-1"
+                        >
+                          Creative Writing Club
+                        </div>
+
+                        <div class="mb-5">
+                          Learners who have inclination to writing short stories
+                          and wish to be the next J.K. Rowling, a creative
+                          writing club is a good place for them to start. By
+                          joining this club, learners’ writing skills will
+                          really improve as they are given opportunities to
+                          practice writing constantly and receive helpful
+                          feedback from their peers and teachers.
+                        </div>
+                      </span>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="inline-flex">
+                      <span>
+                        <Icon
+                          name="material-symbols:circle"
+                          size="1.5rem"
+                          class="text-red-500"
+                        />
+                      </span>
+                      <span class="mx-3">&nbsp;</span>
+                      <span class="mb-5">
+                        <div
+                          class="text-xl font-semibold text-blue-900 dark:text-blue-500 leading-tight mb-1"
+                        >
+                          Journal Making Club
+                        </div>
+
+                        <div class="mb-5">
+                          Learners who love recording their every growth stage
+                          is the reason to conceive this club. It is their way
+                          of recalling what they have experienced and learned
+                          through the years. Journaling allows them to take time
+                          to reflect and improve from each day.
+                        </div>
+                      </span>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="inline-flex">
+                      <span>
+                        <Icon
+                          name="material-symbols:circle"
+                          size="1.5rem"
+                          class="text-red-500"
+                        />
+                      </span>
+                      <span class="mx-3">&nbsp;</span>
+                      <span class="mb-5">
+                        <div
+                          class="text-xl font-semibold text-blue-900 dark:text-blue-500 leading-tight mb-1"
+                        >
+                          Scrap Book Making Club
+                        </div>
+
+                        <div class="mb-5">
+                          Scrapbooking preserves each learner’s life history.
+                          It’s like a diary but a bit more personal, with a bit
+                          more art design. A scrapbook allows each learner to
+                          collect mementos, photos, drawings, and more, all
+                          while letting their imagination run wild and come up
+                          with a creative design.
+                        </div>
+                      </span>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="inline-flex">
+                      <span>
+                        <Icon
+                          name="material-symbols:circle"
+                          size="1.5rem"
+                          class="text-red-500"
+                        />
+                      </span>
+                      <span class="mx-3">&nbsp;</span>
+                      <span class="mb-5">
+                        <div
+                          class="text-xl font-semibold text-blue-900 dark:text-blue-500 leading-tight mb-1"
+                        >
+                          Puzzles Club
+                        </div>
+
+                        <div class="mb-5">
+                          Another solid way to get good at seeing patterns,
+                          various puzzles can be real brain teasers. This club
+                          may vary in nature like jigsaw, crosswords, Sudoku,
+                          and others related to puzzles.
+                        </div>
+                      </span>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="inline-flex">
+                      <span>
+                        <Icon
+                          name="material-symbols:circle"
+                          size="1.5rem"
+                          class="text-red-500"
+                        />
+                      </span>
+                      <span class="mx-3">&nbsp;</span>
+                      <span class="mb-5">
+                        <div
+                          class="text-xl font-semibold text-blue-900 dark:text-blue-500 leading-tight mb-1"
+                        >
+                          Painting Club
+                        </div>
+
+                        <div class="mb-5">
+                          One of the most versatile art forms is painting.
+                          Learners can paint in oils, acrylics, or water colors.
+                          The differing styles of painting give them near
+                          limitless options for how they choose to portray the
+                          world around them. Like writing, painting gives them
+                          the opportunity to express themselves in near infinite
+                          ways.
+                        </div>
+                      </span>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="inline-flex">
+                      <span>
+                        <Icon
+                          name="material-symbols:circle"
+                          size="1.5rem"
+                          class="text-red-500"
+                        />
+                      </span>
+                      <span class="mx-3">&nbsp;</span>
+                      <span class="mb-5">
+                        <div
+                          class="text-xl font-semibold text-blue-900 dark:text-blue-500 leading-tight mb-1"
+                        >
+                          Drawing Club
+                        </div>
+
+                        <div class="mb-5">
+                          Fairly similar to painting, just in different medium.
+                          Drawing is an economical and simple way to get into
+                          the visual arts. Learners can draw any type of
+                          subject, from portraits to landscapes.
+                        </div>
+                      </span>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="inline-flex">
+                      <span>
+                        <Icon
+                          name="material-symbols:circle"
+                          size="1.5rem"
+                          class="text-red-500"
+                        />
+                      </span>
+                      <span class="mx-3">&nbsp;</span>
+                      <span class="mb-5">
+                        <div
+                          class="text-xl font-semibold text-blue-900 dark:text-blue-500 leading-tight mb-1"
+                        >
+                          Origami Club
+                        </div>
+
+                        <div class="mb-5">
+                          Origami is an ancient form of art. It takes a bit of
+                          skill and practice, but with time learners soon be
+                          making wonderful pieces.
+                        </div>
+                      </span>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="inline-flex">
+                      <span>
+                        <Icon
+                          name="material-symbols:circle"
+                          size="1.5rem"
+                          class="text-red-500"
+                        />
+                      </span>
+                      <span class="mx-3">&nbsp;</span>
+                      <span class="mb-5">
+                        <div
+                          class="text-xl font-semibold text-blue-900 dark:text-blue-500 leading-tight mb-1"
+                        >
+                          Chess Club
+                        </div>
+
+                        <div class="mb-5">
+                          Chess is a complicated game that requires strategy,
+                          careful thinking, and overall practice. By joining
+                          this club, learners will have the opportunity to learn
+                          new strategies to beat their friend-opponent and
+                          practice playing against other learners, giving them a
+                          fun challenge. Learners may even get to participate in
+                          chess competition.
+                        </div>
+                      </span>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="inline-flex">
+                      <span>
+                        <Icon
+                          name="material-symbols:circle"
+                          size="1.5rem"
+                          class="text-red-500"
+                        />
+                      </span>
+                      <span class="mx-3">&nbsp;</span>
+                      <span class="mb-5">
+                        <div
+                          class="text-xl font-semibold text-blue-900 dark:text-blue-500 leading-tight mb-1"
+                        >
+                          Sports Club
+                        </div>
+
+                        <div class="mb-5">
+                          Learners who love playing ballgames like basketball,
+                          volley, and others will definitely join this club.
+                          Playing ballgames is an unmatched way to improve
+                          coordination and speed, all while providing a workout.
+                        </div>
+                      </span>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="inline-flex">
+                      <span>
+                        <Icon
+                          name="material-symbols:circle"
+                          size="1.5rem"
+                          class="text-red-500"
+                        />
+                      </span>
+                      <span class="mx-3">&nbsp;</span>
+                      <span class="mb-5">
+                        <div
+                          class="text-xl font-semibold text-blue-900 dark:text-blue-500 leading-tight mb-1"
+                        >
+                          Quiz Bowl Club
+                        </div>
+
+                        <div class="mb-5">
+                          This club is conceived for learners who are into the
+                          rush of answering questions under time pressure.
+                          Eventually, learners develop their confidence to the
+                          highest level since this activity will become a
+                          natural thing to them.
+                        </div>
+                      </span>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="inline-flex">
+                      <span>
+                        <Icon
+                          name="material-symbols:circle"
+                          size="1.5rem"
+                          class="text-red-500"
+                        />
+                      </span>
+                      <span class="mx-3">&nbsp;</span>
+                      <span class="mb-5">
+                        <div
+                          class="text-xl font-semibold text-blue-900 dark:text-blue-500 leading-tight mb-1"
+                        >
+                          Insight 360 Club
+                        </div>
+
+                        <div class="mb-5">
+                          This club is personally conceived by the School
+                          Principal for learners who love to exchange ideas,
+                          thoughts, and insights about the world concerning
+                          diverse issues and concerns. This is to develop among
+                          learners the confidence and spontaneity in expressing
+                          their ideas. This happens in a light mode where the
+                          learners and the School Principal are like having
+                          “chit chat”.
+                        </div>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-6">
+              <h1
+                class="text-3xl font-black text-blue-900 dark:text-blue-500 leading-tight"
+              >
+                UMBRELLA ORGANIZATIONS
+              </h1>
+
+              <div
+                class="text-lg font-light text-surface-500 dark:text-surface-400 leading-normal"
+              >
+                These are the mother organizations of all existing school
+                clubs/organizations.
+              </div>
+
+              <div
+                class="text-lg font-light text-surface-500 dark:text-surface-400 leading-normal"
+              >
+                <ul>
+                  <li>
+                    <div class="inline-flex">
+                      <span>
+                        <Icon
+                          name="material-symbols:circle"
+                          size="1.5rem"
+                          class="text-red-500"
+                        />
+                      </span>
+                      <span class="mx-3">&nbsp;</span>
+                      <span class="mb-5">
+                        <div
+                          class="text-xl font-semibold text-blue-900 dark:text-blue-500 leading-tight mb-1"
+                        >
+                          Student Council for Student Affairs (SCSA)
+                        </div>
+
+                        <div class="mb-5">
+                          This organization is the umbrella of all other
+                          organizations of PYCS, it is conducted by learners and
+                          supervised by teachers. In addition to planning events
+                          that contribute to school spirit and community
+                          welfare, the SCSA is the voice of the learners. They
+                          help share learner ideas, interests, and concerns with
+                          the school wide community.
+                        </div>
+
+                        <div class="mb-5">
+                          SCSA officers are generally responsible for organizing
+                          activities like intramural, community service, and
+                          community outreach. Election of officers usually
+                          happens before the end of the school year.
+                        </div>
+                      </span>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="inline-flex">
+                      <span>
+                        <Icon
+                          name="material-symbols:circle"
+                          size="1.5rem"
+                          class="text-red-500"
+                        />
+                      </span>
+                      <span class="mx-3">&nbsp;</span>
+                      <span class="mb-5">
+                        <div
+                          class="text-xl font-semibold text-blue-900 dark:text-blue-500 leading-tight mb-1"
+                        >
+                          School Paper
+                        </div>
+
+                        <div class="mb-5">
+                          The Gazette is the official school paper of PYCS, it
+                          is news-type written and published by the JSHS
+                          learners in the school. As an educational institution,
+                          it is the school’s responsibility to provide learners
+                          a healthy and quality environment that helps to
+                          develop their core skills. An internal newspaper is
+                          one of the mediums that PYCS provided to learners to
+                          ensure highest standards of education, both academic
+                          and extracurricular. The Messenger is a school paper
+                          in the primary school & middle school department. School paper is a
+                          vital school activity for the learner, and with the
+                          following objectives:
+                        </div>
+
+                        <div class="mb-5">
+                          <ul>
+                            <li
+                              v-for="schoolPaperObjective in schoolPaperObjectives"
+                              :key="schoolPaperObjective.id"
+                              class="my-1"
+                            >
+                              <div class="inline-flex">
+                                <code
+                                  class="text-xl font-semibold leading-tight text-red-500"
+                                >
+                                  {{ schoolPaperObjective.step }}.
+                                </code>
+                                <span class="mx-3">&nbsp;</span>
+                                <span class="leading-tight">
+                                  {{ schoolPaperObjective.description }}
+                                </span>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="col-span-12 lg:col-span-2 border-surface-200 dark:border-surface-700"
+        ></div>
+      </div>
+    </div>
+  </div>
+</template>
+<script setup>
+definePageMeta({
+  layout: 'welcome',
+})
+
+const schoolPaperObjectives = [
+  {
+    id: ulid(),
+    step: 1,
+    description:
+      'To Improve the Creative Skills of the Learners - having a school paper empowers learners to showcase their writing skills and voice their opinions. Since young minds are bubbling with fresh ideas, a school paper is the best way to capture these in a creative manner.',
+  },
+  {
+    id: ulid(),
+    step: 2,
+    description:
+      'To Build the Confidence of the Learners - when learners get a platform to articulate their thoughts without any reservation, it helps to build their confidence. Their participation in school paper makes them feel special, and it adds great enthusiastic in them to present their skills.',
+  },
+  {
+    id: ulid(),
+    step: 3,
+    description:
+      'To Improve Communication - a learner-run school paper is a great way to build communication between all groups in the school. They come together to interact, to brainstorm, and to ideate, and they help improve association among each other.',
+  },
+  {
+    id: ulid(),
+    step: 4,
+    description:
+      'To Help Build Teamwork – brainstorming and producing a school paper provide the learners with valuable experience in collaboration and teamwork that can go a long way in their lives.',
+  },
+]
+</script>

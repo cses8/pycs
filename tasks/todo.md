@@ -10,6 +10,22 @@
 - [x] Verify frontend in a real browser against the backend.
 - [x] Record review/results.
 
+## Front Git Tracking Fix
+
+- [x] Confirm `front/package.json` and `front/bun.lock` are consistent.
+- [x] Replace broken `front` gitlink with normal tracked frontend files.
+- [x] Verify Git status shows frontend package and lockfile changes.
+- [x] Run focused frontend verification after index repair.
+- [x] Record review/results.
+
+## Review
+
+- `front` was a broken gitlink with no `.gitmodules` and no local submodule object, so frontend edits were invisible to parent `git status`.
+- Converted `front/` to normal staged files in the parent repo.
+- Verified `front/package.json` and `front/bun.lock` are staged together.
+- There is no `front/bun.lockb`; Bun 1.3.13 uses the text `bun.lock` here.
+- `bun install --frozen-lockfile` and Nuxt typecheck both pass after the repair.
+
 ## Review
 
 - Upgraded frontend dependencies to stable latest, including Nuxt 4.4.2, Vue 3.5.33, Vite 7.3.2 through Nuxt, PrimeVue 4.5.x, VueUse 14.2.1, and TypeScript 6.0.3.

@@ -1,0 +1,133 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # --- Serve Brotli Compressed Files ---
+    # 1. Check if Brotli version exists AND browser accepts Brotli (br)
+    RewriteCond %{HTTP:Accept-Encoding} br [NC]
+    RewriteCond %{REQUEST_FILENAME}.br -f
+    # 2. Rewrite the request to use the .br file
+    RewriteRule ^(.*)$ $1.br [L]
+
+    # --- Serve Gzip Compressed Files (if Brotli wasn't served) ---
+    # 1. Check if Gzip version exists AND browser accepts Gzip
+    RewriteCond %{HTTP:Accept-Encoding} gzip [NC]
+    RewriteCond %{REQUEST_FILENAME}.gz -f
+    # 2. Rewrite the request to use the .gz file
+    RewriteRule ^(.*)$ $1.gz [L]
+
+</IfModule>
+
+<IfModule mod_headers.c>
+    # --- Set Correct Content-Encoding Headers ---
+    # Apply correct encoding header for files served with .gz or .br extensions
+
+    # For Brotli files
+    <FilesMatch "\.br$">
+        Header set Content-Encoding br
+        # Optional: Set Vary header to help caches
+        Header append Vary Accept-Encoding
+    </FilesMatch>
+
+    # For Gzip files
+    <FilesMatch "\.gz$">
+        Header set Content-Encoding gzip
+        # Optional: Set Vary header to help caches
+        Header append Vary Accept-Encoding
+    </FilesMatch>
+
+    # --- Set Correct Content-Type Headers ---
+    # Apache might not know the original MIME type for .gz/.br files.
+    # Add rules to set the correct type based on the original extension.
+    # Add more types as needed for your assets (js, css, svg, etc.)
+
+    # Example for CSS
+    <FilesMatch "\.css\.gz$">
+        Header set Content-Type "text/css"
+    </FilesMatch>
+    <FilesMatch "\.css\.br$">
+        Header set Content-Type "text/css"
+    </FilesMatch>
+
+    # Example for JavaScript
+    <FilesMatch "\.js\.gz$">
+        Header set Content-Type "application/javascript"
+    </FilesMatch>
+    <FilesMatch "\.js\.br$">
+        Header set Content-Type "application/javascript"
+    </FilesMatch>
+
+    # Example for SVG
+    <FilesMatch "\.svg\.gz$">
+        Header set Content-Type "image/svg+xml"
+    </FilesMatch>
+    <FilesMatch "\.svg\.br$">
+        Header set Content-Type "image/svg+xml"
+    </FilesMatch>
+
+    # Example for JSON
+    <FilesMatch "\.json\.gz$">
+        Header set Content-Type "application/json"
+    </FilesMatch>
+    <FilesMatch "\.json\.br$">
+        Header set Content-Type "application/json"
+    </FilesMatch>
+
+    # Example for Webmanifest
+     <FilesMatch "\.webmanifest\.gz$">
+        Header set Content-Type "application/manifest+json"
+    </FilesMatch>
+     <FilesMatch "\.webmanifest\.br$">
+        Header set Content-Type "application/manifest+json"
+    </FilesMatch>
+
+    # Add more rules for other file types (e.g., html, xml, fonts like woff2)...
+
+</IfModule>
+
+# --- Browser Caching (mod_expires) ---
+
+# Purpose: Tell browsers how long they can cache specific file types locally.
+
+# Reduces server requests and speeds up loading for repeat visitors.
+
+<IfModule mod_expires.c>
+    # Turn on the Expires module
+    ExpiresActive On
+
+    # Default caching: 1 month for most static assets
+    ExpiresDefault                          "access plus 1 month"
+
+    # --- Cache Images for 1 Month ---
+    # Common image formats
+    ExpiresByType image/jpeg                "access plus 1 month"
+    ExpiresByType image/jpg                 "access plus 1 month"
+    ExpiresByType image/png                 "access plus 1 month"
+    ExpiresByType image/gif                 "access plus 1 month"
+    ExpiresByType image/webp                "access plus 1 month"
+    ExpiresByType image/svg+xml             "access plus 1 month"
+    ExpiresByType image/x-icon              "access plus 1 month" # Favicon
+
+    # --- Cache other assets (adjust times as needed) ---
+    # CSS: 1 month
+    ExpiresByType text/css                  "access plus 1 month"
+    # JavaScript: 1 month
+    ExpiresByType application/javascript    "access plus 1 month"
+    ExpiresByType text/javascript           "access plus 1 month" # Older type
+    # JSON: 1 month
+    ExpiresByType application/json          "access plus 1 month"
+    # Web Manifest: 1 month
+    ExpiresByType application/manifest+json "access plus 1 month"
+
+    # Fonts: 1 year (they rarely change)
+    ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+    ExpiresByType application/x-font-ttf    "access plus 1 year"
+    ExpiresByType application/x-font-opentype "access plus 1 year"
+    ExpiresByType application/x-font-woff   "access plus 1 year"
+    ExpiresByType font/woff2                "access plus 1 year"
+    ExpiresByType image/svg+xml             "access plus 1 year" # Font SVG
+
+    # HTML: Don't cache aggressively or use ETag validation
+    # ExpiresByType text/html                 "access plus 0 seconds" # No cache
+    # Or better: Rely on ETag/Last-Modified validation (often default server behavior)
+
+</IfModule>

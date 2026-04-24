@@ -1,0 +1,98 @@
+@tailwind utilities;
+
+/* Define the keyframes for the gradient animation */
+@keyframes animatedGradient {
+  0% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+@layer utilities {
+  /* Base layout class */
+  .page-layout-centered {
+    @apply min-h-screen flex items-center justify-center p-4;
+  }
+
+  /* --- Animated Gradient Backgrounds --- */
+  /* Define common properties for animated themes in a helper class */
+  .animated-gradient-properties {
+    /* Set background size directly using standard CSS */
+    /* This makes the gradient larger for the animation effect */
+    background-size: 300% 300%; /* <<< REPLACED Tailwind arbitrary value */
+
+    /* Apply the animation using Tailwind's arbitrary animation utility */
+    /* Adjust '15s' for speed, 'ease' for smoothness */
+    /* This syntax is generally available in Tailwind v3+ */
+    animation: animatedGradient 15s ease infinite; /* <<< REPLACED Tailwind arbitrary value */
+  }
+
+  /* Apply the base gradient AND the animation properties to each theme */
+  .bg-theme-deep-metal {
+    @apply bg-gradient-to-br from-slate-700 via-gray-800 to-zinc-900;
+    @apply animated-gradient-properties;
+  }
+  .bg-theme-night-sky {
+    @apply bg-gradient-to-tr from-sky-800 via-slate-900 to-black;
+    @apply animated-gradient-properties;
+  }
+  .bg-theme-subtle-stone {
+    @apply bg-gradient-to-r from-stone-400 via-neutral-500 to-slate-600;
+    @apply animated-gradient-properties;
+  }
+  .bg-theme-cool-blues {
+    @apply bg-gradient-to-tr from-sky-500 via-blue-600 to-indigo-700;
+    @apply animated-gradient-properties;
+  }
+  .bg-theme-purple-haze {
+    @apply bg-gradient-to-r from-purple-600 via-fuchsia-500 to-pink-500;
+    @apply animated-gradient-properties;
+  }
+  .bg-theme-deep-indigo {
+    @apply bg-gradient-to-tr from-indigo-600 via-purple-700 to-violet-800;
+    @apply animated-gradient-properties;
+  }
+  .bg-theme-ocean-vista {
+    @apply bg-gradient-to-r from-blue-400 via-sky-400 to-cyan-500;
+    @apply animated-gradient-properties;
+  }
+  .bg-theme-emerald-wave {
+    @apply bg-gradient-to-bl from-emerald-500 via-teal-600 to-cyan-700;
+    @apply animated-gradient-properties;
+  }
+  .bg-theme-deep-forest {
+    @apply bg-gradient-to-bl from-green-700 via-emerald-800 to-teal-900;
+    @apply animated-gradient-properties;
+  }
+  .bg-theme-lime-twist {
+    @apply bg-gradient-to-br from-lime-400 via-green-500 to-emerald-600;
+    @apply animated-gradient-properties;
+  }
+  .bg-theme-sunset {
+    @apply bg-gradient-to-br from-red-500 via-orange-500 to-amber-400;
+    @apply animated-gradient-properties;
+  }
+  .bg-theme-warm-rose {
+    @apply bg-gradient-to-tr from-rose-400 via-pink-500 to-red-600;
+    @apply animated-gradient-properties;
+  }
+  .bg-theme-fiery-sky {
+    @apply bg-gradient-to-r from-orange-400 via-red-500 to-rose-600;
+    @apply animated-gradient-properties;
+  }
+  .bg-theme-playful-mix {
+    @apply bg-gradient-to-br from-lime-400 via-sky-500 to-fuchsia-500;
+    @apply animated-gradient-properties;
+  }
+}
