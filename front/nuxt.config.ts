@@ -4,6 +4,8 @@ const backendBaseUrl = process.env.NUXT_PUBLIC_BACKEND_BASE_URL || 'http://local
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  srcDir: 'app/',
+
   runtimeConfig: {
     public: {
       // Define your API base URL variable
@@ -62,6 +64,11 @@ export default defineNuxtConfig({
     },
   },
 
+  tailwindcss: {
+    cssPath: '~/assets/css/tailwind.css',
+    configPath: 'tailwind.config',
+  },
+
   vite: {
     build: {
       minify: 'terser',
@@ -109,7 +116,7 @@ export default defineNuxtConfig({
   },
 
   pinia: {
-    storesDirs: ['./stores/app/**'],
+    storesDirs: ['stores/app'],
   },
 
   sanctum: {
@@ -133,7 +140,7 @@ export default defineNuxtConfig({
         fallbacks: ['Georgia'],
         fallbackName: 'fallback-poppins',
         src: 'poppins.ttf',
-        root: 'assets',
+        root: 'app/assets',
       },
     ],
   },
