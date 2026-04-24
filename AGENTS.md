@@ -14,12 +14,6 @@
 - For complex problems, throw more compute at it via subagents
 - One tack per subagent for focused execution
 
-### 2.5 LeanCTX Mandatory Routing
-- Every prompt loads `.codex/skills/lean-ctx/SKILL.md`.
-- LeanCTX is mandatory for read/search/tree/shell/repo exploration whenever it can represent the task.
-- Native equivalents are forbidden until LeanCTX is unavailable, failed, timed out, blocked, or incomplete after retry.
-- Fallback must be narrow and stated in one sentence.
-- Keep details in the skill; `LEAN-CTX.md` is only the redirect.
 ### 3. Self-Improvement Loop
 - After ANY correction from the user: update `tasks/lessons.md` with the pattern
 - Write rules for yourself that prevent the same mistake
