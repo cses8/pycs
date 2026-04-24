@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-surface-0 dark:bg-surface-950">
+  <main class="bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-white">
     <FormGallery
       v-model:visible="showGalleryForm"
       v-model:gallery="selectedGallery"
@@ -7,165 +7,246 @@
       @onFormSuccess="() => galleriesInit++"
     />
     <FullGallery v-model:visible="showFullGallery" :gallery="galleryData" />
-    <div
-      class="bg-cover bg-center h-[420px] flex flex-col justify-end gap-4"
-      style="
-        background: linear-gradient(
-            0deg,
-            rgba(0, 0, 0, 1) 0%,
-            oklch(42.4% 0.199 265.638 / 0.8) 100%
-          ),
-          url('/images/banner1.webp');
-      "
-    >
-      <div class="px-6 md:px-12 lg:px-20">
-        <div class="grid grid-cols-12 gap-8">
-          <div class="hidden lg:block col-span-2" />
 
-          <div
-            class="col-span-12 lg:col-span-8 py-4 lg:py-8 flex flex-col gap-4"
-          >
-            <h1
-              class="text-3xl lg:text-5xl font-bold text-white leading-tight flex"
+    <section
+      class="relative isolate overflow-hidden bg-cover bg-center"
+      style="background-image: url('/images/banner3.webp')"
+    >
+      <div class="absolute inset-0 bg-slate-950/72" />
+      <div
+        class="absolute inset-0 bg-[linear-gradient(90deg,rgba(15,23,42,0.95)_0%,rgba(30,64,175,0.7)_50%,rgba(15,23,42,0.82)_100%)]"
+      />
+
+      <div class="relative mx-auto max-w-7xl px-5 pb-14 pt-28 sm:px-8 sm:pt-24 lg:px-10 lg:pb-20 lg:pt-28">
+        <div class="grid items-end gap-8 lg:grid-cols-[minmax(0,1fr)_360px]">
+          <div class="max-w-3xl">
+            <div
+              class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-100"
             >
-              Galleries
-              <Button
-                v-if="isAuthenticated"
-                icon="pi pi-plus"
-                label="Add Gallery"
-                secondary
-                outlined
-                class="ml-10 w-auto bg-green-50"
-                @click="addThisGallery()"
-              />
+              <Icon name="lucide:images" class="size-4" />
+              Campus Life Gallery
+            </div>
+            <h1 class="text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
+              Moments From School Life
             </h1>
-            <p class="text-sm lg:text-base text-white leading-normal">
-              Explore the vibrant life of our school! Galleries featuring
-              academics, athletics, arts, and student activities.
+            <p class="mt-5 max-w-2xl text-base leading-7 text-blue-50 sm:text-lg">
+              Browse highlights from academic activities, celebrations, student programs, and community events at Philippine Yuh Chiau School.
             </p>
+          </div>
+
+          <div class="rounded-2xl border border-white/15 bg-white/10 p-5 text-white shadow-2xl shadow-slate-950/30 backdrop-blur">
+            <div class="flex items-center gap-3">
+              <div class="flex size-11 items-center justify-center rounded-xl bg-white text-blue-900">
+                <Icon name="lucide:camera" class="size-6" />
+              </div>
+              <div>
+                <p class="text-xs font-semibold uppercase text-blue-100">Gallery Archive</p>
+                <p class="text-lg font-bold">{{ displayedGalleries.length }} Collections</p>
+              </div>
+            </div>
+            <p class="mt-4 text-sm leading-6 text-blue-50">
+              Open a collection to view the full photo set. New galleries appear here after publication.
+            </p>
+            <Button
+              v-if="isAuthenticated"
+              icon="pi pi-plus"
+              label="Add Gallery"
+              class="mt-5 w-full"
+              severity="secondary"
+              @click="addThisGallery()"
+            />
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="px-6 md:px-12 lg:px-20 py-4">
-      <div class="grid grid-cols-12 gap-4 lg:gap-8">
-        <div class="col-span-12 lg:col-span-10 flex flex-col gap-8 py-4">
-          <div class="flex flex-col gap-6">
-            <div class="bg-surface-0 dark:bg-surface-950">
-              <div class="flex flex-col items-center gap-14">
-                <div
-                  class="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3"
-                >
-                  <template v-for="gallery in galleries" :key="gallery.id">
-                    <div
-                      class="group relative w-full h-[25rem] cursor-pointer overflow-hidden rounded-xl"
-                    >
-                      <Image
-                        class="w-full h-full object-cover"
-                        :src="
-                          useResolvedImage(
-                            `/storage/galleries/${gallery.id}/${randomIntRange(
-                              !gallery.image_count ? 0 : 1,
-                              gallery.image_count
-                            )}.webp`
-                          )
-                        "
-                        :alt="gallery.title"
-                      />
+    <section class="mx-auto max-w-7xl px-5 py-8 sm:px-8 lg:px-10 lg:py-10">
+      <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p class="text-xs font-semibold uppercase text-blue-700 dark:text-blue-300">
+            Photo Collections
+          </p>
+          <h2 class="text-2xl font-black text-slate-950 dark:text-white">
+            Latest Galleries
+          </h2>
+        </div>
+        <div class="flex flex-wrap gap-2 text-sm text-slate-600 dark:text-slate-300">
+          <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 dark:border-white/10 dark:bg-white/5">
+            <Icon name="lucide:folder-open" class="size-4 text-blue-700 dark:text-blue-300" />
+            {{ displayedGalleries.length }} collections
+          </span>
+          <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 dark:border-white/10 dark:bg-white/5">
+            <Icon name="lucide:image" class="size-4 text-blue-700 dark:text-blue-300" />
+            {{ totalImages }} photos
+          </span>
+        </div>
+      </div>
 
-                      <div
-                        class="absolute inset-0 bg-black/50"
-                        @click="openFullGallery(gallery)"
-                      />
+      <div class="mb-6 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5">
+        <div class="mb-3 flex items-center gap-2">
+          <Icon name="lucide:graduation-cap" class="size-5 text-blue-700 dark:text-blue-300" />
+          <h3 class="text-sm font-bold uppercase text-slate-700 dark:text-slate-200">
+            Academic Year
+          </h3>
+        </div>
+        <div class="flex gap-2 overflow-x-auto pb-1">
+          <button
+            v-for="schoolYear in schoolYears"
+            :key="schoolYear.id"
+            type="button"
+            :class="[
+              'shrink-0 rounded-lg border px-4 py-2 text-sm font-semibold transition',
+              schoolYear.id === schoolYearStore.selectedSchoolYear?.id
+                ? 'border-blue-700 bg-blue-700 text-white shadow-sm dark:border-blue-400 dark:bg-blue-500'
+                : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-900 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:border-blue-300/40 dark:hover:bg-blue-400/10',
+            ]"
+            @click="schoolYearStore.selectedSchoolYear = schoolYear"
+          >
+            {{ schoolYear.description }}
+          </button>
+        </div>
+      </div>
 
-                      <div
-                        v-if="isAuthenticated"
-                        class="absolute p-2 left-4 transition-all duration-300 top-4 flex flex-col gap-6 rounded-lg bg-white/20 backdrop-blur-[5px] shadow-[0px_0px_50px_0px_rgba(0,0,0,0.05)_inset] border items-center"
-                      >
-                        <Icon
-                          name="mdi:pencil"
-                          class="text-white flex"
-                          size="1.6rem"
-                          @click="editThisGallery(gallery)"
-                        />
+      <div
+        v-if="displayedGalleries.length"
+        class="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3"
+      >
+        <article
+          v-for="gallery in displayedGalleries"
+          :key="gallery.id"
+          class="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-xl hover:shadow-slate-200/70 dark:border-white/10 dark:bg-white/5 dark:hover:border-blue-300/40 dark:hover:shadow-slate-950/50"
+        >
+          <button
+            type="button"
+            class="relative block h-64 w-full overflow-hidden text-left"
+            @click="openFullGallery(gallery)"
+          >
+            <img
+              :src="getGalleryCoverImage(gallery)"
+              :alt="gallery.title"
+              class="size-full object-cover transition duration-500 group-hover:scale-105"
+              @error="replaceWithFallbackImage"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/10 to-transparent" />
+            <div class="absolute left-4 top-4 rounded-xl bg-white/95 px-3 py-2 text-center shadow-sm">
+              <p class="text-xs font-bold uppercase text-blue-700">
+                {{ $dayjs(gallery.start).format('MMM') }}
+              </p>
+              <p class="text-2xl font-black leading-none text-slate-950">
+                {{ $dayjs(gallery.start).format('DD') }}
+              </p>
+              <p class="text-xs font-semibold text-slate-500">
+                {{ $dayjs(gallery.start).format('YYYY') }}
+              </p>
+            </div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <span class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white ring-1 ring-white/20 backdrop-blur">
+                <Icon name="lucide:images" class="size-3.5" />
+                {{ gallery.image_count }} photos
+              </span>
+            </div>
+          </button>
 
-                        <Divider class="!m-0" />
+          <div class="space-y-4 p-5">
+            <div>
+              <h3 class="line-clamp-2 text-xl font-black leading-6 text-slate-950 dark:text-white">
+                {{ gallery.title }}
+              </h3>
+              <p class="mt-2 text-sm font-semibold text-blue-700 dark:text-blue-300">
+                {{ formatRange(gallery.start, gallery.end) }}
+              </p>
+              <p
+                v-if="gallery.description"
+                class="mt-3 line-clamp-3 text-sm leading-6 text-slate-600 dark:text-slate-300"
+                v-html="gallery.description"
+              />
+            </div>
 
-                        <Icon
-                          name="mdi:trash"
-                          class="text-white flex"
-                          size="1.6rem"
-                          @click="deleteThisGallery(gallery)"
-                        />
-                      </div>
-
-                      <div
-                        class="absolute p-2 right-4 transition-all duration-300 top-4 flex flex-col gap-6 rounded-lg bg-white/20 backdrop-blur-[5px] shadow-[0px_0px_50px_0px_rgba(0,0,0,0.05)_inset]"
-                      >
-                        <span
-                          class="flex items-center justify-center cursor-pointer !text-xs !leading-none text-white"
-                        >
-                          {{ $dayjs(gallery.start).format('MMMM') }}
-                        </span>
-                        <code
-                          class="flex items-center justify-center cursor-pointer !text-2xl !leading-none text-white"
-                        >
-                          {{ $dayjs(gallery.start).format('DD') }}
-                        </code>
-                        <span
-                          class="flex items-center justify-center cursor-pointer !text-xs !leading-none text-white"
-                        >
-                          {{ $dayjs(gallery.start).format('YYYY') }}
-                        </span>
-                      </div>
-
-                      <div
-                        class="absolute bottom-4 left-4 right-4 bg-white/20 backdrop-blur-[5px] shadow-[0px_0px_50px_0px_rgba(0,0,0,0.05)_inset] rounded p-4"
-                      >
-                        <h4
-                          class="text-xl font-semibold text-white leading-tight"
-                        >
-                          {{ gallery.title }}
-                        </h4>
-                      </div>
-                    </div>
-                  </template>
-                </div>
+            <div class="flex items-center justify-between gap-3">
+              <Button
+                label="View Gallery"
+                icon="pi pi-images"
+                size="small"
+                class="w-auto"
+                @click="openFullGallery(gallery)"
+              />
+              <div v-if="isAuthenticated" class="flex gap-2">
+                <Button
+                  icon="pi pi-pencil"
+                  rounded
+                  text
+                  aria-label="Edit gallery"
+                  @click="editThisGallery(gallery)"
+                />
+                <Button
+                  icon="pi pi-trash"
+                  rounded
+                  text
+                  severity="danger"
+                  aria-label="Delete gallery"
+                  @click="deleteThisGallery(gallery)"
+                />
               </div>
             </div>
           </div>
-        </div>
-
-        <div
-          class="col-span-12 lg:col-span-2 lg:border-l border-surface-200 dark:border-surface-700"
-        >
-          <SchoolYear />
-        </div>
+        </article>
       </div>
-    </div>
-  </div>
+
+      <div
+        v-else
+        class="rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center shadow-sm dark:border-white/15 dark:bg-white/5"
+      >
+        <Icon name="lucide:images" class="mx-auto size-10 text-slate-400" />
+        <h3 class="mt-4 text-xl font-black text-slate-950 dark:text-white">
+          No galleries available for {{ selectedYearLabel }}
+        </h3>
+        <p class="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-600 dark:text-slate-300">
+          Published photo collections will appear here once they are available.
+        </p>
+      </div>
+    </section>
+  </main>
 </template>
+
 <script setup lang="ts">
 import { GALLERY } from '~/constant/Gallery'
+
 const { isAuthenticated } = useSanctumAuth()
+const dayjs = useDayjs()
+const schoolYearStore = useSchoolYearStore()
 
 definePageMeta({
   layout: 'welcome',
 })
 
-const emit = defineEmits<{
-  onFormSuccess: [value: number]
-}>()
-
 const galleriesInit = ref<number>(0)
 const showFullGallery = ref<boolean>(false)
-
 const showGalleryForm = ref<boolean>(false)
 const selectedGallery = ref<Gallery>(GALLERY)
 const galleryFormOperation = ref<'create' | 'update'>('create')
-
 const galleryData = ref(GALLERY)
+const fallbackImage = '/images/no-image.svg'
+
+const schoolYears = computedAsync<SchoolYear[]>(async () => {
+  const response = await useGetFetch<SchoolYear[]>('api/school-years')
+
+  if (Array.isArray(response)) {
+    const reversed = response.reverse()
+
+    if (
+      !reversed.some((schoolYear) => {
+        return schoolYear.id === schoolYearStore.selectedSchoolYear?.id
+      })
+    ) {
+      schoolYearStore.selectedSchoolYear = reversed[0]
+    }
+
+    return reversed as SchoolYear[]
+  }
+
+  return []
+}, [])
+
 const galleries = computedAsync<Gallery[]>(async () => {
   galleriesInit.value
   const response = await useGetFetch<Gallery[]>('api/galleries')
@@ -176,6 +257,63 @@ const galleries = computedAsync<Gallery[]>(async () => {
 
   return []
 }, [])
+
+const totalImages = computed(() => {
+  return displayedGalleries.value.reduce(
+    (total, gallery) => total + gallery.image_count,
+    0
+  )
+})
+
+const selectedYearLabel = computed(() => {
+  return schoolYearStore.selectedSchoolYear?.description || 'the selected year'
+})
+
+const displayedGalleries = computed(() => {
+  const selectedRange = getSchoolYearRange(selectedYearLabel.value)
+
+  if (!selectedRange) {
+    return galleries.value
+  }
+
+  return galleries.value.filter((gallery) => {
+    const start = dayjs(gallery.start)
+
+    return (
+      start.isValid() &&
+      (start.isSame(selectedRange.start) ||
+        start.isSame(selectedRange.end) ||
+        (start.isAfter(selectedRange.start) && start.isBefore(selectedRange.end)))
+    )
+  })
+})
+
+function getGalleryCoverImage(gallery: Gallery) {
+  if (!gallery.image_count) {
+    return fallbackImage
+  }
+
+  const imageIndex = (gallery.id % gallery.image_count) + 1
+  return useResolvedImage(`/storage/galleries/${gallery.id}/${imageIndex}.webp`)
+}
+
+function replaceWithFallbackImage(event: Event) {
+  const image = event.target as HTMLImageElement
+  image.src = fallbackImage
+}
+
+function getSchoolYearRange(description: string) {
+  const match = description.match(/(\d{4}).*?(\d{4})/)
+
+  if (!match) {
+    return null
+  }
+
+  return {
+    start: dayjs(`${match[1]}-06-01`).startOf('day'),
+    end: dayjs(`${match[2]}-05-31`).endOf('day'),
+  }
+}
 
 function openFullGallery(gallery: Gallery) {
   showFullGallery.value = true
@@ -194,11 +332,7 @@ async function deleteThisGallery(gallery: Gallery) {
   )
 
   if (confirmation) {
-    const { data, status, error, refresh } = await useSanctumPost(
-      `/api/galleries`,
-      'delete',
-      gallery
-    )
+    const { status } = await useSanctumPost(`/api/galleries`, 'delete', gallery)
 
     if (status.value == 'success') {
       galleriesInit.value++

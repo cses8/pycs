@@ -1,41 +1,31 @@
 <template>
-  <div class="w-full items-center justify-center md:px-8">
-    <UiTracingBeam class="px-6">
-      <div class="relative mx-auto max-w-2xl pt-4 antialiased">
-        <div
-          v-for="(schoolCalendar, index) in schoolCalendars"
-          :key="`content-${index}`"
-          class="mb-[8rem]"
-        >
-          <div
-            class="mb-4 w-fit rounded-full bg-black px-2 text-sm text-white dark:bg-white dark:text-black"
-          >
-            {{ formatRange(schoolCalendar.start, schoolCalendar.end) }}
-          </div>
-
-          <p :class="['mb-4 text-xl']">
-            {{ schoolCalendar.title }}
-          </p>
-
-          <div class="prose prose-sm dark:prose-invert text-sm">
-            <Image
-              v-if="schoolCalendar.image"
-              :src="schoolCalendar.image"
-              alt="blog thumbnail"
-              class="mb-10 object-cover"
-              width="200"
-              preview
-            />
-            <div>
-              <div
-                class="font-light text-slate-700 dark:text-slate-300"
-                v-html="htmlTransformer(schoolCalendar.description)"
-              />
-            </div>
-          </div>
+  <div class="grid gap-3 md:grid-cols-2">
+    <article
+      v-for="schoolCalendar in schoolCalendars"
+      :key="schoolCalendar.id"
+      class="rounded-xl border border-slate-200 bg-slate-50 p-4 transition hover:border-blue-200 hover:bg-blue-50/50 dark:border-white/10 dark:bg-slate-950/50 dark:hover:border-blue-300/40 dark:hover:bg-blue-400/10"
+    >
+      <div class="mb-3 flex items-start justify-between gap-3">
+        <div class="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-bold text-blue-800 ring-1 ring-slate-200 dark:bg-white/10 dark:text-blue-200 dark:ring-white/10">
+          <Icon name="lucide:calendar" class="size-3.5" />
+          {{ formatRange(schoolCalendar.start, schoolCalendar.end) }}
         </div>
       </div>
-    </UiTracingBeam>
+      <h3 class="text-lg font-black leading-6 text-slate-950 dark:text-white">
+        {{ schoolCalendar.title }}
+      </h3>
+      <div
+        class="mt-3 line-clamp-5 text-sm leading-6 text-slate-600 dark:text-slate-300"
+        v-html="htmlTransformer(schoolCalendar.description)"
+      />
+    </article>
+
+    <div
+      v-if="!schoolCalendars.length"
+      class="rounded-xl border border-dashed border-slate-300 p-6 text-sm text-slate-500 dark:border-white/15 dark:text-slate-400 md:col-span-2"
+    >
+      No calendar events available for the selected school year.
+    </div>
   </div>
 </template>
 
@@ -49,11 +39,11 @@ const schoolCalendars = computedAsync<SchoolCalendar[]>(async () => {
 
   if (Array.isArray(response)) {
     return response as SchoolCalendar[]
-  } else {
-    console.error('Error fetching school calendars:', response)
-    return []
   }
+
+  return []
 }, [])
+
 function htmlTransformer(htmlString: string) {
   let updatedHtmlString = htmlString.replace(
     /<ul>/g,
@@ -63,6 +53,7 @@ function htmlTransformer(htmlString: string) {
     /<br>/g,
     '<div class="mb-1">&nbsp;</div>'
   )
+
   return updatedHtmlString
 }
 </script>

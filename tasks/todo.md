@@ -35,3 +35,54 @@ Long-lived project documentation belongs in:
 - Updated the active announcement carousel image renderer to use the fallback when an image URL is missing or fails to load.
 - Verified typecheck, production build, and browser rendering at desktop, tablet, and mobile sizes.
 - `bun run quality:check` could not run because `front/package.json` has no `quality:check` script.
+
+## School Calendar Redesign
+
+- [x] Inspect current school calendar route and shared calendar components.
+- [x] Redesign `/school-calendar` for desktop, tablet, and mobile.
+- [x] Run frontend verification.
+- [x] Verify the route in a real browser.
+- [x] Record review/results.
+
+## Review / Results
+
+- Redesigned `/school-calendar` as a responsive school planning dashboard.
+- Updated the academic year selector, upcoming event card, and all-events list to match the new layout.
+- Verified typecheck, production build, and browser rendering on desktop, tablet, and mobile.
+- `bun run quality:check` could not run because `front/package.json` has no `quality:check` script.
+- Browser console still shows the existing unauthenticated `http://localhost:8000/api/user` 401.
+
+## Galleries Redesign
+
+- [x] Inspect current galleries route and shared gallery components.
+- [x] Redesign `/galleries` for desktop, tablet, and mobile.
+- [x] Run frontend verification.
+- [x] Verify the route in a real browser.
+- [x] Record review/results.
+
+## Review / Results
+
+- Redesigned `/galleries` with a new responsive hero, collection stats, and gallery card grid.
+- Preserved authenticated add, edit, and delete gallery actions.
+- Added cover-image fallback handling for galleries without a loadable cover image.
+- Verified typecheck, production build, and browser rendering on desktop, tablet, and mobile.
+- `bun run quality:check` could not run because `front/package.json` has no `quality:check` script.
+- Browser console still shows the existing unauthenticated `http://localhost:8000/api/user` 401.
+
+## Galleries Year Tabs And Dialog
+
+- [x] Inspect gallery modal and school-year data flow.
+- [x] Add school-year controls to `/galleries`.
+- [x] Redesign the View Gallery dialog.
+- [x] Run frontend verification.
+- [x] Verify in browser across desktop, tablet, and mobile.
+- [x] Record review/results.
+
+## Review / Results
+
+- Added visible academic-year tabs/buttons to `/galleries`.
+- Filtered galleries by the selected school-year date range; the gallery records do not currently have a `school_year_id`.
+- Redesigned the View Gallery dialog with a dark header, integrated close control, responsive photo grid, and no-image fallback for failed gallery photos.
+- Verified Nuxt typecheck and production build.
+- `bun run quality:check` could not run because `front/package.json` has no `quality:check` script.
+- Verified `/galleries` in browser on desktop, tablet, and mobile; the existing unauthenticated `http://localhost:8000/api/user` 401 remains.

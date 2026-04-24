@@ -1,62 +1,38 @@
 <template>
-  <div class="px-2">
-    <div
+  <div class="space-y-3">
+    <article
       v-for="schoolCalendar in schoolCalendars"
-      :key="schoolCalendar.title"
-      class="relative rounded-[2rem] dark:border dark:border-white/20 overflow-hidden flex flex-col justify-end my-5"
+      :key="schoolCalendar.id ?? schoolCalendar.title"
+      class="overflow-hidden rounded-xl border border-slate-200 bg-slate-50 shadow-sm dark:border-white/10 dark:bg-slate-950/50"
     >
-      <div
-        class="absolute inset-0 cover no-repeat"
-        :style="`
-					background: linear-gradient(
-              79deg,
-              rgba(0, 0, 0, 0.9) 0%,
-              rgba(0, 0, 0, 0) 58.1%
-            ),
-            linear-gradient(
-              0deg,
-              color-mix(in srgb, var(${
-                schoolCalendar.title == 'No Event'
-                  ? '--color-red-900'
-                  : '--color-slate-900'
-              }), transparent 30%) 0%,
-              color-mix(in srgb, var(${
-                schoolCalendar.title == 'No Event'
-                  ? '--color-red-900'
-                  : '--color-slate-900'
-              }), transparent 30%) 100%
-            ),
-            url(${schoolCalendar.image}) lightgray 50% / cover
-              no-repeat;
-          background-blend-mode: normal, multiply, normal;
-				`"
+      <img
+        :src="resolveCalendarImage(schoolCalendar)"
+        :alt="schoolCalendar.title"
+        class="h-32 w-full object-cover"
+        @error="replaceWithFallbackImage"
       />
-
-      <div class="relative flex flex-col justify-end h-full gap-8 p-8 lg:p-10">
-        <div class="flex items-center gap-4">
-          <span class="text-3xl font-semibold text-white">
-            {{ schoolCalendar.title }}
-          </span>
+      <div class="space-y-3 p-4">
+        <div class="inline-flex items-center gap-2 rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-800 dark:bg-blue-400/15 dark:text-blue-200">
+          <Icon name="lucide:clock-3" class="size-3.5" />
+          {{ formatRange(schoolCalendar.start, schoolCalendar.end) }}
         </div>
-
-        <!-- <div class="text-white leading-normal" v-html="item.description" /> -->
-
-        <div class="flex flex-col gap-2">
-          <div class="font-medium text-slate-300">
-            <span
-              class="p-1 rounded border-[0.1rem] bg-white/10 border-white/20"
-            >
-              {{ formatRange(schoolCalendar.start, schoolCalendar.end) }}
-            </span>
-          </div>
-        </div>
+        <h3 class="text-base font-black leading-5 text-slate-950 dark:text-white">
+          {{ schoolCalendar.title }}
+        </h3>
+        <p
+          v-if="schoolCalendar.description"
+          class="line-clamp-4 text-sm leading-6 text-slate-600 dark:text-slate-300"
+          v-html="schoolCalendar.description"
+        />
       </div>
-    </div>
+    </article>
   </div>
 </template>
+
 <script setup lang="ts">
 const schoolYearStore = useSchoolYearStore()
 const dayjs = useDayjs()
+const fallbackImage = '/images/school_calendar.webp'
 
 const schoolCalendars = computedAsync<SchoolCalendar[]>(async () => {
   const response = await useGetFetch<SchoolCalendar[]>(
@@ -65,18 +41,41 @@ const schoolCalendars = computedAsync<SchoolCalendar[]>(async () => {
 
   if (Array.isArray(response) && response.length) {
     return response as SchoolCalendar[]
-  } else {
-    console.error('Error fetching school calendars:', response)
-    return noData as any
   }
+
+  return [
+    {
+      id: 0,
+      school_year_id: String(schoolYearStore.selectedSchoolYear?.id ?? ''),
+      title: 'No upcoming events',
+      description: 'There are no scheduled upcoming events for the selected school year yet.',
+      start: dayjs().format('YYYY-MM-DD'),
+      end: dayjs().format('YYYY-MM-DD'),
+      image: fallbackImage,
+    },
+  ]
 }, [])
 
-const noData = [
-  {
-    title: 'No Event',
-    from: dayjs().format('YYYY-MM-DD'),
-    to: dayjs().format('YYYY-MM-DD'),
-    image: '/images/school_calendar.webp',
-  },
-]
+function resolveCalendarImage(schoolCalendar: SchoolCalendar) {
+  const image = schoolCalendar.image?.trim()
+
+  if (!image) {
+    return fallbackImage
+  }
+
+  if (image.startsWith('http') || image.startsWith('/images/')) {
+    return image
+  }
+
+  if (image.startsWith('/storage/')) {
+    return apiUrl(image)
+  }
+
+  return image
+}
+
+function replaceWithFallbackImage(event: Event) {
+  const image = event.target as HTMLImageElement
+  image.src = fallbackImage
+}
 </script>
