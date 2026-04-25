@@ -4,10 +4,10 @@
     modal
     :closeOnEscape="false"
     :draggable="false"
-    :style="{ width: 'min(94vw, 54rem)' }"
+    :style="{ width: 'min(94vw, 34rem)' }"
     pt:root:class="!border-0 !bg-transparent !shadow-none"
     pt:mask:class="backdrop-blur-sm !bg-slate-950/45"
-    aria-labelledby="announcement-form-title"
+    aria-labelledby="school-year-form-title"
   >
     <template #container="{ closeCallback }">
       <section
@@ -24,10 +24,10 @@
             </div>
             <div class="min-w-0">
               <p class="text-xs font-semibold uppercase text-blue-200">
-                Announcement
+                School Year
               </p>
               <h2
-                id="announcement-form-title"
+                id="school-year-form-title"
                 class="mt-1 truncate text-xl font-bold leading-tight text-white sm:text-2xl"
               >
                 {{ dialogTitle }}
@@ -43,7 +43,7 @@
             rounded
             text
             severity="secondary"
-            aria-label="Close announcement form"
+            aria-label="Close school year form"
             class="!-mr-2 !-mt-2 !h-10 !w-10 !text-slate-200 hover:!bg-white/10 hover:!text-white"
             @click="closeCallback"
           />
@@ -59,6 +59,14 @@
           </div>
 
           <div
+            v-if="formError"
+            role="alert"
+            class="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700 dark:border-red-900 dark:bg-red-950/40 dark:text-red-300"
+          >
+            {{ formError }}
+          </div>
+
+          <div
             v-if="operation == 'delete'"
             class="rounded-lg border border-red-200 bg-white p-5 shadow-sm dark:border-red-900/60 dark:bg-surface-950"
           >
@@ -70,14 +78,14 @@
               </div>
               <div>
                 <h3 class="text-lg font-bold text-slate-950 dark:text-white">
-                  Delete this announcement?
+                  Delete this school year?
                 </h3>
                 <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-surface-300">
                   This will remove
                   <strong class="font-semibold text-slate-950 dark:text-white">
-                    {{ announcement.title }}
+                    {{ schoolYear.description }}
                   </strong>
-                  from the announcement list. This action cannot be undone.
+                  from the school year list.
                 </p>
               </div>
             </div>
@@ -92,7 +100,7 @@
                 @click="closeCallback"
               />
               <Button
-                label="Delete announcement"
+                label="Delete school year"
                 icon="pi pi-trash"
                 severity="danger"
                 class="!rounded-lg !py-3"
@@ -103,9 +111,8 @@
 
           <Fluid v-else>
             <Form
-              :key="formKey"
               v-slot="$form"
-              :initialValues="announcement"
+              :initialValues="schoolYear"
               :resolver
               @submit="onFormSubmit"
             >
@@ -119,90 +126,18 @@
 
                   <div class="col-span-12 flex flex-col gap-2">
                     <label
-                      for="title"
-                      class="text-sm font-semibold text-slate-800 dark:text-surface-100"
-                    >
-                      Title
-                    </label>
-                    <InputText
-                      id="title"
-                      name="title"
-                      type="text"
-                      class="w-full !rounded-lg !border-slate-300 !py-3 dark:!border-surface-700 dark:!bg-surface-900"
-                    />
-                    <Message
-                      v-if="$form.title?.invalid"
-                      size="small"
-                      variant="simple"
-                      class="!text-red-600 dark:!text-red-300"
-                      >{{ $form.title.error?.message }}</Message
-                    >
-                  </div>
-
-                  <div class="col-span-12 flex flex-col gap-2 md:col-span-6">
-                    <label
-                      for="start"
-                      class="text-sm font-semibold text-slate-800 dark:text-surface-100"
-                    >
-                      Start date
-                    </label>
-                    <DatePicker
-                      id="start"
-                      :show-icon="true"
-                      name="start"
-                      class="w-full"
-                    />
-                    <Message
-                      v-if="$form.start?.invalid"
-                      size="small"
-                      variant="simple"
-                      class="!text-red-600 dark:!text-red-300"
-                      >{{ $form.start.error?.message }}</Message
-                    >
-                  </div>
-
-                  <div class="col-span-12 flex flex-col gap-2 md:col-span-6">
-                    <label
-                      for="end"
-                      class="text-sm font-semibold text-slate-800 dark:text-surface-100"
-                    >
-                      End date
-                    </label>
-                    <DatePicker
-                      id="end"
-                      name="end"
-                      :show-icon="true"
-                      class="w-full"
-                    />
-                    <Message
-                      v-if="$form.end?.invalid"
-                      size="small"
-                      variant="simple"
-                      class="!text-red-600 dark:!text-red-300"
-                      >{{ $form.end.error?.message }}</Message
-                    >
-                  </div>
-
-                  <div class="col-span-12 flex flex-col gap-2">
-                    <label
                       for="description"
                       class="text-sm font-semibold text-slate-800 dark:text-surface-100"
                     >
-                      Description
+                      School year
                     </label>
-                    <Editor
+                    <InputText
+                      id="description"
                       name="description"
-                      placeholder="Write the announcement details with formatting."
-                      editor-style="height: 300px"
-                      :class="[
-                        'pycs-rich-editor',
-                        { 'pycs-rich-editor-invalid': $form.description?.invalid },
-                      ]"
-                    >
-                      <template #toolbar>
-                        <AppRichEditorToolbar />
-                      </template>
-                    </Editor>
+                      type="text"
+                      placeholder="2025-2026"
+                      class="w-full !rounded-lg !border-slate-300 !py-3 dark:!border-surface-700 dark:!bg-surface-900"
+                    />
                     <Message
                       v-if="$form.description?.invalid"
                       size="small"
@@ -223,7 +158,7 @@
                     @click="closeCallback"
                   />
                   <Button
-                    :label="operation == 'create' ? 'Create announcement' : 'Save changes'"
+                    :label="operation == 'create' ? 'Create school year' : 'Save changes'"
                     icon="pi pi-check"
                     class="!rounded-lg !py-3"
                     type="submit"
@@ -239,38 +174,30 @@
 </template>
 
 <script setup lang="ts">
-import { ANNOUNCEMENT } from '~/constant/Announcement'
+import { SCHOOL_YEAR } from '~/constant/SchoolYear'
 import { z } from 'zod'
 import { zodResolver } from '@primevue/forms/resolvers/zod'
-
-const dayjs = useDayjs()
 
 const emit = defineEmits<{
   onFormSuccess: [value: number]
 }>()
 
 const visible = defineModel('visible', { default: false })
-const announcement = defineModel('announcement', { default: ANNOUNCEMENT })
+const schoolYear = defineModel('schoolYear', { default: SCHOOL_YEAR })
 const operation = defineModel<'create' | 'update' | 'delete'>('operation', {
   default: 'create',
 })
+const formError = ref('')
 
-type AnnouncementFormValues = {
+type SchoolYearFormValues = {
   id: number
-  title: string
   description: string
-  start: string | Date
-  end: string | Date
 }
 
-type AnnouncementFormSubmitEvent = {
+type SchoolYearFormSubmitEvent = {
   valid: boolean
-  values: AnnouncementFormValues
+  values: SchoolYearFormValues
 }
-
-const formKey = computed(() => {
-  return `${operation.value}-${announcement.value.id}`
-})
 
 const operationLabel = computed(() => {
   if (operation.value === 'create') {
@@ -298,18 +225,18 @@ const operationIcon = computed(() => {
 
 const dialogTitle = computed(() => {
   if (operation.value === 'create') {
-    return 'Create announcement'
+    return 'Create school year'
   }
 
-  return announcement.value.title || 'Announcement'
+  return schoolYear.value.description || 'School year'
 })
 
 const dialogDescription = computed(() => {
   if (operation.value === 'delete') {
-    return 'Confirm removal before deleting this announcement.'
+    return 'Confirm removal before deleting this school year.'
   }
 
-  return 'Set the headline, visibility window, and public announcement content.'
+  return 'Encode the academic year label used across school year filters.'
 })
 
 const operationBadgeClass = computed(() => {
@@ -343,29 +270,19 @@ const resolver = ref(
         required_error: 'ID is required',
         invalid_type_error: 'Input must be a number',
       }),
-      title: z.string().min(1, { message: 'Title is required.' }),
-      description: z.string().min(1, { message: 'Description is required.' }),
-      start: z.union([z.string(), z.date()], {
-        invalid_type_error: 'Input must be either a string or a Date object.',
-      }),
-      end: z.union([z.string(), z.date()], {
-        invalid_type_error: 'Input must be either a string or a Date object.',
-      }),
+      description: z
+        .string()
+        .min(1, { message: 'School year is required.' })
+        .max(20, { message: 'School year must be 20 characters or fewer.' }),
     })
   )
 )
 
-async function onFormSubmit(e: AnnouncementFormSubmitEvent) {
+async function onFormSubmit(e: SchoolYearFormSubmitEvent) {
+  formError.value = ''
+
   await task()
-    .do(async () => useLoaderStore().processStep('announcement'))
-    .do(async () =>
-      Object.assign(e.values, {
-        start: dayjs(e.values.start)
-          .startOf('day')
-          .format('YYYY-MM-DD HH:mm:ss'),
-        end: dayjs(e.values.end).startOf('day').format('YYYY-MM-DD HH:mm:ss'),
-      })
-    )
+    .do(async () => useLoaderStore().processStep('schoolYear'))
     .do(async () => {
       if (!e.valid) {
         useLoaderStore().setDoneToTheOpenLoader('failed')
@@ -375,8 +292,8 @@ async function onFormSubmit(e: AnnouncementFormSubmitEvent) {
     })
     .do(async () => {
       if (e.valid) {
-        const { status } = await useSanctumPost(
-          `/api/announcements`,
+        const { status, error } = await useSanctumPost(
+          `/api/school-years`,
           operation.value,
           e.values
         )
@@ -386,6 +303,7 @@ async function onFormSubmit(e: AnnouncementFormSubmitEvent) {
           useLoaderStore().setDoneToTheOpenLoader()
           visible.value = false
         } else {
+          formError.value = getErrorMessage(error.value)
           useLoaderStore().setDoneToTheOpenLoader('failed')
         }
       }
@@ -396,8 +314,36 @@ async function onFormSubmit(e: AnnouncementFormSubmitEvent) {
 function deleteThisItem() {
   onFormSubmit({
     valid: true,
-    values: announcement.value,
+    values: schoolYear.value,
   })
 }
 
+function getErrorMessage(error: unknown) {
+  const fallback = 'Unable to save school year. Please review the record and try again.'
+
+  if (!error || typeof error !== 'object') {
+    return fallback
+  }
+
+  const payload = error as {
+    data?: { message?: unknown }
+    message?: unknown
+  }
+
+  if (typeof payload.data?.message === 'string') {
+    return payload.data.message
+  }
+
+  if (typeof payload.message === 'string') {
+    return payload.message
+  }
+
+  return fallback
+}
+
+watch(visible, (isVisible) => {
+  if (!isVisible) {
+    formError.value = ''
+  }
+})
 </script>

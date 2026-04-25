@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-v-html -->
 <template>
   <div class="space-y-3">
     <article
@@ -10,7 +11,7 @@
         :alt="schoolCalendar.title"
         class="h-32 w-full object-cover"
         @error="replaceWithFallbackImage"
-      />
+      >
       <div class="space-y-3 p-4">
         <div class="inline-flex items-center gap-2 rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-800 dark:bg-blue-400/15 dark:text-blue-200">
           <Icon name="lucide:clock-3" class="size-3.5" />
@@ -46,7 +47,9 @@ const schoolCalendars = computedAsync<SchoolCalendar[]>(async () => {
   return [
     {
       id: 0,
-      school_year_id: String(schoolYearStore.selectedSchoolYear?.id ?? ''),
+      school_year_id: Number.isFinite(Number(schoolYearStore.selectedSchoolYear?.id))
+        ? Number(schoolYearStore.selectedSchoolYear.id)
+        : null,
       title: 'No upcoming events',
       description: 'There are no scheduled upcoming events for the selected school year yet.',
       start: dayjs().format('YYYY-MM-DD'),

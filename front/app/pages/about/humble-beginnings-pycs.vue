@@ -31,7 +31,7 @@
 
     <div class="px-6 md:px-12 lg:px-20 py-4">
       <div class="grid grid-cols-12 gap-4 lg:gap-8">
-        <div class="col-span-12 lg:col-span-2"></div>
+        <div class="col-span-12 lg:col-span-2" />
 
         <div class="col-span-12 lg:col-span-7 flex flex-col gap-8 py-4">
           <div class="flex flex-col gap-6">
@@ -117,17 +117,17 @@
             </p>
 
             <div
-              class="bg-surface-100 dark:bg-surface-900 px-6 py-20 md:px-12 lg:px-20"
+              class="founders-showcase bg-surface-100 px-5 py-16 dark:bg-surface-900 sm:px-6 md:px-10 lg:px-12"
             >
-              <div class="flex flex-col items-center gap-[4.375rem]">
+              <div class="flex flex-col items-center gap-10 lg:gap-14">
                 <div class="flex flex-col items-center gap-4">
                   <h2
-                    class="text-[3.28125rem] font-semibold text-surface-900 dark:text-surface-0 leading-tight text-center"
+                    class="max-w-4xl text-center text-3xl font-semibold leading-tight text-surface-900 dark:text-surface-0 sm:text-4xl lg:text-[2.75rem]"
                   >
                     Founders of Philippine Yuh Chiau School
                   </h2>
                   <div
-                    class="max-w-[42rem] text-xl text-surface-600 dark:text-surface-300 leading-normal text-center"
+                    class="max-w-[42rem] text-center text-base leading-relaxed text-surface-600 dark:text-surface-300 sm:text-lg"
                   >
                     Founded in 1946 by Chinese migrants seeking to preserve
                     culture, the school started small, grew significantly, and
@@ -137,15 +137,15 @@
                 </div>
 
                 <div
-                  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-[84rem] mx-auto"
+                  class="mx-auto grid w-full max-w-[1048px] grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4"
                 >
                   <div
                     v-for="(member, index) of teams"
                     :key="index"
-                    class="h-[25rem] rounded-3xl relative bg-surface-200 dark:bg-surface-800"
+                    class="founder-card group relative overflow-hidden rounded-b-2xl bg-surface-200 shadow-sm"
                   >
                     <Image
-                      class="w-full h-full object-cover rounded-3xl"
+                      class="founder-card__image block w-full object-cover"
                       :style="`object-position: ${
                         member.imagePosition || 'center'
                       }`"
@@ -153,28 +153,23 @@
                       :alt="member.name"
                     />
                     <div
-                      class="absolute inset-x-4 bottom-4 p-4 rounded-[0.5rem] bg-white/10 shadow-[0px_0px_30px_0px_rgba(255,255,255,0.2),inset_0px_0px_50px_0px_rgba(0,0,0,0.28)] backdrop-blur-[5px]"
+                      class="founder-card__details absolute inset-x-3 bottom-3 flex min-h-[5.25rem] flex-col justify-end gap-1 rounded-md p-3"
                     >
-                      <div class="flex flex-col gap-4">
-                        <div class="flex flex-col gap-2">
-                          <h3
-                            class="font-semibold text-2xl leading-tight text-surface-0"
-                          >
-                            {{ member.name }}
-                          </h3>
-                          <div class="text-sm leading-normal text-surface-0/70">
-                            <div class="font-semibold">
-                              {{ member.job }}
-                            </div>
-                            <div class="font-light">
-                              <span class="font-semibold">{{
-                                member.timeline.job
-                              }}</span>
-                              <span class="ml-2">{{
-                                member.timeline.range
-                              }}</span>
-                            </div>
-                          </div>
+                      <h3 class="founder-card__name">
+                        {{ member.name }}
+                      </h3>
+                      <div class="founder-card__meta">
+                        <div class="font-semibold">
+                          {{ member.job }}
+                        </div>
+                        <div
+                          v-if="member.timeline.job || member.timeline.range"
+                          class="flex flex-wrap gap-x-2"
+                        >
+                          <span class="font-semibold">{{
+                            member.timeline.job
+                          }}</span>
+                          <span>{{ member.timeline.range }}</span>
                         </div>
                       </div>
                     </div>
@@ -254,9 +249,9 @@
             </span>
             <div class="flex flex-col gap-4 mb-8 overflow-y-auto h-[40rem]">
               <div
-                class="flex p-2"
                 v-for="president in presidents"
                 :key="president"
+                class="flex p-2"
               >
                 <Avatar
                   size="xlarge"
@@ -287,9 +282,9 @@
             </span>
             <div class="flex flex-col gap-4 mb-8 overflow-y-auto h-[40rem]">
               <div
-                class="flex p-2"
                 v-for="principal in principals"
                 :key="principal"
+                class="flex p-2"
               >
                 <Avatar
                   size="xlarge"
@@ -457,3 +452,66 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
 })
 </script>
+<style scoped>
+.founders-showcase {
+  position: relative;
+  left: 50%;
+  width: min(1120px, calc(100vw - 32px));
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.founder-card {
+  min-height: 300px;
+}
+
+.founder-card__image {
+  height: 300px;
+}
+
+.founder-card__details {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.46) 0%,
+      rgba(226, 232, 240, 0.76) 100%
+    ),
+    rgba(15, 23, 42, 0.2);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.founder-card__name {
+  color: #ffffff !important;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  text-shadow: 0 1px 8px rgba(15, 23, 42, 0.45);
+}
+
+.founder-card__meta {
+  color: rgba(255, 255, 255, 0.86) !important;
+  font-size: 12px;
+  line-height: 1.35;
+  text-shadow: 0 1px 8px rgba(15, 23, 42, 0.35);
+}
+
+@media (max-width: 639px) {
+  .founders-showcase {
+    width: min(360px, calc(100vw - 32px));
+  }
+}
+
+@media (min-width: 1280px) {
+  .founder-card {
+    min-height: 310px;
+  }
+
+  .founder-card__image {
+    height: 310px;
+  }
+}
+</style>

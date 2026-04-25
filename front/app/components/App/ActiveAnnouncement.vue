@@ -1,9 +1,22 @@
 <template>
   <LazyUiAnimatedTestimonials
+    v-if="announcements.length"
     :testimonials="announcements"
     autoplay
     :duration="5000"
   />
+  <div
+    v-else
+    class="mx-auto w-full max-w-md rounded-xl border border-white/15 bg-white/10 p-6 text-left backdrop-blur"
+  >
+    <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-white/10 text-white">
+      <Icon name="lucide:megaphone" class="h-6 w-6" />
+    </div>
+    <h2 class="text-xl font-bold text-white">Announcements</h2>
+    <p class="mt-2 text-sm leading-6 text-slate-200">
+      Active school announcements will appear here when published.
+    </p>
+  </div>
 </template>
 
 <script setup lang="ts">

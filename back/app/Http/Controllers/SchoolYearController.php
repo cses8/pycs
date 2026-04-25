@@ -29,7 +29,12 @@ class SchoolYearController extends Controller
      */
     public function store(StoreSchoolYearRequest $request)
     {
-        //
+        $schoolYear = SchoolYear::create($request->validated());
+
+        return response()->json([
+            'message' => 'School year created successfully.',
+            'schoolYear' => $schoolYear,
+        ], 201);
     }
 
     /**
@@ -53,7 +58,12 @@ class SchoolYearController extends Controller
      */
     public function update(UpdateSchoolYearRequest $request, SchoolYear $schoolYear)
     {
-        //
+        $schoolYear->update($request->validated());
+
+        return response()->json([
+            'message' => 'School year updated successfully.',
+            'schoolYear' => $schoolYear,
+        ], 200);
     }
 
     /**
@@ -61,6 +71,16 @@ class SchoolYearController extends Controller
      */
     public function destroy(SchoolYear $schoolYear)
     {
-        //
+        if ($schoolYear->schoolCalendars()->exists()) {
+            return response()->json([
+                'message' => 'This school year is already used by school calendar records and cannot be deleted.',
+            ], 409);
+        }
+
+        $schoolYear->delete();
+
+        return response()->json([
+            'message' => 'School year deleted successfully.',
+        ], 200);
     }
 }

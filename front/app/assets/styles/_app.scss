@@ -2,3 +2,410 @@
   border-width: 1px;
   border-style: dashed;
 }
+
+.pycs-modal-shell {
+  display: flex;
+  max-height: calc(100dvh - 2rem);
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.pycs-modal-header {
+  flex-shrink: 0;
+}
+
+.pycs-modal-body {
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.pycs-modal-body :where(img, video, canvas, iframe) {
+  max-width: 100%;
+}
+
+.pycs-rich-editor {
+  overflow: hidden;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.pycs-rich-editor.p-invalid,
+.pycs-rich-editor.pycs-rich-editor-invalid {
+  border-color: #ef4444;
+}
+
+.pycs-rich-editor .p-editor-toolbar.ql-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  border: 0;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8fafc;
+  padding: 8px;
+}
+
+.pycs-rich-editor .ql-toolbar .ql-formats {
+  display: inline-flex;
+  gap: 2px;
+  align-items: center;
+  margin-right: 4px;
+}
+
+.pycs-rich-editor .ql-toolbar button,
+.pycs-rich-editor .ql-toolbar .ql-picker-label {
+  border-radius: 6px;
+}
+
+.pycs-rich-editor .ql-toolbar button:hover,
+.pycs-rich-editor .ql-toolbar .ql-picker-label:hover,
+.pycs-rich-editor .ql-toolbar button.ql-active,
+.pycs-rich-editor .ql-toolbar .ql-picker-label.ql-active {
+  background: #e0ecff;
+  color: #1d4ed8;
+}
+
+.pycs-rich-editor .ql-container.ql-snow {
+  border: 0;
+  font-family: inherit;
+}
+
+.pycs-rich-editor .p-editor-content {
+  max-width: 100%;
+  overflow-y: auto;
+}
+
+.pycs-rich-editor .ql-editor {
+  min-height: 260px;
+  color: #0f172a;
+  font-size: 0.925rem;
+  line-height: 1.7;
+  padding: 16px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.pycs-rich-editor .ql-editor.ql-blank::before {
+  color: #64748b;
+  font-style: normal;
+  left: 16px;
+  right: 16px;
+}
+
+.pycs-rich-editor .ql-editor :where(img, video) {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.pycs-rich-editor .ql-editor :where(pre, code) {
+  max-width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.dark .pycs-rich-editor {
+  border-color: #3f3f46;
+  background: #18181b;
+}
+
+.dark .pycs-rich-editor .p-editor-toolbar.ql-toolbar {
+  border-bottom-color: #3f3f46;
+  background: #27272a;
+}
+
+.dark .pycs-rich-editor .ql-toolbar button:hover,
+.dark .pycs-rich-editor .ql-toolbar .ql-picker-label:hover,
+.dark .pycs-rich-editor .ql-toolbar button.ql-active,
+.dark .pycs-rich-editor .ql-toolbar .ql-picker-label.ql-active {
+  background: rgba(96, 165, 250, 0.16);
+  color: #bfdbfe;
+}
+
+.dark .pycs-rich-editor .ql-editor {
+  color: #f8fafc;
+}
+
+.dark .pycs-rich-editor .ql-editor.ql-blank::before {
+  color: #a1a1aa;
+}
+
+.pycs-public-frame {
+  padding-top: 72px;
+  background: #f8fafc;
+}
+
+.dark .pycs-public-frame {
+  background: #09090b;
+}
+
+.pycs-content-pages > .bg-surface-0 {
+  background: #f8fafc !important;
+}
+
+.dark .pycs-content-pages > .bg-surface-0 {
+  background: #09090b !important;
+}
+
+.pycs-content-pages > .bg-surface-0 > .bg-cover {
+  min-height: 320px !important;
+  height: 320px !important;
+  border-bottom: 1px solid rgba(203, 213, 225, 0.36);
+}
+
+.pycs-content-pages > .bg-surface-0 > .bg-cover > div {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.pycs-content-pages > .bg-surface-0 > .bg-cover h1 {
+  max-width: 760px;
+  font-size: clamp(2rem, 4vw, 3.5rem) !important;
+  line-height: 1.05 !important;
+  letter-spacing: 0 !important;
+}
+
+.pycs-content-pages > .bg-surface-0 > .bg-cover p {
+  max-width: 680px;
+  color: rgba(255, 255, 255, 0.86) !important;
+  font-size: 1rem !important;
+}
+
+.pycs-content-pages > .bg-surface-0 > .px-6 {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-top: 32px !important;
+  padding-bottom: 56px !important;
+}
+
+.pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-8'],
+.pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-7'] {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+  padding: 32px !important;
+}
+
+.dark
+  .pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-8'],
+.dark
+  .pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-7'] {
+  background: #18181b;
+  border-color: #27272a;
+  box-shadow: none;
+}
+
+.pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-8']
+  h1,
+.pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-7']
+  h1 {
+  color: #0f172a !important;
+  font-size: 1.65rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+}
+
+.dark
+  .pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-8']
+  h1,
+.dark
+  .pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-7']
+  h1 {
+  color: #f8fafc !important;
+}
+
+.pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-8']
+  p,
+.pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-7']
+  p,
+.pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-8']
+  div,
+.pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-7']
+  div {
+  color: #334155;
+}
+
+.dark
+  .pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-8']
+  p,
+.dark
+  .pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-7']
+  p,
+.dark
+  .pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-8']
+  div,
+.dark
+  .pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-7']
+  div {
+  color: #cbd5e1;
+}
+
+.pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-8']
+  :where(p, div, li),
+.pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-7']
+  :where(p, div, li) {
+  line-height: 1.75 !important;
+}
+
+.pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-8']
+  :where(.text-lg, .text-xl),
+.pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-7']
+  :where(.text-lg, .text-xl) {
+  font-size: 1rem !important;
+}
+
+.pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-8']
+  :where(ul),
+.pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-7']
+  :where(ul) {
+  display: grid;
+  gap: 10px;
+}
+
+.pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-3'] {
+  align-self: start;
+  background: #ffffff;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 16px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+}
+
+.dark
+  .pycs-content-pages
+  > .bg-surface-0
+  > .px-6
+  > .grid
+  > div[class*='lg:col-span-3'] {
+  background: #18181b;
+  border-color: #27272a !important;
+  box-shadow: none;
+}
+
+@media (max-width: 767px) {
+  .pycs-modal-shell {
+    max-height: calc(100dvh - 1rem);
+  }
+
+  .pycs-public-frame {
+    padding-top: 70px;
+  }
+
+  .pycs-content-pages > .bg-surface-0 > .bg-cover {
+    height: 280px !important;
+    min-height: 280px !important;
+  }
+
+  .pycs-content-pages
+    > .bg-surface-0
+    > .px-6
+    > .grid
+    > div[class*='lg:col-span-8'],
+  .pycs-content-pages
+    > .bg-surface-0
+    > .px-6
+    > .grid
+    > div[class*='lg:col-span-7'] {
+    padding: 22px !important;
+    border-radius: 12px;
+  }
+}

@@ -70,6 +70,9 @@ export default defineNuxtConfig({
   },
 
   vite: {
+    optimizeDeps: {
+      include: ['quill', 'quill-delta'],
+    },
     build: {
       minify: 'terser',
       terserOptions: {

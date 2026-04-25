@@ -11,7 +11,7 @@ class UpdateSchoolCalendarRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return $this->user() !== null;
     }
 
     /**
@@ -22,7 +22,12 @@ class UpdateSchoolCalendarRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'school_year_id' => ['nullable', 'integer', 'exists:school_years,id'],
+            'start' => ['required', 'date', 'before_or_equal:end'],
+            'end' => ['required', 'date', 'after_or_equal:start'],
+            'image' => ['nullable', 'string', 'max:255'],
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string'],
         ];
     }
 }

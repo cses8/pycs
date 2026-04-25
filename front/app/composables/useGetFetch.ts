@@ -2,7 +2,7 @@
 
 export default async function useGetFetch<T>(
   endpoint: string, // API endpoint
-  params?: Record<string, never> // Query parameters
+  params?: Record<string, unknown> // Query parameters
 ): Promise<SuccessResponseType<T> | ErrorResponseType> {
   // Access the runtime config
   const config = useRuntimeConfig()

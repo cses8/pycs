@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\SchoolCalendar;
 use App\Http\Requests\StoreSchoolCalendarRequest;
 use App\Http\Requests\UpdateSchoolCalendarRequest;
-use Log;
 use Illuminate\Http\Request;
 
 class SchoolCalendarController extends Controller
@@ -51,7 +50,12 @@ class SchoolCalendarController extends Controller
 	 */
 	public function store(StoreSchoolCalendarRequest $request)
 	{
-		//
+		$schoolCalendar = SchoolCalendar::create($this->normalizedPayload($request->validated()));
+
+		return response()->json([
+			'message' => 'School calendar event created successfully.',
+			'schoolCalendar' => $schoolCalendar,
+		], 201);
 	}
 
 	/**
@@ -75,7 +79,12 @@ class SchoolCalendarController extends Controller
 	 */
 	public function update(UpdateSchoolCalendarRequest $request, SchoolCalendar $schoolCalendar)
 	{
-		//
+		$schoolCalendar->update($this->normalizedPayload($request->validated()));
+
+		return response()->json([
+			'message' => 'School calendar event updated successfully.',
+			'schoolCalendar' => $schoolCalendar->refresh(),
+		]);
 	}
 
 	/**
@@ -83,6 +92,17 @@ class SchoolCalendarController extends Controller
 	 */
 	public function destroy(SchoolCalendar $schoolCalendar)
 	{
-		//
+		$schoolCalendar->delete();
+
+		return response()->json([
+			'message' => 'School calendar event deleted successfully.',
+		]);
+	}
+
+	private function normalizedPayload(array $payload): array
+	{
+		$payload['image'] = trim($payload['image'] ?? '') ?: '/images/school_calendar.webp';
+
+		return $payload;
 	}
 }

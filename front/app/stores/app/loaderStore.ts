@@ -6,6 +6,7 @@ import galleryUpload from '~/components/App/Loader/steps/galleryUpload'
 import login from '~/components/App/Loader/steps/login'
 import logout from '~/components/App/Loader/steps/logout'
 import none from '~/components/App/Loader/steps/none'
+import schoolYear from '~/components/App/Loader/steps/schoolYear'
 import test from '~/components/App/Loader/steps/test'
 
 export interface Step {
@@ -33,6 +34,7 @@ export const useLoaderStore = defineStore('Loader', () => {
     if (step == 'logout') asyncLoadingSteps.value = logout()
     if (step == 'gallery') asyncLoadingSteps.value = gallery()
     if (step == 'galleryUpload') asyncLoadingSteps.value = galleryUpload()
+    if (step == 'schoolYear') asyncLoadingSteps.value = schoolYear()
     if (step == 'announcement') asyncLoadingSteps.value = announcement()
     if (step == 'announcementUpload')
       asyncLoadingSteps.value = announcementUpload()

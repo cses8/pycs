@@ -6,6 +6,7 @@
   "scripts": {
     "build": "nuxt build --dotenv .env.prod",
     "dev": "nuxt dev --dotenv .env.local",
+    "quality:check": "eslint app/pages/school-updates.vue app/components/App/NavBar.vue app/components/App/QuickLinksSection.vue app/layouts/welcome.vue app/types/api.d.ts && vue-tsc --noEmit",
     "generate": "nuxt generate --dotenv .env.prod",
     "compress": "bunx gzipper compress ./.output/public --include js,css,html,xml,json,svg,txt --gzip --remove-larger --workers 8 --verbose",
     "generate:compressed": "bun run generate && bun run compress",

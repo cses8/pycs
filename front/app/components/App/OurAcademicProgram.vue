@@ -1,87 +1,79 @@
 <template>
-  <div
-    class="bg-surface-0 dark:bg-surface-950 px-6 py-20 md:px-12 lg:px-20 flex lg:flex-row flex-col gap-12 justify-center items-center"
+  <section
+    class="mx-auto grid w-full max-w-7xl gap-8 rounded-xl border border-slate-200 bg-white p-6 md:p-8 lg:grid-cols-[20rem_minmax(0,1fr)] dark:border-surface-800 dark:bg-surface-900"
   >
-    <UiBlurReveal :duration="0.5">
-      <div class="flex-1">
-        <h2 class="text-5xl leading-tight font-bold flex flex-col mb-4">
-          <span class="text-surface-900 dark:text-surface-0">Our Academic</span>
-          <span class="text-blue-600">Program</span>
-        </h2>
-        <p
-          class="text-lg leading-normal text-surface-600 dark:text-surface-400 mb-8 max-w-xl"
-        >
-          Offering a complete educational pathway, these programs guide learners
-          from foundational readiness and play-based discovery in Preschool,
-          through holistic development and core competencies in Primary School &
-          Middle School. Junior High School builds academic excellence and
-          character, leading into specialized Senior High tracks like STEM, ABM,
-          and HUMSS, preparing students for higher education and future careers.
-        </p>
-      </div>
-    </UiBlurReveal>
-    <div class="flex-1 flex flex-col">
-      <template
+    <div class="flex flex-col justify-start">
+      <span
+        class="mb-4 inline-flex w-fit rounded-full bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-200"
+      >
+        Academic pathways
+      </span>
+      <h2 class="mb-4 flex flex-col text-3xl font-bold leading-tight md:text-4xl">
+        <span class="text-slate-900 dark:text-surface-0">Our Academic</span>
+        <span class="text-indigo-700 dark:text-indigo-200">Program</span>
+      </h2>
+      <p
+        class="max-w-3xl text-base leading-7 text-slate-600 dark:text-surface-300"
+      >
+        Offering a complete educational pathway, these programs guide learners
+        from foundational readiness and play-based discovery in Preschool,
+        through holistic development and core competencies in Primary School &
+        Middle School. Junior High School builds academic excellence and
+        character, leading into specialized Senior High tracks like STEM, ABM,
+        and HUMSS, preparing students for higher education and future careers.
+      </p>
+    </div>
+
+    <div class="flex flex-col">
+      <NuxtLink
         v-for="(academicProgram, index) in academicPrograms"
         :key="academicProgram.id"
+        :to="academicProgram.path"
+        class="group grid grid-cols-[3.5rem_minmax(0,1fr)] gap-4 rounded-lg px-2 py-1 transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-500/10"
+        v-motion
+        :initial="{ opacity: 0, y: 24 }"
+        :visible="{
+          opacity: 1,
+          y: 0,
+          transition: {
+            type: 'spring',
+            stiffness: 160,
+            damping: 22,
+            mass: 1,
+            delay: 120 + index * 80,
+          },
+        }"
       >
-        <div
-          class="flex gap-6"
-          v-motion
-          :initial="{ opacity: 0, y: 50, rotateX: -30 }"
-          :visible="{
-            // Changed from :visible-once
-            opacity: 1,
-            y: 0,
-            rotateX: 0,
-            transition: {
-              type: 'spring',
-              stiffness: 150,
-              damping: 20,
-              mass: 1,
-              delay: 200 + index * 100,
-            },
-          }"
-        >
-          <div class="flex flex-col items-center">
-            <div
-              class="w-14 h-14 flex items-center justify-center rounded-xl border bg-white/90 border-surface-200 dark:border-surface-700"
-            >
-              <Icon
-                :name="academicProgram.icon"
-                class="text-blue-600"
-                size="2rem"
-              />
-            </div>
-            <div class="w-px flex-1 bg-surface-200 dark:bg-surface-700" />
-          </div>
-          <div>
-            <h5
-              class="text-lg leading-tight font-semibold mb-2 text-surface-900 dark:text-surface-200"
-            >
-              {{ academicProgram.title }}
-            </h5>
-            <p
-              class="leading-normal text-md text-surface-600 dark:text-surface-400 max-w-lg"
-            >
-              {{ academicProgram.description }}
-            </p>
-          </div>
-        </div>
-
-        <div
-          v-if="index + 1 < academicPrograms.length"
-          class="flex flex-col items-center w-14 h-14"
-        >
-          <div class="w-px flex-1 bg-surface-200 dark:bg-surface-700" />
-          <div
-            class="w-3 h-3 border border-surface-200 rounded-sm dark:border-surface-700"
+        <span class="flex flex-col items-center">
+          <span
+            class="flex h-12 w-12 items-center justify-center rounded-lg border border-slate-200 bg-white dark:border-surface-700 dark:bg-surface-950"
+          >
+            <Icon
+              :name="academicProgram.icon"
+              class="text-indigo-700 dark:text-indigo-200"
+              size="1.6rem"
+            />
+          </span>
+          <span
+            v-if="index + 1 < academicPrograms.length"
+            class="my-2 h-full min-h-14 w-px bg-slate-200 dark:bg-surface-700"
           />
-          <div class="w-px flex-1 bg-surface-200 dark:bg-surface-700" />
-        </div>
-      </template>
+        </span>
+        <span class="min-w-0 pb-8">
+          <span
+            class="block text-lg font-semibold leading-tight text-slate-950 group-hover:text-indigo-800 dark:text-surface-0 dark:group-hover:text-indigo-200"
+          >
+            {{ academicProgram.title }}
+          </span>
+          <span
+            class="mt-2 block max-w-3xl text-sm leading-6 text-slate-600 md:text-base md:leading-7 dark:text-surface-300"
+          >
+            {{ academicProgram.description }}
+          </span>
+        </span>
+      </NuxtLink>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">

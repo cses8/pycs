@@ -1,70 +1,63 @@
 <template>
   <DelayHydration>
-    <div class="bg-surface-0 dark:bg-surface-950 min-h-screen">
-      <div class="bg-surface-900 p-12 lg:p-20 BgImgContainer">
+    <div class="min-h-screen bg-[#f8fafc] dark:bg-surface-950">
+      <div class="BgImgContainer">
         <div
-          class="flex flex-wrap lg:flex-row flex-col-reverse gap-12 items-center"
+          class="mx-auto flex min-h-[560px] max-w-7xl flex-col items-center gap-10 px-6 py-12 md:px-8 lg:min-h-[620px] lg:flex-row lg:px-10"
         >
-          <LazyUiBlurReveal>
-            <div class="flex-1 p-4">
-              <h1 class="text-5xl font-bold text-white mb-4 leading-tight">
-                Experience the Culture
-              </h1>
-              <h1 class="text-5xl font-bold text-white mb-4 leading-tight">
-                of Excellence
-              </h1>
-              <p class="text-2xl text-gray-400 leading-normal">
-                Transforming Lives through Education
-              </p>
-              <p class="text-2xl text-gray-400 mb-8 leading-normal">
-                with Quality Assurance
-              </p>
-              <ul class="list-none flex flex-col gap-4">
-                <li class="flex items-center gap-2">
-                  <i class="pi pi-trophy text-blue-300 !text-xl" /><span
-                    class="text-gray-400 leading-normal"
-                    >Academic Excellence.</span
-                  >
-                </li>
-                <li class="flex items-center gap-2">
-                  <i class="pi pi-bolt text-blue-300 !text-xl" /><span
-                    class="text-gray-400 leading-normal"
-                    >Character and Discipline.</span
-                  >
-                </li>
-              </ul>
+          <div class="max-w-2xl flex-1">
+            <div
+              class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-sm font-semibold text-white backdrop-blur"
+            >
+              <Icon name="lucide:school" class="text-indigo-100" />
+              Philippine Yuh Chiau School, Inc.
             </div>
-          </LazyUiBlurReveal>
-          <div class="flex-1 text-center lg:text-right">
+            <h1
+              class="mb-5 text-4xl font-bold leading-[1.05] text-white md:text-5xl lg:text-6xl"
+            >
+              Experience the Culture of Excellence
+            </h1>
+            <p class="max-w-xl text-lg leading-8 text-slate-200 md:text-xl">
+              Transforming lives through education with quality assurance,
+              discipline, and academic growth.
+            </p>
+            <ul class="mt-8 flex list-none flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <li class="flex items-center gap-2">
+                <span
+                  class="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-indigo-100"
+                >
+                  <i class="pi pi-trophy !text-base" />
+                </span>
+                <span class="font-medium leading-normal text-slate-100"
+                  >Academic Excellence.</span
+                >
+              </li>
+              <li class="flex items-center gap-2">
+                <span
+                  class="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-indigo-100"
+                >
+                  <i class="pi pi-bolt !text-base" />
+                </span>
+                <span class="font-medium leading-normal text-slate-100"
+                  >Character and Discipline.</span
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="w-full flex-1 text-center lg:text-right">
             <LazyAppActiveAnnouncement />
           </div>
         </div>
       </div>
-      <section
-        class="bg-surface-0 dark:bg-surface-950 gap-3 px-6 py-20 md:px-12 lg:px-20"
-      >
-        <div class="flex flex-col gap-4">
-          <div class="relative overflow-hidden">
-            <div
-              class="absolute left-0 top-0 h-full w-[30%] z-10 bg-gradient-to-r from-surface-0 to-transparent dark:from-surface-950"
-            />
-            <div
-              class="absolute right-0 top-0 h-full w-[30%] z-10 bg-gradient-to-l from-surface-0 to-transparent dark:from-surface-950"
-            />
-
-            <!-- <AppTeacher /> -->
-          </div>
-        </div>
-      </section>
       <div
-        class="bg-surface-0 dark:bg-surface-950 overflow-hidden py-20 px-6 md:px-12 lg:px-20"
+        class="overflow-hidden bg-[#f8fafc] px-6 py-12 md:px-8 lg:px-10 dark:bg-surface-950"
       >
         <div class="flex flex-col gap-12 items-center">
           <LazyAppOurAcademicProgram />
         </div>
       </div>
       <div
-        class="bg-surface-0 dark:bg-surface-900 py-20 px-6 md:px-12 lg:px-20 flex flex-col gap-8 justify-center items-center relative"
+        class="relative flex flex-col items-center justify-center gap-8 bg-white px-6 py-12 md:px-8 lg:px-10 dark:bg-surface-900"
       >
         <LazyAppQuickLinksSection />
       </div>
@@ -94,11 +87,7 @@ definePageMeta({
   background-size: cover !important;
   background-repeat: no-repeat !important;
   background-position: center center !important;
-  background-image: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.8) 0%,
-      oklch(42.4% 0.199 265.638) 100%
-    ),
+  background-image: linear-gradient(90deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.78) 48%, rgba(79, 70, 229, 0.45) 100%),
     url('/images/banner2.webp');
 }
 </style>

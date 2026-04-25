@@ -1,13 +1,21 @@
 <template>
   <div
-    class="w-full fixed top-0 py-4 px-6 md:px-12 lg:px-20 shadow-[0px_4px_10px_rgba(0,0,0,0.03),0px_0px_2px_rgba(0,0,0,0.06),0px_2px_6px_rgba(0,0,0,0.12)] flex items-center justify-between bg-white/70 backdrop-blur-[70px]"
+    class="fixed top-0 z-[999] flex w-full items-center justify-between gap-3 border-b border-slate-200 bg-white/95 px-4 py-3 shadow-sm backdrop-blur md:px-8 xl:px-10 2xl:px-12 dark:border-surface-800 dark:bg-surface-950/95"
     @mouseleave="closeMenu"
   >
     <LazyAppLogin v-model:visible="openLogin" />
-    <NuxtLink class="flex items-center gap-4" :to="'/'">
-      <Image src="/images/logo.webp" alt="Image" width="50" height="50" />
+    <NuxtLink class="flex min-w-0 items-center gap-3" :to="'/'">
+      <Image
+        src="/images/logo.webp"
+        alt="Philippine Yuh Chiau School logo"
+        width="46"
+        height="46"
+        class="shrink-0"
+      />
 
-      <span class="text-lg font-semibold leading-normal text-surface-800">
+      <span
+        class="hidden max-w-[11rem] truncate text-sm font-semibold leading-tight text-slate-900 sm:block lg:max-w-[13rem] xl:max-w-[10rem] 2xl:max-w-none 2xl:text-base dark:text-white"
+      >
         Philippine Yuh Chiau School, Inc.
       </span>
     </NuxtLink>
@@ -19,20 +27,25 @@
         leaveToClass: 'hidden',
         hideOnOutsideClick: true,
       }"
-      class="relative cursor-pointer block lg:hidden text-surface-700 mr-0 ml-auto"
+      class="relative ml-auto block cursor-pointer rounded-lg border border-slate-200 p-2 text-slate-700 xl:hidden dark:border-surface-700 dark:text-surface-100"
+      aria-label="Open navigation menu"
     >
-      <i class="pi pi-bars text-3xl" />
+      <i class="pi pi-bars text-xl" />
     </a>
 
     <div
-      class="border-b border-surface lg:border-0 animate-fadeinup absolute lg:static bg-white lg:bg-transparent lg:dark:bg-transparent w-full left-0 pb-4 lg:py-0 hidden lg:flex flex-1 items-center top-[5rem]"
+      class="absolute left-0 top-[4.5rem] hidden w-full border-b border-slate-200 bg-white pb-4 shadow-lg animate-fadeinup xl:static xl:flex xl:flex-1 xl:items-center xl:border-0 xl:bg-transparent xl:pb-0 xl:shadow-none xl:dark:bg-transparent dark:border-surface-800 dark:bg-surface-950"
     >
       <ul
-        class="border-y lg:mt-0 border-surface lg:border-0 select-none relative flex-1 flex lg:flex-row flex-col lg:mb-0 mb-4 lg:items-center lg:justify-center gap-2 lg:gap-4 p-0"
+        class="relative mb-4 flex flex-1 select-none flex-col border-y border-slate-200 p-3 xl:mb-0 xl:mt-0 xl:flex-row xl:items-center xl:justify-center xl:gap-0 xl:border-0 xl:p-0 dark:border-surface-800"
         @mouseleave="hoveredItem = null"
       >
         <template v-for="(item, index) of navs" :key="index">
-          <li @mouseenter="setActiveItem(item)" @click="setActiveItem(item)">
+          <li
+            class="relative border-b border-slate-100 last:border-b-0 xl:flex xl:items-center xl:border-b-0 xl:border-l xl:border-slate-200 xl:first:border-l-0 dark:border-surface-800 xl:dark:border-surface-700"
+            @mouseenter="setActiveItem(item)"
+            @click="setActiveItem(item)"
+          >
             <a
               v-if="item?.subMenu"
               v-styleclass="{
@@ -43,36 +56,38 @@
               }"
               :class="
                 activeItem?.label === item.label
-                  ? 'border-primary text-primary'
-                  : 'border-transparent text-surface-800'
+                  ? 'text-indigo-700 dark:text-indigo-200'
+                  : 'text-slate-700 dark:text-surface-200'
               "
-              class="group relative lg:border-b p-2 lg:p-2 transition-all flex items-center justify-between gap-2 hover:text-blue-800 text-base font-medium leading-tight"
+              class="group relative flex min-h-10 items-center justify-between gap-2 px-1 py-2 text-sm font-semibold leading-tight transition-colors hover:text-indigo-700 xl:min-h-9 xl:whitespace-nowrap xl:px-3 xl:py-0 2xl:px-4 dark:hover:text-indigo-200"
             >
-              {{ item.label }}
-              <i class="pi pi-angle-down !text-base !leading-none" />
+              <span>{{ item.label }}</span>
+              <i
+                class="pi pi-angle-down !text-xs !leading-none text-slate-400 transition-colors group-hover:text-indigo-600 dark:text-surface-500 dark:group-hover:text-indigo-200"
+              />
               <span
                 :class="
                   activeItem?.label === item.label ? 'opacity-100' : 'opacity-0'
                 "
-                class="hidden lg:block absolute top-full left-1/2 -translate-x-1/2 transition-all border-l-[4px] border-l-transparent border-r-[4px] border-transparent border-t-[4px] border-t-primary"
+                class="absolute inset-x-3 bottom-0 hidden h-0.5 rounded-full bg-indigo-600 transition-all group-hover:opacity-100 xl:block"
               />
             </a>
             <NuxtLink
               v-else
-              class="py-2 px-4 lg:p-4 transition-all flex text-surface-800 hover:text-blue-800 text-base font-medium leading-tight"
+              class="flex min-h-10 items-center px-1 py-2 text-sm font-semibold leading-tight text-slate-700 transition-colors hover:text-indigo-700 xl:min-h-9 xl:whitespace-nowrap xl:px-3 xl:py-0 2xl:px-4 dark:text-surface-200 dark:hover:text-indigo-200"
               :to="item.to"
               >{{ item.label }}
             </NuxtLink>
             <div
               v-if="item?.subMenu"
-              class="lg:hidden pl-12 hidden animate-fadein"
+              class="hidden pl-6 animate-fadein xl:hidden"
             >
-              <ul class="flex flex-col gap-6 my-2">
+              <ul class="my-2 flex flex-col gap-2">
                 <template v-for="(subItem, j) of item.subMenu" :key="j">
                   <li>
                     <NuxtLink
                       :to="subItem.to"
-                      class="flex items-center gap-4 text-surface-700 dark:text-gray-400"
+                      class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-slate-700 hover:bg-slate-100 dark:text-gray-300 dark:hover:bg-surface-900"
                     >
                       <Icon :name="subItem.icon" />
                       <span class="">{{ subItem.label }}</span>
@@ -89,29 +104,29 @@
                   ? 'opacity-100 visible z-[99]'
                   : 'opacity-0 invisible z-[-99]'
               "
-              class="lg:block hidden animate-fadein animate-duration-150 w-[305px] absolute top-full rounded-[10px] overflow-hidden bg-surface-100 dark:bg-surface-900 transition-all border border-surface-200 dark:border-surface-700 shadow-[0px_48px_80px_rgba(0,0,0,0.04)]"
+              class="absolute top-full mt-2 hidden w-[320px] overflow-hidden rounded-lg border border-slate-200 bg-white shadow-xl transition-all animate-fadein animate-duration-150 xl:block dark:border-surface-700 dark:bg-surface-950"
             >
-              <div class="bg-surface-0 dark:bg-surface-950">
+              <div class="bg-white p-1 dark:bg-surface-950">
                 <template v-for="(subItem, j) of activeItem?.subMenu" :key="j">
-                  <div class="p-1">
+                  <div>
                     <NuxtLink
                       :to="subItem.to"
-                      class="flex items-start gap-2.5 w-full px-4 py-2 transition-all hover:bg-surface-100 dark:hover:bg-surface-900 rounded-lg"
+                      class="flex w-full items-start gap-3 rounded-lg px-3 py-2.5 transition-colors hover:bg-slate-100 dark:hover:bg-surface-900"
                       @mouseenter="selectedCategory = Number(j)"
                     >
                       <span
-                        class="w-8 h-8 rounded-[6px] border border-surface-200 dark:border-surface-700 bg-surface-0 dark:bg-surface-900 flex items-center justify-center p-1.5 dark:text-white"
+                        class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 p-1.5 text-indigo-700 dark:border-surface-700 dark:bg-surface-900 dark:text-indigo-200"
                       >
                         <Icon :name="subItem.icon" />
                       </span>
                       <span class="flex-1">
                         <h4
-                          class="text-base leading-tight font-medium text-surface-900 dark:text-surface-0"
+                          class="text-sm font-semibold leading-tight text-slate-900 dark:text-surface-0"
                         >
                           {{ subItem.label }}
                         </h4>
                         <span
-                          class="text-sm leading-tight font-light text-surface-500 dark:text-surface-400"
+                          class="mt-1 block text-xs leading-snug text-slate-500 dark:text-surface-400"
                           >{{ subItem.description }}</span
                         >
                       </span>
@@ -120,7 +135,7 @@
                 </template>
               </div>
               <div
-                class="p-2.5 border-t border-surface-200 dark:border-surface-700"
+                class="border-t border-slate-200 bg-slate-50 p-2.5 dark:border-surface-700 dark:bg-surface-900"
               >
                 <div class="flex items-center">
                   <div class="flex-1 flex items-center justify-center gap-2">
@@ -129,9 +144,7 @@
                       size="1.4rem"
                       class="text-gray-500 mr-3"
                     />
-                    <span
-                      class="text-base font-medium leading-none dark:text-gray-500"
-                    >
+                    <span class="text-sm font-semibold leading-none text-slate-600 dark:text-gray-300">
                       {{ item.label }}
                     </span>
                   </div>
@@ -141,21 +154,23 @@
           </li>
         </template>
       </ul>
-      <div class="flex items-center place-content-between px-8 lg:px-0">
+      <div
+        class="flex items-center justify-between px-4 xl:ml-3 xl:border-l xl:border-slate-200 xl:pl-3 xl:pr-0 dark:xl:border-surface-700"
+      >
         <Button
           v-if="!isAuthenticated"
           label="Sign In"
           icon="pi pi-sign-in"
           icon-pos="right"
           severity="contrast"
-          class="hover:!bg-blue-600 hover:!text-white mr-2"
+          class="mr-2 !rounded-lg hover:!bg-indigo-700 hover:!text-white"
           size="small"
           @click="openLogin = !openLogin"
         />
 
         <LazyAppProfileMenu />
 
-        <Divider layout="vertical" class="!mx-auto" />
+        <Divider layout="vertical" class="!mx-3" />
 
         <ToggleSwitch
           v-model="darkOrLightMode"
@@ -187,7 +202,7 @@
   </div>
 </template>
 <script setup lang="ts">
-const { user, isAuthenticated, logout } = useSanctumAuth()
+const { isAuthenticated } = useSanctumAuth()
 
 const hoveredItem: Ref = ref(null)
 const selectedItem: Ref = ref(null)
@@ -197,16 +212,6 @@ const activeItem = computed(() => hoveredItem.value || selectedItem.value)
 
 const isDark = useDark()
 const darkOrLightMode = ref(isDark)
-
-const authenticatedUser = computed(() => {
-  const userInfo = user.value as User
-  if (userInfo) {
-    const names = userInfo.name.split(' ')
-    if (names) return names[0]
-    return names
-  }
-  return ''
-})
 
 watch(darkOrLightMode, val => {
   isDark.value = val
@@ -277,6 +282,10 @@ const navs = ref<Navs[]>([
   {
     label: 'School Calendar',
     to: '/school-calendar',
+  },
+  {
+    label: 'School Updates',
+    to: '/school-updates',
   },
   {
     label: 'School Operation',

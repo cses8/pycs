@@ -1,78 +1,90 @@
 <template>
-  <div class="flex flex-col bg-surface-0 dark:bg-surface-950">
+  <footer class="flex flex-col border-t border-slate-200 bg-white dark:border-surface-800 dark:bg-surface-950">
     <div
-      class="flex flex-col lg:flex-row justify-between gap-8 p-20 pb-16 w-full overflow-hidden relative bg-gradient-to-b from-blue-900/30 to-transparent"
+      class="relative mx-auto flex w-full max-w-7xl flex-col gap-10 overflow-hidden px-6 py-12 md:px-8 lg:flex-row lg:items-start lg:justify-between lg:px-10"
     >
-      <div class="flex justify-center">
-        <Image src="/images/logo.webp" height="150" width="150" alt="Image" />
+      <div class="flex max-w-sm flex-col gap-4">
+        <Image
+          src="/images/logo.webp"
+          height="84"
+          width="84"
+          alt="Philippine Yuh Chiau School logo"
+        />
+        <div>
+          <h2 class="text-lg font-semibold leading-tight text-slate-900 dark:text-white">
+            Philippine Yuh Chiau School, Inc.
+          </h2>
+          <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-surface-300">
+            Experience the Culture of Excellence through education with quality assurance.
+          </p>
+        </div>
       </div>
       <div
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 w-full gap-4 relative z-0"
+        class="relative z-0 grid w-full grid-cols-1 gap-8 sm:grid-cols-2 lg:max-w-3xl lg:grid-cols-3"
       >
-        <div class="w-full flex flex-col gap-4 min-w-52"></div>
-        <div class="w-full flex flex-col gap-4 min-w-52">
+        <div class="flex w-full min-w-52 flex-col gap-4">
           <h3
-            class="text-surface-900 dark:text-surface-0 text-lg font-medium leading-7"
+            class="text-base font-semibold leading-7 text-slate-900 dark:text-surface-0"
           >
             Contact Us
           </h3>
           <ul
-            class="flex flex-col gap-2 text-surface-500 dark:text-surface-400"
+            class="flex flex-col gap-2 text-sm text-slate-600 dark:text-surface-300"
           >
-            <li class="font-semibold leading-6 hover:text-blue-600">
+            <li class="leading-6">
               <span>Globe:</span>
-              <span class="font-light ml-2">0966-416-1972</span>
+              <span class="ml-2 font-medium text-slate-900 dark:text-surface-0">0966-416-1972</span>
             </li>
-            <li class="font-semibold leading-6 hover:text-blue-600">
+            <li class="leading-6">
               <span>Smart:</span>
-              <span class="font-light ml-2">0908-885-1783</span>
+              <span class="ml-2 font-medium text-slate-900 dark:text-surface-0">0908-885-1783</span>
             </li>
-            <li class="font-semibold leading-6 hover:text-blue-600">
+            <li class="leading-6">
               <span>Landline:</span>
-              <span class="font-light ml-2">(078) 325-0842</span>
+              <span class="ml-2 font-medium text-slate-900 dark:text-surface-0">(078) 325-0842</span>
             </li>
-            <li class="font-semibold leading-6 hover:text-blue-600">
+            <li class="leading-6">
               <span>Website:</span>
-              <span class="font-light ml-2">pycs.school</span>
+              <span class="ml-2 font-medium text-slate-900 dark:text-surface-0">pycs.school</span>
             </li>
           </ul>
         </div>
-        <div class="w-full flex flex-col gap-4 min-w-52">
+        <div class="flex w-full min-w-52 flex-col gap-4">
           <h3
-            class="text-surface-900 dark:text-surface-0 text-lg font-medium leading-7"
+            class="text-base font-semibold leading-7 text-slate-900 dark:text-surface-0"
           >
             Email
           </h3>
           <ul
-            class="flex flex-col gap-2 text-surface-500 dark:text-surface-400"
+            class="flex flex-col gap-2 text-sm text-slate-600 dark:text-surface-300"
           >
             <li
-              class="font-semibold leading-6 hover:text-blue-600 flex flex-row items-center"
+              class="flex flex-row items-center leading-6"
             >
               <Icon name="logos:google-gmail" class="mr-2" size="1.5rem" />
-              <span class="font-light ml-2">pycs.65@gmail.com</span>
+              <span class="ml-2 font-medium text-slate-900 dark:text-surface-0">pycs.65@gmail.com</span>
             </li>
           </ul>
         </div>
-        <div class="w-full flex flex-col gap-4 min-w-52">
+        <div class="flex w-full min-w-52 flex-col gap-4">
           <h3
-            class="text-surface-900 dark:text-surface-0 text-lg font-medium leading-7"
+            class="text-base font-semibold leading-7 text-slate-900 dark:text-surface-0"
           >
             Social Media
           </h3>
           <ul
-            class="flex flex-col gap-2 text-surface-500 dark:text-surface-400"
+            class="flex flex-col gap-2 text-sm text-slate-600 dark:text-surface-300"
           >
             <li
-              class="font-semibold leading-6 hover:text-blue-600 flex flex-row items-center"
+              class="flex flex-row items-center leading-6"
             >
               <Icon name="logos:facebook" class="mr-2" size="1.5rem" />
               <a
                 href="https://www.facebook.com/PYCS.75"
                 target="_blank"
-                class="font-semibold leading-6 hover:text-blue-600 cursor-pointer"
+                class="cursor-pointer font-medium leading-6 text-slate-900 hover:text-indigo-700 dark:text-surface-0 dark:hover:text-indigo-200"
               >
-                <span class="font-light ml-2">www.facebook.com/PYCS.75</span>
+                <span class="ml-2">www.facebook.com/PYCS.75</span>
               </a>
             </li>
           </ul>
@@ -81,21 +93,22 @@
     </div>
 
     <div
-      class="py-2 px-20 flex flex-wrap items-center justify-between w-full border-t border-surface-200 dark:border-surface-700 gap-4"
+      class="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-4 border-t border-slate-200 px-6 py-4 text-sm md:px-8 lg:px-10 dark:border-surface-800"
     >
-      <span class="text-surface-500 dark:text-surface-0 font-normal"
+      <span class="font-normal text-slate-500 dark:text-surface-300"
         >© Philippine Yuh Chiau School, Inc</span
       >
       <div class="flex items-center gap-2">
         <a
           href="https://www.facebook.com/PYCS.75"
           target="_blank"
-          class="flex items-center justify-center px-4 py-2 border border-surface-200 dark:border-surface-700 rounded-3xl backdrop-blur-sm hover:bg-surface-100 dark:hover:bg-surface-800 duration-100 transition-colors"
+          class="flex items-center justify-center rounded-lg border border-slate-200 px-3 py-2 backdrop-blur-sm transition-colors duration-100 hover:bg-slate-100 dark:border-surface-700 dark:hover:bg-surface-800"
+          aria-label="Open PYCS Facebook page"
         >
           <Icon name="logos:facebook" size="1.5rem" />
         </a>
       </div>
     </div>
-  </div>
+  </footer>
 </template>
 <script setup></script>

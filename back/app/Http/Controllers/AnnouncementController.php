@@ -8,8 +8,8 @@ use App\Http\Requests\StoreAnnouncementRequest;
 use App\Http\Requests\UpdateAnnouncementRequest;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Http\Request;
 use Log;
-use Request;
 use Storage;
 
 class AnnouncementController extends Controller
@@ -17,9 +17,36 @@ class AnnouncementController extends Controller
 	/**
 	 * Display a listing of the resource.
 	 */
-	public function index()
+	public function index(Request $request)
 	{
-		return Announcement::all()->sortByDesc('start')->values();
+		$perPage = min(max($request->integer('per_page', 10), 5), 50);
+		$search = trim($request->string('search')->toString());
+
+		$query = Announcement::query()
+			->orderByDesc('start')
+			->orderByDesc('id');
+
+		if ($search !== '') {
+			$query->where(function ($query) use ($search) {
+				$query
+					->where('title', 'like', "%{$search}%")
+					->orWhere('description', 'like', "%{$search}%");
+			});
+		}
+
+		$announcements = $query->paginate($perPage);
+
+		return response()->json([
+			'data' => $announcements->items(),
+			'pagination' => [
+				'curPage' => $announcements->currentPage(),
+				'from' => $announcements->firstItem(),
+				'to' => $announcements->lastItem(),
+				'perPage' => $announcements->perPage(),
+				'lastPage' => $announcements->lastPage(),
+				'total' => $announcements->total(),
+			],
+		]);
 	}
 
 	/**

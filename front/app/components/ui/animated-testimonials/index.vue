@@ -1,10 +1,10 @@
 <template>
   <div
-    class="mx-auto max-w-sm px-4 py-20 font-sans antialiased lg:px-12 md:max-w-4xl md:px-8"
+    class="mx-auto w-full max-w-3xl rounded-xl border border-white/15 bg-white/10 p-4 text-left font-sans antialiased shadow-2xl shadow-slate-950/20 backdrop-blur md:p-5"
   >
-    <div class="relative grid grid-cols-1 gap-20 md:grid-cols-2">
+    <div class="relative grid grid-cols-1 gap-6 md:grid-cols-[220px_1fr]">
       <div>
-        <div class="relative h-80 w-full">
+        <div class="relative h-64 w-full overflow-hidden rounded-lg md:h-full">
           <Motion
             v-for="(testimonial, index) in props.testimonials"
             :key="testimonial.image"
@@ -35,21 +35,21 @@
             }"
             class="absolute inset-0 origin-bottom"
           >
-            <div class="rounded-3xl">
+            <div class="h-full rounded-lg">
               <Image
                 :src="getTestimonialImage(testimonial)"
                 :alt="testimonial.name"
                 width="500"
                 height="500"
                 preview
-                class="size-full rounded-3xl object-cover object-center"
+                class="size-full rounded-lg object-cover object-center"
                 @error="markImageAsFailed(testimonial)"
               />
             </div>
           </Motion>
         </div>
       </div>
-      <div class="flex flex-col justify-between py-4">
+      <div class="flex min-h-64 flex-col justify-between py-2">
         <Motion
           :key="active"
           as="div"
@@ -70,13 +70,13 @@
             ease: 'easeInOut',
           }"
         >
-          <h3 class="text-2xl font-bold text-white">
+          <h3 class="text-2xl font-bold leading-tight text-white">
             {{ props.testimonials[active]?.name }}
           </h3>
-          <p class="text-sm text-gray-200 italic">
+          <p class="mt-1 text-sm font-medium text-indigo-100">
             {{ props.testimonials[active]?.designation }}
           </p>
-          <Motion as="p" class="mt-8 text-gray-300 font-normal text-xl">
+          <Motion as="p" class="mt-5 text-base font-normal leading-7 text-slate-200">
             <Motion
               v-for="(word, index) in activeTestimonialQuote"
               :key="index"
@@ -96,30 +96,34 @@
                 ease: 'easeInOut',
                 delay: 0.02 * index,
               }"
-              class="flex item-end text-left"
+              class="inline text-left"
             >
-              <div class="w-full !break-words" v-html="word" />
+              <span class="!break-words" v-html="word" />
               &nbsp;
             </Motion>
           </Motion>
         </Motion>
-        <div class="flex gap-4 pt-12 md:pt-0">
+        <div class="flex gap-3 pt-8 md:pt-0">
           <button
-            class="group/button flex size-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
+            class="group/button flex size-9 items-center justify-center rounded-lg border border-white/20 bg-white/10 transition-colors hover:bg-white/20"
+            type="button"
+            aria-label="Previous announcement"
             @click="handlePrev"
           >
             <Icon
               name="lucide:arrow-left"
-              class="size-5 text-black transition-transform duration-300 group-hover/button:rotate-12 dark:text-neutral-400"
+              class="size-5 text-white transition-transform duration-300 group-hover/button:-translate-x-0.5"
             />
           </button>
           <button
-            class="group/button flex size-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
+            class="group/button flex size-9 items-center justify-center rounded-lg border border-white/20 bg-white/10 transition-colors hover:bg-white/20"
+            type="button"
+            aria-label="Next announcement"
             @click="handleNext"
           >
             <Icon
               name="lucide:arrow-right"
-              class="size-5 text-black transition-transform duration-300 group-hover/button:-rotate-12 dark:text-neutral-400"
+              class="size-5 text-white transition-transform duration-300 group-hover/button:translate-x-0.5"
             />
           </button>
         </div>
@@ -157,17 +161,17 @@ const failedImages = ref<Set<string>>(new Set())
 const interval = ref<any>()
 
 const activeTestimonialQuote = computed(() => {
-  return props.testimonials[active.value]?.quote.split(' ')
+  return props.testimonials[active.value]?.quote.split(' ') ?? []
 })
 
 onMounted(() => {
-  if (props.autoplay) {
+  if (props.autoplay && props.testimonials.length > 1) {
     interval.value = setInterval(handleNext, props.duration)
   }
 })
 
 onUnmounted(() => {
-  if (!interval.value) {
+  if (interval.value) {
     clearInterval(interval.value)
   }
 })
@@ -195,10 +199,16 @@ function markImageAsFailed(testimonial: Testimonial) {
 }
 
 function handleNext() {
+  if (!props.testimonials.length) {
+    return
+  }
   active.value = (active.value + 1) % props.testimonials.length
 }
 
 function handlePrev() {
+  if (!props.testimonials.length) {
+    return
+  }
   active.value =
     (active.value - 1 + props.testimonials.length) % props.testimonials.length
 }

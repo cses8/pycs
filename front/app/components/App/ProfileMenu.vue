@@ -17,6 +17,7 @@
   </div>
 
   <LazyAnnouncementTable v-model:visible="showAnnouncementTable" />
+  <LazySchoolYearTable v-model:visible="showSchoolYearTable" />
 </template>
 
 <script setup>
@@ -26,10 +27,18 @@ const { user, isAuthenticated, logout } = useSanctumAuth()
 
 const menu = ref()
 const showAnnouncementTable = ref(false)
+const showSchoolYearTable = ref(false)
 const items = ref([
   {
     label: 'Options',
     items: [
+      {
+        label: 'School Years',
+        icon: 'pi pi-calendar',
+        command: () => {
+          showSchoolYearTable.value = true
+        },
+      },
       {
         label: 'Announcement',
         icon: 'pi pi-calendar-plus',

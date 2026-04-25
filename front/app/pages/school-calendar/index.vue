@@ -68,11 +68,16 @@
             </div>
             <Icon name="lucide:arrow-up-right" class="size-5 text-slate-400" />
           </div>
-          <SchoolCalendarUpcoming />
+          <SchoolCalendarUpcoming :key="`upcoming-${calendarRefreshKey}`" />
         </div>
       </aside>
 
       <div class="space-y-5">
+        <SchoolCalendarManager
+          v-if="isAuthenticated"
+          @changed="refreshCalendarViews"
+        />
+
         <section class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-6">
           <div class="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -87,7 +92,7 @@
               Select a month to refresh event details for the visible range.
             </p>
           </div>
-          <SchoolCalendarVCalendar />
+          <SchoolCalendarVCalendar :key="`calendar-${calendarRefreshKey}`" />
         </section>
 
         <section class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-6">
@@ -104,15 +109,22 @@
               Dates and details for the selected school year.
             </p>
           </div>
-          <SchoolCalendarAll />
+          <SchoolCalendarAll :key="`all-${calendarRefreshKey}`" />
         </section>
       </div>
     </section>
   </main>
 </template>
 
-<script setup>
+<script setup lang="ts">
+const { isAuthenticated } = useSanctumAuth()
+const calendarRefreshKey = ref(0)
+
 definePageMeta({
   layout: 'welcome',
 })
+
+function refreshCalendarViews() {
+  calendarRefreshKey.value += 1
+}
 </script>
