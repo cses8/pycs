@@ -16,3 +16,4 @@
 - When fixing a missing homepage section, browser-check that each user-named label is visibly rendered, not just that the page loads.
 - For top navigation, avoid boxing every menu item; use spacing, subtle separators, and understated hover/active states so the header stays calm.
 - When restoring old homepage content, preserve the old descriptive text in the visible component, not only in the data model.
+- Always use `lean-ctx` for shell reads, searches, and verification; if compressed output hides needed context, use a LeanCTX-compatible narrower read instead of raw PowerShell.

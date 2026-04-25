@@ -1,5 +1,5 @@
 <template>
-  <section class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-6">
+  <section class="min-w-0 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-6">
     <div class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div>
         <p class="text-xs font-semibold uppercase text-blue-700 dark:text-blue-300">
@@ -31,74 +31,81 @@
       />
     </div>
 
-    <DataTable
-      :value="filteredCalendarEvents"
-      :loading="loading"
-      data-key="id"
-      striped-rows
-      table-style="min-width: 58rem"
-      class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm dark:border-white/10"
-    >
-      <Column header="Event" class="min-w-[20rem]">
-        <template #body="{ data }">
-          <div class="flex items-center gap-4">
-            <img
-              :src="calendarImage(data)"
-              :alt="data.title"
-              class="h-16 w-24 rounded-lg object-cover ring-1 ring-slate-200 dark:ring-white/10"
-              @error="replaceWithFallbackImage"
-            >
-            <div class="min-w-0">
-              <p class="truncate text-sm font-bold text-slate-950 dark:text-white">
-                {{ data.title }}
-              </p>
-              <p class="mt-1 line-clamp-2 max-w-xl text-sm leading-5 text-slate-600 dark:text-slate-300">
-                {{ stripHtml(data.description) || 'No description' }}
-              </p>
+    <div class="-mx-2 block max-w-[calc(100%+1rem)] overflow-x-auto px-2 pb-1">
+      <DataTable
+        :value="filteredCalendarEvents"
+        :loading="loading"
+        data-key="id"
+        striped-rows
+        paginator
+        :rows="8"
+        :rows-per-page-options="[8, 12, 20, 50]"
+        paginator-template="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown CurrentPageReport"
+        current-page-report-template="{first}-{last} of {totalRecords} events"
+        table-style="min-width: 72rem"
+        class="w-full rounded-lg border border-slate-200 bg-white shadow-sm dark:border-white/10"
+      >
+        <Column header="Event" class="min-w-[28rem]">
+          <template #body="{ data }">
+            <div class="flex items-center gap-4">
+              <img
+                :src="calendarImage(data)"
+                :alt="data.title"
+                class="h-16 w-24 rounded-lg object-cover ring-1 ring-slate-200 dark:ring-white/10"
+                @error="replaceWithFallbackImage"
+              >
+              <div class="min-w-0">
+                <p class="truncate text-sm font-bold text-slate-950 dark:text-white">
+                  {{ data.title }}
+                </p>
+                <p class="mt-1 line-clamp-2 max-w-2xl text-sm leading-5 text-slate-600 dark:text-slate-300">
+                  {{ stripHtml(data.description) || 'No description' }}
+                </p>
+              </div>
             </div>
+          </template>
+        </Column>
+
+        <Column header="Schedule" class="min-w-[16rem]">
+          <template #body="{ data }">
+            <div class="space-y-1 text-sm">
+              <div class="flex items-center gap-2 text-slate-700 dark:text-slate-200">
+                <Icon name="lucide:calendar-days" class="size-4 text-blue-700 dark:text-blue-300" />
+                <span>{{ formatDate(data.start) }}</span>
+              </div>
+              <div class="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+                <Icon name="lucide:flag" class="size-4" />
+                <span>{{ formatDate(data.end) }}</span>
+              </div>
+            </div>
+          </template>
+        </Column>
+
+        <Column header="School Year" class="min-w-[14rem]">
+          <template #body="{ data }">
+            <Tag :value="schoolYearLabel(data.school_year_id)" severity="info" class="!rounded-full" />
+          </template>
+        </Column>
+
+        <Column header="Actions" class="w-[10rem]">
+          <template #body="{ data }">
+            <div class="flex items-center gap-1">
+              <Button icon="pi pi-pencil" rounded text aria-label="Edit calendar event" @click="openEditForm(data)" />
+              <Button icon="pi pi-trash" rounded text severity="danger" aria-label="Delete calendar event" @click="deleteCalendarEvent(data)" />
+            </div>
+          </template>
+        </Column>
+
+        <template #empty>
+          <div class="px-4 py-12 text-center">
+            <Icon name="lucide:calendar-x" class="mx-auto size-10 text-slate-400" />
+            <h3 class="mt-4 text-lg font-bold text-slate-950 dark:text-white">
+              No calendar events found
+            </h3>
           </div>
         </template>
-      </Column>
-
-      <Column header="Schedule" class="min-w-[14rem]">
-        <template #body="{ data }">
-          <div class="space-y-1 text-sm">
-            <div class="flex items-center gap-2 text-slate-700 dark:text-slate-200">
-              <Icon name="lucide:calendar-days" class="size-4 text-blue-700 dark:text-blue-300" />
-              <span>{{ formatDate(data.start) }}</span>
-            </div>
-            <div class="flex items-center gap-2 text-slate-500 dark:text-slate-400">
-              <Icon name="lucide:flag" class="size-4" />
-              <span>{{ formatDate(data.end) }}</span>
-            </div>
-          </div>
-        </template>
-      </Column>
-
-      <Column header="School Year" class="min-w-[12rem]">
-        <template #body="{ data }">
-          <Tag :value="schoolYearLabel(data.school_year_id)" severity="info" class="!rounded-full" />
-        </template>
-      </Column>
-
-      <Column header="Actions" class="w-[10rem]">
-        <template #body="{ data }">
-          <div class="flex items-center gap-1">
-            <Button icon="pi pi-pencil" rounded text aria-label="Edit calendar event" @click="openEditForm(data)" />
-            <Button icon="pi pi-trash" rounded text severity="danger" aria-label="Delete calendar event" @click="deleteCalendarEvent(data)" />
-          </div>
-        </template>
-      </Column>
-
-      <template #empty>
-        <div class="px-4 py-12 text-center">
-          <Icon name="lucide:calendar-x" class="mx-auto size-10 text-slate-400" />
-          <h3 class="mt-4 text-lg font-bold text-slate-950 dark:text-white">
-            No calendar events found
-          </h3>
-        </div>
-      </template>
-    </DataTable>
+      </DataTable>
+    </div>
 
     <Dialog
       v-model:visible="showForm"

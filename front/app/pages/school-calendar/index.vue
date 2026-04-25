@@ -1,5 +1,5 @@
 <template>
-  <main class="bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-white">
+  <main class="overflow-x-hidden bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-white">
     <section
       class="relative isolate overflow-hidden bg-cover bg-center"
       style="background-image: url('/images/banner1.webp')"
@@ -44,8 +44,17 @@
       </div>
     </section>
 
-    <section class="mx-auto grid max-w-7xl gap-5 px-5 py-8 sm:px-8 lg:grid-cols-[280px_minmax(0,1fr)] lg:px-10 lg:py-10">
-      <aside class="space-y-5">
+    <section
+      class="mx-auto grid min-w-0 gap-5 px-5 py-8 sm:px-8 lg:grid-cols-[280px_minmax(0,1fr)] lg:px-10 lg:py-10"
+      :class="isAuthenticated ? 'max-w-[96rem]' : 'max-w-7xl'"
+    >
+      <SchoolCalendarManager
+        v-if="isAuthenticated"
+        class="min-w-0 lg:col-span-2"
+        @changed="refreshCalendarViews"
+      />
+
+      <aside class="min-w-0 space-y-5">
         <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5">
           <div class="mb-3 flex items-center gap-2">
             <Icon name="lucide:graduation-cap" class="size-5 text-blue-700 dark:text-blue-300" />
@@ -72,13 +81,8 @@
         </div>
       </aside>
 
-      <div class="space-y-5">
-        <SchoolCalendarManager
-          v-if="isAuthenticated"
-          @changed="refreshCalendarViews"
-        />
-
-        <section class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-6">
+      <div class="min-w-0 space-y-5">
+        <section class="min-w-0 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-6">
           <div class="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p class="text-xs font-semibold uppercase text-blue-700 dark:text-blue-300">
@@ -93,23 +97,6 @@
             </p>
           </div>
           <SchoolCalendarVCalendar :key="`calendar-${calendarRefreshKey}`" />
-        </section>
-
-        <section class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-6">
-          <div class="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p class="text-xs font-semibold uppercase text-blue-700 dark:text-blue-300">
-                Complete Schedule
-              </p>
-              <h2 class="text-2xl font-black text-slate-950 dark:text-white">
-                All Events
-              </h2>
-            </div>
-            <p class="text-sm text-slate-600 dark:text-slate-300">
-              Dates and details for the selected school year.
-            </p>
-          </div>
-          <SchoolCalendarAll :key="`all-${calendarRefreshKey}`" />
         </section>
       </div>
     </section>
