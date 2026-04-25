@@ -20,7 +20,7 @@
             <div
               class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-white text-blue-800"
             >
-              <Icon :name="operation == 'create' ? 'lucide:plus' : 'lucide:pencil'" class="size-6" />
+              <Icon :name="operation == 'create' ? 'solar:add-circle-linear' : 'solar:pen-2-linear'" class="size-6" />
             </div>
             <div class="min-w-0">
               <p class="text-xs font-semibold uppercase text-blue-200">

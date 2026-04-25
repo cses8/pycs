@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Support\HtmlSanitizer;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreAnnouncementRequest extends FormRequest
@@ -11,7 +12,7 @@ class StoreAnnouncementRequest extends FormRequest
 	 */
 	public function authorize(): bool
 	{
-		return true;
+		return $this->user()?->isAdmin() === true;
 	}
 
 	/**
@@ -23,9 +24,18 @@ class StoreAnnouncementRequest extends FormRequest
 	{
 		return [
 			'title' => 'required|string|max:255',
-			'description' => 'required|string',
+			'description' => 'required|string|max:20000',
 			'start' => 'required|date|before_or_equal:end',
 			'end' => 'required|date|after_or_equal:start',
 		];
+	}
+
+	protected function prepareForValidation(): void
+	{
+		if ($this->has('description')) {
+			$this->merge([
+				'description' => app(HtmlSanitizer::class)->clean($this->input('description')),
+			]);
+		}
 	}
 }

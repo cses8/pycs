@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\SchoolUpdate;
+use App\Support\HtmlSanitizer;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -13,7 +14,7 @@ class StoreSchoolUpdateRequest extends FormRequest
 	 */
 	public function authorize(): bool
 	{
-		return $this->user() !== null;
+		return $this->user()?->isAdmin() === true;
 	}
 
 	/**
@@ -26,7 +27,7 @@ class StoreSchoolUpdateRequest extends FormRequest
 		return [
 			'title' => ['required', 'string', 'max:255'],
 			'summary' => ['nullable', 'string', 'max:1000'],
-			'content' => ['required', 'string'],
+			'content' => ['required', 'string', 'max:50000'],
 			'type' => ['required', 'string', Rule::in(SchoolUpdate::TYPES)],
 			'category' => ['nullable', 'string', 'max:100'],
 			'tags' => ['nullable', 'array'],
@@ -36,5 +37,14 @@ class StoreSchoolUpdateRequest extends FormRequest
 			'event_start_at' => ['nullable', 'date'],
 			'event_end_at' => ['nullable', 'date', 'after_or_equal:event_start_at'],
 		];
+	}
+
+	protected function prepareForValidation(): void
+	{
+		if ($this->has('content')) {
+			$this->merge([
+				'content' => app(HtmlSanitizer::class)->clean($this->input('content')),
+			]);
+		}
 	}
 }

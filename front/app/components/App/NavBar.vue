@@ -140,7 +140,7 @@
                 <div class="flex items-center">
                   <div class="flex-1 flex items-center justify-center gap-2">
                     <Icon
-                      name="typcn:info-large"
+                      name="solar:info-circle-linear"
                       size="1.4rem"
                       class="text-gray-500 mr-3"
                     />
@@ -244,37 +244,37 @@ const navs = ref<Navs[]>([
       {
         label: 'Humble Beginnings of PYCS',
         description: 'Learn how PYCS was founded', // Description from your input
-        icon: 'mdi:seed-outline',
+        icon: 'solar:leaf-linear',
         to: '/about/humble-beginnings-pycs', // Updated route
       },
       {
         label: 'Philosophy and Institutional Objectives',
         description: 'Guidelines for behavior and consequences', // Description from your input
-        icon: 'mdi:shield-outline',
+        icon: 'solar:shield-check-linear',
         to: '/about/philosophy-institutional-objectives', // Updated route
       },
       {
         label: 'General Standards and Policies',
         description: 'Medical guidelines and safety procedures', // Description from your input
-        icon: 'mdi:scale-balance',
+        icon: 'solar:scale-linear',
         to: '/about/general-standard-policies', // Updated route
       },
       {
         label: 'Discipline Policies',
         description: 'Miscellaneous rules and information', // Description from your input
-        icon: 'mdi:gavel',
+        icon: 'solar:sledgehammer-linear',
         to: '/about/discipline-policies', // Updated route
       },
       {
         label: 'Health Standards and Policies',
         description: 'Protocols for student wellness and safety', // Description from your input
-        icon: 'mdi:heart-pulse',
+        icon: 'solar:heart-pulse-linear',
         to: '/about/health-standards-policies', // Updated route
       },
       {
         label: 'General Policies',
         description: 'Broad guidelines for school operations', // Description from your input
-        icon: 'mdi:book-open-page-variant-outline',
+        icon: 'solar:book-bookmark-linear',
         to: '/about/general-policies', // Updated route
       },
     ],
@@ -293,37 +293,37 @@ const navs = ref<Navs[]>([
       {
         label: 'Class Periods and Learning Cycle',
         description: 'Understand class times and the learning structure', // Description from your input
-        icon: 'mdi:school-outline',
+        icon: 'solar:map-point-school-linear',
         to: '/school-operation/class-periods-learning-cycle', // Generated route
       },
       {
         label: 'Enrollment of Learners',
         description: 'Information on how to register students', // Description from your input
-        icon: 'tabler:user-pentagon',
+        icon: 'solar:user-circle-linear',
         to: '/school-operation/enrollment-learners', // Generated route
       },
       {
         label: 'Admission Requirements',
         description: 'List of criteria and documents needed', // Description from your input
-        icon: 'tabler:checklist',
+        icon: 'solar:list-check-linear',
         to: '/school-operation/admission-requirements', // Generated route
       },
       {
         label: 'Admission Procedures',
         description: 'Step-by-step guide to the application process', // Description from your input
-        icon: 'fluent:arrow-sync-checkmark-24-regular',
+        icon: 'solar:refresh-circle-linear',
         to: '/school-operation/admission-procedures', // Generated route
       },
       {
         label: 'Policies for Early Registration',
         description: 'Rules and timelines for registering early', // Description from your input
-        icon: 'la:hourglass-start',
+        icon: 'solar:hourglass-linear',
         to: '/school-operation/policies-early-registration', // Generated route
       },
       {
         label: 'Policy on Withholding of Credentials',
         description: 'Rules regarding holds on official documents', // Description from your input
-        icon: 'tabler:certificate-off',
+        icon: 'solar:diploma-linear',
         to: '/school-operation/policy-withholding-credentials', // Generated route
       },
     ],
@@ -334,56 +334,56 @@ const navs = ref<Navs[]>([
       {
         label: 'Curriculum',
         description: 'Overview of courses and subjects offered.',
-        icon: 'tabler:puzzle-2',
+        icon: 'solar:widget-4-linear',
         to: '/academics/curriculum/pre-school', // Generated route
       },
       {
         label: 'Special Programs',
         description: 'Unique learning opportunities and focuses.',
-        icon: 'tabler:user-pentagon',
+        icon: 'solar:user-circle-linear',
         to: '/academics/special-programs', // Generated route
       },
       {
         label: 'Academic Policy',
         description: 'Rules governing studies, grades, and conduct.',
-        icon: 'fa6-solid:book-open-reader',
+        icon: 'solar:book-bookmark-linear',
         to: '/academics/academic-policy', // Generated route
       },
       {
         label: 'Grading System and Grade Description',
         description: 'How grades are calculated and what they mean.',
-        icon: 'tabler:chart-infographic',
+        icon: 'solar:chart-linear',
         to: '/academics/grading-system-grade-description', // Generated route
       },
       {
         label: 'Promotion and Retention',
         description: 'Criteria for advancing to the next grade level.',
-        icon: 'tabler:arrow-big-up-line',
+        icon: 'solar:arrow-up-linear',
         to: '/academics/promotion-retention', // Generated route
       },
       {
         label: 'School Programs',
         description: 'General school activities and program offerings.',
-        icon: 'bi:journals',
+        icon: 'solar:library-linear',
         to: '/academics/school-programs', // Generated route
       },
       {
         label: 'Clubs / Organization',
         description: 'Explore student groups and activities.',
-        icon: 'fluent:people-community-24-regular',
+        icon: 'solar:users-group-rounded-linear',
         to: '/academics/clubs-organization', // Generated route
       },
       {
         label: 'School Year-End Activities',
         description:
           'Events and activities marking the end of the school year.',
-        icon: 'fluent-emoji-high-contrast:party-popper',
+        icon: 'solar:confetti-linear',
         to: '/academics/school-year-end-activities', // Generated route
       },
       {
         label: 'Others',
         description: 'Find miscellaneous academic information here.',
-        icon: 'tabler:dots',
+        icon: 'solar:menu-dots-linear',
         to: '/academics/others', // Generated route
       },
     ],

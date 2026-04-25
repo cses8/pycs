@@ -19,7 +19,7 @@
             <div
               class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-white text-blue-800"
             >
-              <Icon name="lucide:calendar-range" class="size-6" />
+              <Icon name="solar:calendar-minimalistic-linear" class="size-6" />
             </div>
             <div class="min-w-0">
               <p class="text-xs font-semibold uppercase text-blue-200">
@@ -100,7 +100,7 @@
                   <div
                     class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-700 dark:bg-blue-950/50 dark:text-blue-300"
                   >
-                    <Icon name="lucide:calendar-range" class="size-5" />
+                    <Icon name="solar:calendar-minimalistic-linear" class="size-5" />
                   </div>
                   <span class="font-bold text-slate-950 dark:text-white">
                     {{ data.description }}
@@ -144,7 +144,7 @@
             <template #empty>
               <div class="px-4 py-12 text-center">
                 <Icon
-                  name="lucide:calendar-x"
+                  name="solar:calendar-linear"
                   class="mx-auto size-10 text-slate-400"
                 />
                 <h3 class="mt-4 text-lg font-bold text-slate-950 dark:text-white">

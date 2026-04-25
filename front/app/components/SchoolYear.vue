@@ -13,7 +13,7 @@
       >
         <span class="min-w-0 leading-5">{{ item.description }}</span>
         <Icon
-          name="lucide:check"
+          name="solar:check-circle-linear"
           :class="[
             'size-4 shrink-0',
             item.id === schoolYearStore.selectedSchoolYear?.id

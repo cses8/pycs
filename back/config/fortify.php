@@ -144,7 +144,8 @@ return [
     */
 
     'features' => [
-        Features::registration(),
+        // Public self-registration would let any account reach Sanctum-protected
+        // content mutation routes. Keep account provisioning administrative.
         Features::resetPasswords(),
         // Features::emailVerification(),
         Features::updateProfileInformation(),

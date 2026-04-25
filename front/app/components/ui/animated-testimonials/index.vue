@@ -1,10 +1,10 @@
 <template>
   <div
-    class="mx-auto w-full max-w-3xl rounded-xl border border-white/15 bg-white/10 p-4 text-left font-sans antialiased shadow-2xl shadow-slate-950/20 backdrop-blur md:p-5"
+    class="mx-auto w-full max-w-2xl overflow-hidden rounded-xl border border-white/15 bg-white/10 p-4 text-left font-sans antialiased shadow-2xl shadow-slate-950/20 backdrop-blur sm:p-5"
   >
-    <div class="relative grid grid-cols-1 gap-6 md:grid-cols-[220px_1fr]">
-      <div>
-        <div class="relative h-64 w-full overflow-hidden rounded-lg md:h-full">
+    <div class="relative grid min-w-0 grid-cols-1 gap-5 xl:grid-cols-[180px_minmax(0,1fr)]">
+      <div class="min-w-0">
+        <div class="relative h-48 w-full overflow-hidden rounded-lg sm:h-56 xl:h-full">
           <Motion
             v-for="(testimonial, index) in props.testimonials"
             :key="testimonial.image"
@@ -49,7 +49,7 @@
           </Motion>
         </div>
       </div>
-      <div class="flex min-h-64 flex-col justify-between py-2">
+      <div class="flex min-h-0 min-w-0 flex-col justify-between py-1">
         <Motion
           :key="active"
           as="div"
@@ -70,49 +70,46 @@
             ease: 'easeInOut',
           }"
         >
-          <h3 class="text-2xl font-bold leading-tight text-white">
+          <h3 class="break-words text-xl font-bold leading-tight text-white sm:text-2xl">
             {{ props.testimonials[active]?.name }}
           </h3>
           <p class="mt-1 text-sm font-medium text-indigo-100">
             {{ props.testimonials[active]?.designation }}
           </p>
-          <Motion as="p" class="mt-5 text-base font-normal leading-7 text-slate-200">
-            <Motion
-              v-for="(word, index) in activeTestimonialQuote"
-              :key="index"
-              as="span"
-              :initial="{
-                filter: 'blur(10px)',
-                opacity: 0,
-                y: 5,
-              }"
-              :animate="{
-                filter: 'blur(0px)',
-                opacity: 1,
-                y: 0,
-              }"
-              :transition="{
-                duration: 0.2,
-                ease: 'easeInOut',
-                delay: 0.02 * index,
-              }"
-              class="inline text-left"
-            >
-              <span class="!break-words" v-html="word" />
-              &nbsp;
-            </Motion>
+          <Motion
+            as="div"
+            class="mt-4 max-h-72 min-w-0 overflow-y-auto pr-1 text-sm font-normal leading-7 text-slate-200 sm:text-base xl:max-h-80"
+            :initial="{
+              filter: 'blur(10px)',
+              opacity: 0,
+              y: 5,
+            }"
+            :animate="{
+              filter: 'blur(0px)',
+              opacity: 1,
+              y: 0,
+            }"
+            :transition="{
+              duration: 0.2,
+              ease: 'easeInOut',
+            }"
+          >
+            <AppSafeHtml
+              class="break-words [&_*]:max-w-full [&_a]:break-words [&_a]:text-white [&_a]:underline [&_img]:h-auto [&_img]:max-w-full [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:mb-3 [&_table]:block [&_table]:overflow-x-auto [&_ul]:list-disc [&_ul]:pl-5"
+              :html="props.testimonials[active]?.quote || ''"
+            />
           </Motion>
         </Motion>
-        <div class="flex gap-3 pt-8 md:pt-0">
+        <div class="flex gap-3 pt-5">
           <button
             class="group/button flex size-9 items-center justify-center rounded-lg border border-white/20 bg-white/10 transition-colors hover:bg-white/20"
             type="button"
             aria-label="Previous announcement"
             @click="handlePrev"
           >
-            <Icon
-              name="lucide:arrow-left"
-              class="size-5 text-white transition-transform duration-300 group-hover/button:-translate-x-0.5"
+            <span
+              class="pi pi-arrow-left text-sm text-white transition-transform duration-300 group-hover/button:-translate-x-0.5"
+              aria-hidden="true"
             />
           </button>
           <button
@@ -121,9 +118,9 @@
             aria-label="Next announcement"
             @click="handleNext"
           >
-            <Icon
-              name="lucide:arrow-right"
-              class="size-5 text-white transition-transform duration-300 group-hover/button:translate-x-0.5"
+            <span
+              class="pi pi-arrow-right text-sm text-white transition-transform duration-300 group-hover/button:translate-x-0.5"
+              aria-hidden="true"
             />
           </button>
         </div>
@@ -159,10 +156,6 @@ const failedImages = ref<Set<string>>(new Set())
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const interval = ref<any>()
-
-const activeTestimonialQuote = computed(() => {
-  return props.testimonials[active.value]?.quote.split(' ') ?? []
-})
 
 onMounted(() => {
   if (props.autoplay && props.testimonials.length > 1) {

@@ -36,7 +36,7 @@ test('public users can read school calendar events', function () {
 });
 
 test('authenticated users can manage school calendar events', function () {
-	Sanctum::actingAs(User::factory()->create());
+	Sanctum::actingAs(User::factory()->admin()->create());
 
 	$createResponse = $this->postJson('/api/school-calendars', schoolCalendarPayload())
 		->assertCreated()
@@ -69,7 +69,7 @@ test('unauthenticated users cannot mutate school calendar events', function () {
 });
 
 test('school calendar validation rejects invalid payloads', function () {
-	Sanctum::actingAs(User::factory()->create());
+	Sanctum::actingAs(User::factory()->admin()->create());
 
 	$this->postJson('/api/school-calendars', schoolCalendarPayload([
 		'title' => '',
@@ -82,7 +82,7 @@ test('school calendar validation rejects invalid payloads', function () {
 });
 
 test('school years with calendar records cannot be deleted', function () {
-	Sanctum::actingAs(User::factory()->create());
+	Sanctum::actingAs(User::factory()->admin()->create());
 
 	$schoolYear = SchoolYear::query()->create([
 		'description' => '2027-2028',

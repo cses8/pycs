@@ -61,7 +61,7 @@
               class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-indigo-700 group-hover:text-indigo-900 dark:text-indigo-200"
             >
               Explore
-              <Icon name="lucide:arrow-right" class="h-4 w-4" />
+              <Icon name="solar:round-arrow-right-linear" class="h-4 w-4" />
             </span>
           </button>
         </template>
@@ -76,7 +76,7 @@ const router = useRouter()
 const quickLinks = ref([
   // {
   //   id: ulid(),
-  //   icon: 'fluent-color:news-24',
+  //   icon: 'solar:document-text-linear',
   //   title: 'School Updates',
   //   description:
   //     'Keep up-to-date with everything happening on campus. Find news articles, updates, and stories here.',
@@ -84,7 +84,7 @@ const quickLinks = ref([
   // },
   {
     id: ulid(),
-    icon: 'flat-color-icons:gallery',
+    icon: 'solar:gallery-linear',
     title: 'School Moments',
     description:
       'See our students in action! Check out galleries from academic, sports, and extracurricular events.',
@@ -92,7 +92,7 @@ const quickLinks = ref([
   },
 {
 id: ulid(),
-icon: 'flat-color-icons:calendar',
+icon: 'solar:calendar-date-linear',
 title: 'School Calendar',
 description:
 'Stay organized with our official school calendar. Find important dates, holidays, exam schedules, and events.',
@@ -100,7 +100,7 @@ path: '/school-calendar',
 },
 {
 id: ulid(),
-icon: 'flat-color-icons:news',
+icon: 'solar:document-text-linear',
 title: 'School Updates',
 description:
 'Read the latest school news, announcements, stories, and upcoming events in one place.',

@@ -11,7 +11,7 @@
       aria-haspopup="true"
       aria-controls="theme_popup_overlay_menu"
     >
-      <Icon name="mdi:palette-outline" class="text-white" />
+      <Icon name="solar:palette-linear" class="text-white" />
     </Button>
 
     <Menu

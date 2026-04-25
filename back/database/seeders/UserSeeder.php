@@ -33,6 +33,7 @@ class UserSeeder extends Seeder
 				],
 				[
 					'name' => $user['name'],
+					'role' => User::ROLE_ADMIN,
 					'password' => Hash::make($user['password'])
 				]
 			);

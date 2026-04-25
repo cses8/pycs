@@ -20,7 +20,7 @@
             <div
               class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-white text-blue-800"
             >
-              <Icon name="lucide:image-up" class="size-6" />
+              <Icon name="solar:gallery-add-linear" class="size-6" />
             </div>
             <div class="min-w-0">
               <p class="text-xs font-semibold uppercase text-blue-200">
@@ -124,7 +124,7 @@
                   <div
                     class="flex size-16 items-center justify-center rounded-full bg-blue-50 text-blue-700 dark:bg-blue-950/50 dark:text-blue-300"
                   >
-                    <Icon name="lucide:cloud-upload" class="size-8" />
+                    <Icon name="solar:cloud-upload-linear" class="size-8" />
                   </div>
                   <h3 class="mt-4 text-base font-bold text-slate-950 dark:text-white">
                     Drop image here

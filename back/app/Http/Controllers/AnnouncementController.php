@@ -117,11 +117,10 @@ class AnnouncementController extends Controller
 	/**
 	 * Update the specified resource in storage.
 	 */
-	public function update(UpdateAnnouncementRequest $request)
+	public function update(UpdateAnnouncementRequest $request, Announcement $announcement)
 	{
 		$validatedData = $request->validated(); // Get only validated fields
 
-		$announcement = Announcement::find($validatedData['id']);
 		// --- Date Formatting ---
 		// Check if 'start' date is present in the validated data and format it
 		if (isset($validatedData['start'])) {
@@ -149,9 +148,8 @@ class AnnouncementController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 */
-	public function destroy($id)
+	public function destroy(Announcement $announcement)
 	{
-		$announcement = Announcement::find($id);
 		// 1. Authorization Check (Implement proper policy or Gate check)
 		// Example:
 		// if (auth()->user()->cannot('delete', $announcement)) {

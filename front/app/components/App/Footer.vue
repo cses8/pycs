@@ -61,7 +61,7 @@
             <li
               class="flex flex-row items-center leading-6"
             >
-              <Icon name="logos:google-gmail" class="mr-2" size="1.5rem" />
+              <Icon name="solar:letter-linear" class="mr-2" size="1.5rem" />
               <span class="ml-2 font-medium text-slate-900 dark:text-surface-0">pycs.65@gmail.com</span>
             </li>
           </ul>
@@ -78,7 +78,7 @@
             <li
               class="flex flex-row items-center leading-6"
             >
-              <Icon name="logos:facebook" class="mr-2" size="1.5rem" />
+              <Icon name="solar:share-circle-linear" class="mr-2" size="1.5rem" />
               <a
                 href="https://www.facebook.com/PYCS.75"
                 target="_blank"
@@ -105,7 +105,7 @@
           class="flex items-center justify-center rounded-lg border border-slate-200 px-3 py-2 backdrop-blur-sm transition-colors duration-100 hover:bg-slate-100 dark:border-surface-700 dark:hover:bg-surface-800"
           aria-label="Open PYCS Facebook page"
         >
-          <Icon name="logos:facebook" size="1.5rem" />
+          <Icon name="solar:share-circle-linear" size="1.5rem" />
         </a>
       </div>
     </div>

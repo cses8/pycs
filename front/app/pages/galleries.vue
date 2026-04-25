@@ -23,7 +23,7 @@
             <div
               class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-100"
             >
-              <Icon name="lucide:images" class="size-4" />
+              <Icon name="solar:gallery-linear" class="size-4" />
               Campus Life Gallery
             </div>
             <h1 class="text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
@@ -37,7 +37,7 @@
           <div class="rounded-2xl border border-white/15 bg-white/10 p-5 text-white shadow-2xl shadow-slate-950/30 backdrop-blur">
             <div class="flex items-center gap-3">
               <div class="flex size-11 items-center justify-center rounded-xl bg-white text-blue-900">
-                <Icon name="lucide:camera" class="size-6" />
+                <Icon name="solar:camera-linear" class="size-6" />
               </div>
               <div>
                 <p class="text-xs font-semibold uppercase text-blue-100">Gallery Archive</p>
@@ -72,11 +72,11 @@
         </div>
         <div class="flex flex-wrap gap-2 text-sm text-slate-600 dark:text-slate-300">
           <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 dark:border-white/10 dark:bg-white/5">
-            <Icon name="lucide:folder-open" class="size-4 text-blue-700 dark:text-blue-300" />
+            <Icon name="solar:folder-open-linear" class="size-4 text-blue-700 dark:text-blue-300" />
             {{ displayedGalleries.length }} collections
           </span>
           <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 dark:border-white/10 dark:bg-white/5">
-            <Icon name="lucide:image" class="size-4 text-blue-700 dark:text-blue-300" />
+            <Icon name="solar:gallery-linear" class="size-4 text-blue-700 dark:text-blue-300" />
             {{ totalImages }} photos
           </span>
         </div>
@@ -84,7 +84,7 @@
 
       <div class="mb-6 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5">
         <div class="mb-3 flex items-center gap-2">
-          <Icon name="lucide:graduation-cap" class="size-5 text-blue-700 dark:text-blue-300" />
+          <Icon name="solar:square-academic-cap-linear" class="size-5 text-blue-700 dark:text-blue-300" />
           <h3 class="text-sm font-bold uppercase text-slate-700 dark:text-slate-200">
             Academic Year
           </h3>
@@ -141,7 +141,7 @@
             </div>
             <div class="absolute bottom-4 left-4 right-4">
               <span class="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white ring-1 ring-white/20 backdrop-blur">
-                <Icon name="lucide:images" class="size-3.5" />
+                <Icon name="solar:gallery-linear" class="size-3.5" />
                 {{ gallery.image_count }} photos
               </span>
             </div>
@@ -155,10 +155,10 @@
               <p class="mt-2 text-sm font-semibold text-blue-700 dark:text-blue-300">
                 {{ formatRange(gallery.start, gallery.end) }}
               </p>
-              <p
+              <AppSafeHtml
                 v-if="gallery.description"
                 class="mt-3 line-clamp-3 text-sm leading-6 text-slate-600 dark:text-slate-300"
-                v-html="gallery.description"
+                :html="gallery.description"
               />
             </div>
 
@@ -196,7 +196,7 @@
         v-else
         class="rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center shadow-sm dark:border-white/15 dark:bg-white/5"
       >
-        <Icon name="lucide:images" class="mx-auto size-10 text-slate-400" />
+        <Icon name="solar:gallery-linear" class="mx-auto size-10 text-slate-400" />
         <h3 class="mt-4 text-xl font-black text-slate-950 dark:text-white">
           No galleries available for {{ selectedYearLabel }}
         </h3>

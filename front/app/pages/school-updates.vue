@@ -1,11 +1,10 @@
-<!-- eslint-disable vue/no-v-html -->
 <template>
   <main class="bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-white">
     <section class="border-b border-slate-200 bg-white pt-24 dark:border-white/10 dark:bg-slate-900">
       <div class="mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:px-8 lg:grid-cols-[minmax(0,1fr)_24rem] lg:px-10">
         <div class="min-w-0">
           <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-bold uppercase text-blue-800 dark:border-blue-300/20 dark:bg-blue-400/10 dark:text-blue-200">
-            <Icon name="lucide:newspaper" class="size-4" />
+            <Icon name="solar:document-text-linear" class="size-4" />
             School Updates
           </div>
           <h1 class="max-w-4xl text-4xl font-black leading-tight text-slate-950 sm:text-5xl dark:text-white">
@@ -32,7 +31,7 @@
         <aside class="rounded-xl border border-slate-200 bg-slate-50 p-5 shadow-sm dark:border-white/10 dark:bg-white/5">
           <div class="flex items-center gap-3">
             <div class="flex size-11 items-center justify-center rounded-lg bg-blue-700 text-white dark:bg-blue-500">
-              <Icon name="lucide:radio" class="size-5" />
+              <Icon name="solar:radio-linear" class="size-5" />
             </div>
             <div>
               <p class="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">
@@ -189,7 +188,7 @@
             v-else-if="errorMessage"
             class="rounded-xl border border-red-200 bg-red-50 p-8 text-center text-red-900 dark:border-red-400/30 dark:bg-red-950/30 dark:text-red-100"
           >
-            <Icon name="lucide:triangle-alert" class="mx-auto size-10" />
+            <Icon name="solar:danger-triangle-linear" class="mx-auto size-10" />
             <h2 class="mt-4 text-xl font-black">Updates could not load</h2>
             <p class="mt-2 text-sm">{{ errorMessage }}</p>
             <Button label="Try again" icon="pi pi-refresh" class="mt-5" severity="danger" @click="fetchUpdates" />
@@ -261,7 +260,7 @@
             v-else
             class="rounded-xl border border-dashed border-slate-300 bg-white p-10 text-center shadow-sm dark:border-white/15 dark:bg-white/5"
           >
-            <Icon name="lucide:newspaper" class="mx-auto size-11 text-slate-400" />
+            <Icon name="solar:document-text-linear" class="mx-auto size-11 text-slate-400" />
             <h2 class="mt-4 text-xl font-black text-slate-950 dark:text-white">
               No updates found
             </h2>
@@ -292,7 +291,7 @@
                 @click="filters.category = category.value"
               >
                 <span>{{ category.label }}</span>
-                <Icon name="lucide:chevron-right" class="size-4" />
+                <Icon name="solar:alt-arrow-right-linear" class="size-4" />
               </button>
             </div>
           </div>
@@ -353,7 +352,7 @@
           <Tag :value="readerUpdate.category || 'General'" severity="info" class="!rounded-full" />
           <Tag :value="primaryDate(readerUpdate)" severity="secondary" class="!rounded-full" />
         </div>
-        <div class="prose max-w-none prose-slate dark:prose-invert" v-html="readerUpdate.content" />
+        <AppSafeHtml class="prose max-w-none prose-slate dark:prose-invert" :html="readerUpdate.content" />
       </article>
     </Dialog>
 
@@ -378,7 +377,7 @@
               <div
                 class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-white text-blue-800"
               >
-                <Icon :name="form.id ? 'lucide:pencil' : 'lucide:plus'" class="size-6" />
+                <Icon :name="form.id ? 'solar:pen-2-linear' : 'solar:add-circle-linear'" class="size-6" />
               </div>
               <div class="min-w-0">
                 <p class="text-xs font-semibold uppercase text-blue-200">
@@ -756,11 +755,11 @@ const filters = reactive({
 })
 
 const updateTypes = [
-  { label: 'All', value: 'all', icon: 'lucide:layout-grid' },
-  { label: 'News', value: 'news', icon: 'lucide:newspaper' },
-  { label: 'Announcements', value: 'announcement', icon: 'lucide:megaphone' },
-  { label: 'Blogs', value: 'blog', icon: 'lucide:book-open-text' },
-  { label: 'Events', value: 'event', icon: 'lucide:calendar-days' },
+  { label: 'All', value: 'all', icon: 'solar:widget-4-linear' },
+  { label: 'News', value: 'news', icon: 'solar:document-text-linear' },
+  { label: 'Announcements', value: 'announcement', icon: 'solar:bell-bing-linear' },
+  { label: 'Blogs', value: 'blog', icon: 'solar:book-bookmark-linear' },
+  { label: 'Events', value: 'event', icon: 'solar:calendar-date-linear' },
 ]
 
 const statusOptions = [
@@ -797,6 +796,31 @@ const visibleTypeCounts = computed(() =>
     }))
 )
 
+const initialPublicParams = {
+  search: '',
+  type: 'all',
+  category: 'all',
+  tag: 'all',
+  status: 'published',
+  per_page: 24,
+}
+
+const { data: initialPublicUpdates } = await useAsyncData('school-updates-initial', () =>
+  $fetch<SchoolUpdateResponse>(`${config.public.backendBase}/api/school-updates`, {
+    query: initialPublicParams,
+  }),
+)
+
+if (initialPublicUpdates.value && isSchoolUpdateResponse(initialPublicUpdates.value)) {
+  updates.value = initialPublicUpdates.value.data
+  totalRecords.value = initialPublicUpdates.value.pagination.total
+  meta.value = {
+    categories: initialPublicUpdates.value.meta?.categories ?? [],
+    tags: initialPublicUpdates.value.meta?.tags ?? [],
+  }
+  loading.value = false
+}
+
 const formPreviewImage = computed(() => {
   if (featuredImageFile.value) {
     return URL.createObjectURL(featuredImageFile.value)
@@ -827,7 +851,9 @@ watch(tagInput, value => {
 })
 
 onMounted(() => {
-  fetchUpdates()
+  if (!updates.value.length) {
+    fetchUpdates()
+  }
   refreshTimer = window.setInterval(fetchUpdates, 60000)
 })
 
@@ -1239,7 +1265,7 @@ function typeLabel(type: string) {
 }
 
 function typeIcon(type: string) {
-  return updateTypes.find(item => item.value === type)?.icon ?? 'lucide:newspaper'
+  return updateTypes.find(item => item.value === type)?.icon ?? 'solar:document-text-linear'
 }
 
 function statusLabel(update: SchoolUpdate) {

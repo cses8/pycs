@@ -1,10 +1,14 @@
 import AutoImport from 'unplugin-auto-import/vite'
 
+process.env.BROWSERSLIST_IGNORE_OLD_DATA ??= '1'
+
 const backendBaseUrl = process.env.NUXT_PUBLIC_BACKEND_BASE_URL || 'http://localhost:8000'
+const isProduction = process.env.NODE_ENV === 'production'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   srcDir: 'app/',
+  ssr: true,
 
   runtimeConfig: {
     public: {
@@ -26,33 +30,63 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: '2024-11-01',
-  devtools: { enabled: true },
+  devtools: { enabled: false },
 
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxt/eslint',
     '@nuxt/icon',
-    '@nuxt/devtools',
     '@vueuse/nuxt',
     '@primevue/nuxt-module',
     '@vueuse/motion/nuxt',
     'dayjs-nuxt',
     '@pinia/nuxt',
     'nuxt-auth-sanctum',
-    'nuxt-delay-hydration',
-    'nuxt-delay-hydration',
     '@nuxtjs/fontaine',
-    '@nuxtjs/critters',
+    ...(isProduction
+      ? [
+          '@nuxtjs/critters',
+        ]
+      : []),
   ],
 
   css: [
     // '~/assets/css/main.css',
     '~/assets/css/font.css',
+    '~/assets/css/vendor.css',
     '~/assets/styles/_index.scss',
     '~/assets/themes/page-themes-with-layout.css',
-    'primeicons/primeicons.css',
-    'v-calendar/style.css',
   ],
+
+  routeRules: {
+    ...(isProduction
+      ? {
+          '/': { swr: 300 },
+          '/school-updates/**': { swr: 120 },
+          '/galleries': { swr: 300 },
+          '/school-calendar/**': { swr: 300 },
+        }
+      : {}),
+    '/**': {
+      headers: {
+        'X-Content-Type-Options': 'nosniff',
+        'X-Frame-Options': 'DENY',
+        'Referrer-Policy': 'strict-origin-when-cross-origin',
+        'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+        'Content-Security-Policy': [
+          "default-src 'self'",
+          "base-uri 'self'",
+          "frame-ancestors 'none'",
+          "object-src 'none'",
+          "script-src 'self' 'unsafe-inline'",
+          "style-src 'self' 'unsafe-inline'",
+          "img-src 'self' data: blob: http://localhost:8000 http://127.0.0.1:8000",
+          `connect-src 'self' ${backendBaseUrl}`,
+          "font-src 'self' data:",
+        ].join('; '),
+      },
+    },
+  },
 
   primevue: {
     importTheme: { from: '~/themes/my-theme.js' },
@@ -109,6 +143,16 @@ export default defineNuxtConfig({
 
   icon: {
     mode: 'css',
+    provider: 'none',
+    fallbackToApi: false,
+    collections: ['solar'],
+    serverBundle: false,
+    clientBundle: {
+      scan: {
+        globInclude: ['app/**/*.{vue,ts,js}'],
+        globExclude: ['node_modules', '.nuxt', '.output'],
+      },
+    },
   },
 
   nitro: {
@@ -124,13 +168,9 @@ export default defineNuxtConfig({
 
   sanctum: {
     baseUrl: backendBaseUrl,
-  },
-
-  delayHydration: {
-    mode: 'init',
-    // enables nuxt-delay-hydration in dev mode for testing
-    // NOTE: you should disable this once you've finished testing, it will break HMR
-    // debug: process.env.NODE_ENV === 'development',
+    client: {
+      initialRequest: false,
+    },
   },
 
   // Web Vitals

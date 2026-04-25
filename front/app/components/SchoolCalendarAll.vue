@@ -7,17 +7,17 @@
     >
       <div class="mb-3 flex items-start justify-between gap-3">
         <div class="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-bold text-blue-800 ring-1 ring-slate-200 dark:bg-white/10 dark:text-blue-200 dark:ring-white/10">
-          <Icon name="lucide:calendar" class="size-3.5" />
+          <Icon name="solar:calendar-linear" class="size-3.5" />
           {{ formatRange(schoolCalendar.start, schoolCalendar.end) }}
         </div>
       </div>
       <h3 class="text-lg font-black leading-6 text-slate-950 dark:text-white">
         {{ schoolCalendar.title }}
       </h3>
-      <div
-        class="mt-3 line-clamp-5 text-sm leading-6 text-slate-600 dark:text-slate-300"
-        v-html="htmlTransformer(schoolCalendar.description)"
-      />
+<AppSafeHtml
+class="mt-3 line-clamp-5 text-sm leading-6 text-slate-600 dark:text-slate-300"
+ :html="htmlTransformer(schoolCalendar.description)"
+/>
     </article>
 
     <div

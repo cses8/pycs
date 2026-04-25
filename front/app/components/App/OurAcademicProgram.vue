@@ -80,7 +80,7 @@
 const academicPrograms = ref([
   {
     id: ulid(),
-    icon: 'healthicons:child-care-outline', // Icon left blank as requested
+    icon: 'solar:smile-circle-linear', // Icon left blank as requested
     title: 'Preschool',
     path: '/academics/curriculum/pre-school',
     description:
@@ -88,7 +88,7 @@ const academicPrograms = ref([
   },
   {
     id: ulid(),
-    icon: 'mdi:book-open-variant-outline', // Icon left blank as requested
+    icon: 'solar:book-linear', // Icon left blank as requested
     title: 'Primary School & Middle School',
     path: '/academics/curriculum/primary-school-middle-school',
     description:
@@ -96,7 +96,7 @@ const academicPrograms = ref([
   },
   {
     id: ulid(),
-    icon: 'mdi:rocket-launch-outline', // Icon left blank as requested
+    icon: 'solar:rocket-linear', // Icon left blank as requested
     title: 'Junior High School',
     path: '/academics/curriculum/junior-high-school',
     description:
@@ -104,7 +104,7 @@ const academicPrograms = ref([
   },
   {
     id: ulid(),
-    icon: 'ph:graduation-cap-bold', // Icon left blank as requested
+    icon: 'solar:square-academic-cap-linear', // Icon left blank as requested
     title: 'Senior High School',
     path: '/academics/curriculum/senior-high-school',
     description:

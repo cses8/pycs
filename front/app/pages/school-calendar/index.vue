@@ -15,7 +15,7 @@
             <div
               class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-100"
             >
-              <Icon name="lucide:calendar-days" class="size-4" />
+              <Icon name="solar:calendar-date-linear" class="size-4" />
               Official School Calendar
             </div>
             <h1 class="text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
@@ -29,7 +29,7 @@
           <div class="rounded-2xl border border-white/15 bg-white/10 p-5 text-white shadow-2xl shadow-slate-950/30 backdrop-blur">
             <div class="flex items-center gap-3">
               <div class="flex size-11 items-center justify-center rounded-xl bg-white text-blue-900">
-                <Icon name="lucide:calendar-check-2" class="size-6" />
+                <Icon name="solar:calendar-mark-linear" class="size-6" />
               </div>
               <div>
                 <p class="text-xs font-semibold uppercase text-blue-100">Current View</p>
@@ -57,7 +57,7 @@
       <aside class="min-w-0 space-y-5">
         <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5">
           <div class="mb-3 flex items-center gap-2">
-            <Icon name="lucide:graduation-cap" class="size-5 text-blue-700 dark:text-blue-300" />
+            <Icon name="solar:square-academic-cap-linear" class="size-5 text-blue-700 dark:text-blue-300" />
             <h2 class="text-sm font-bold uppercase text-slate-700 dark:text-slate-200">
               Academic Year
             </h2>
@@ -75,7 +75,7 @@
                 Upcoming
               </h2>
             </div>
-            <Icon name="lucide:arrow-up-right" class="size-5 text-slate-400" />
+            <Icon name="solar:round-arrow-right-up-linear" class="size-5 text-slate-400" />
           </div>
           <SchoolCalendarUpcoming :key="`upcoming-${calendarRefreshKey}`" />
         </div>

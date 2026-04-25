@@ -99,7 +99,7 @@
                             <div class="inline-flex">
                               <span>
                                 <Icon
-                                  name="mdi:checkbox-multiple-marked-circle-outline"
+                                  name="solar:check-circle-linear"
                                   size="1.5rem"
                                   class="text-red-500 mt-1"
                                 />
@@ -112,7 +112,7 @@
                             <div class="inline-flex">
                               <span>
                                 <Icon
-                                  name="mdi:checkbox-multiple-marked-circle-outline"
+                                  name="solar:check-circle-linear"
                                   size="1.5rem"
                                   class="text-red-500 mt-1"
                                 />
@@ -137,7 +137,7 @@
                                 <div class="inline-flex">
                                   <span>
                                     <Icon
-                                      name="mdi:checkbox-multiple-marked-circle-outline"
+                                      name="solar:check-circle-linear"
                                       size="1.5rem"
                                       class="text-red-500 mt-1"
                                     />
@@ -154,7 +154,7 @@
                                 <div class="inline-flex">
                                   <span>
                                     <Icon
-                                      name="mdi:checkbox-multiple-marked-circle-outline"
+                                      name="solar:check-circle-linear"
                                       size="1.5rem"
                                       class="text-red-500 mt-1"
                                     />
@@ -170,7 +170,7 @@
                                 <div class="inline-flex">
                                   <span>
                                     <Icon
-                                      name="mdi:checkbox-multiple-marked-circle-outline"
+                                      name="solar:check-circle-linear"
                                       size="1.5rem"
                                       class="text-red-500 mt-1"
                                     />
@@ -186,7 +186,7 @@
                                 <div class="inline-flex">
                                   <span>
                                     <Icon
-                                      name="mdi:checkbox-multiple-marked-circle-outline"
+                                      name="solar:check-circle-linear"
                                       size="1.5rem"
                                       class="text-red-500 mt-1"
                                     />
@@ -201,7 +201,7 @@
                                 <div class="inline-flex">
                                   <span>
                                     <Icon
-                                      name="mdi:checkbox-multiple-marked-circle-outline"
+                                      name="solar:check-circle-linear"
                                       size="1.5rem"
                                       class="text-red-500 mt-1"
                                     />
@@ -225,7 +225,7 @@
                                 <div class="inline-flex">
                                   <span>
                                     <Icon
-                                      name="mdi:checkbox-multiple-marked-circle-outline"
+                                      name="solar:check-circle-linear"
                                       size="1.5rem"
                                       class="text-red-500 mt-1"
                                     />
@@ -242,7 +242,7 @@
                                 <div class="inline-flex">
                                   <span>
                                     <Icon
-                                      name="mdi:checkbox-multiple-marked-circle-outline"
+                                      name="solar:check-circle-linear"
                                       size="1.5rem"
                                       class="text-red-500 mt-1"
                                     />
@@ -258,7 +258,7 @@
                                 <div class="inline-flex">
                                   <span>
                                     <Icon
-                                      name="mdi:checkbox-multiple-marked-circle-outline"
+                                      name="solar:check-circle-linear"
                                       size="1.5rem"
                                       class="text-red-500 mt-1"
                                     />
@@ -286,7 +286,7 @@
                                 <div class="inline-flex">
                                   <span>
                                     <Icon
-                                      name="mdi:checkbox-multiple-marked-circle-outline"
+                                      name="solar:check-circle-linear"
                                       size="1.5rem"
                                       class="text-red-500 mt-1"
                                     />
@@ -299,7 +299,7 @@
                                 <div class="inline-flex">
                                   <span>
                                     <Icon
-                                      name="mdi:checkbox-multiple-marked-circle-outline"
+                                      name="solar:check-circle-linear"
                                       size="1.5rem"
                                       class="text-red-500 mt-1"
                                     />
@@ -312,7 +312,7 @@
                                 <div class="inline-flex">
                                   <span>
                                     <Icon
-                                      name="mdi:checkbox-multiple-marked-circle-outline"
+                                      name="solar:check-circle-linear"
                                       size="1.5rem"
                                       class="text-red-500 mt-1"
                                     />
@@ -328,7 +328,7 @@
                                 <div class="inline-flex">
                                   <span>
                                     <Icon
-                                      name="mdi:checkbox-multiple-marked-circle-outline"
+                                      name="solar:check-circle-linear"
                                       size="1.5rem"
                                       class="text-red-500 mt-1"
                                     />
@@ -344,7 +344,7 @@
                                 <div class="inline-flex">
                                   <span>
                                     <Icon
-                                      name="mdi:checkbox-multiple-marked-circle-outline"
+                                      name="solar:check-circle-linear"
                                       size="1.5rem"
                                       class="text-red-500 mt-1"
                                     />
@@ -388,7 +388,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -404,7 +404,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -512,7 +512,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -528,7 +528,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -545,7 +545,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -564,7 +564,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -580,7 +580,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -596,7 +596,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -609,7 +609,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -624,7 +624,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -641,7 +641,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -657,7 +657,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -739,7 +739,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -755,7 +755,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -771,7 +771,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -788,7 +788,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -806,7 +806,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -824,7 +824,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -840,7 +840,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -856,7 +856,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -874,7 +874,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -890,7 +890,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -922,7 +922,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -942,7 +942,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -958,7 +958,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -975,7 +975,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -991,7 +991,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1015,7 +1015,7 @@
                                 <div class="inline-flex">
                                   <span>
                                     <Icon
-                                      name="carbon:warning-filled"
+                                      name="solar:danger-triangle-linear"
                                       size="1.5rem"
                                       class="text-yellow-500 mt-1"
                                     />
@@ -1045,7 +1045,7 @@
                                 <div class="inline-flex">
                                   <span>
                                     <Icon
-                                      name="carbon:warning-filled"
+                                      name="solar:danger-triangle-linear"
                                       size="1.5rem"
                                       class="text-orange-500 mt-1"
                                     />
@@ -1077,7 +1077,7 @@
                                 <div class="inline-flex">
                                   <span>
                                     <Icon
-                                      name="carbon:warning-filled"
+                                      name="solar:danger-triangle-linear"
                                       size="1.5rem"
                                       class="text-red-500 mt-1"
                                     />
@@ -1136,7 +1136,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1153,7 +1153,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1170,7 +1170,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1186,7 +1186,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1203,7 +1203,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1219,7 +1219,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1249,7 +1249,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1265,7 +1265,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1281,7 +1281,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1312,7 +1312,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1328,7 +1328,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1344,7 +1344,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1362,7 +1362,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1379,7 +1379,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1410,7 +1410,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1426,7 +1426,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1442,7 +1442,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1457,7 +1457,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1473,7 +1473,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1489,7 +1489,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1520,7 +1520,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1537,7 +1537,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1553,7 +1553,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1570,7 +1570,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1586,7 +1586,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />
@@ -1604,7 +1604,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="mdi:checkbox-multiple-marked-circle-outline"
+                          name="solar:check-circle-linear"
                           size="1.5rem"
                           class="text-red-500 mt-1"
                         />

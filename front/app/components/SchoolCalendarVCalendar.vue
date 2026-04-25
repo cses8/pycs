@@ -13,7 +13,7 @@
             aria-label="Previous month"
             @click="moveMonth(-1)"
           >
-            <Icon name="lucide:chevron-left" class="size-4" />
+            <Icon name="solar:alt-arrow-left-linear" class="size-4" />
           </button>
           <button
             type="button"
@@ -21,7 +21,7 @@
             aria-label="Next month"
             @click="moveMonth(1)"
           >
-            <Icon name="lucide:chevron-right" class="size-4" />
+            <Icon name="solar:alt-arrow-right-linear" class="size-4" />
           </button>
         </div>
       </div>
@@ -120,7 +120,7 @@
           </h3>
         </div>
         <div class="inline-flex w-fit items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-bold text-slate-700 ring-1 ring-slate-200 dark:bg-white/10 dark:text-slate-200 dark:ring-white/10">
-          <Icon name="lucide:list-checks" class="size-4 text-blue-700 dark:text-blue-300" />
+          <Icon name="solar:list-check-linear" class="size-4 text-blue-700 dark:text-blue-300" />
           {{ monthlyEvents.length }} {{ monthlyEvents.length === 1 ? 'event' : 'events' }}
         </div>
       </div>
@@ -140,7 +140,7 @@
         v-else-if="!monthlyEvents.length"
         class="rounded-xl border border-dashed border-slate-300 bg-white p-8 text-center dark:border-white/15 dark:bg-white/5"
       >
-        <Icon name="lucide:calendar-search" class="mx-auto size-10 text-slate-400" />
+        <Icon name="solar:calendar-search-linear" class="mx-auto size-10 text-slate-400" />
         <h4 class="mt-3 text-lg font-black text-slate-950 dark:text-white">
           No events in this month
         </h4>
@@ -168,17 +168,17 @@
             <div class="p-4">
               <div class="mb-3 flex flex-wrap items-center gap-2">
                 <span class="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-800 ring-1 ring-blue-100 dark:bg-blue-400/15 dark:text-blue-200 dark:ring-blue-300/20">
-                  <Icon name="lucide:calendar-clock" class="size-3.5" />
+                  <Icon name="solar:clock-circle-linear" class="size-3.5" />
                   {{ formatEventRange(event) }}
                 </span>
               </div>
               <h4 class="line-clamp-2 text-base font-black leading-6 text-slate-950 dark:text-white">
                 {{ event.title }}
               </h4>
-              <div
-                class="mt-2 line-clamp-3 text-sm leading-6 text-slate-600 dark:text-slate-300"
-                v-html="htmlTransformer(event.description)"
-              />
+<AppSafeHtml
+class="mt-2 line-clamp-3 text-sm leading-6 text-slate-600 dark:text-slate-300"
+ :html="htmlTransformer(event.description)"
+/>
             </div>
           </div>
         </article>

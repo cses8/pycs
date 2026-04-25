@@ -17,3 +17,7 @@
 - For top navigation, avoid boxing every menu item; use spacing, subtle separators, and understated hover/active states so the header stays calm.
 - When restoring old homepage content, preserve the old descriptive text in the visible component, not only in the data model.
 - Always use `lean-ctx` for shell reads, searches, and verification; if compressed output hides needed context, use a LeanCTX-compatible narrower read instead of raw PowerShell.
+- Do not drop out of `lean-ctx` during server debugging; even process, port, and curl checks must stay routed through `lean-ctx -c`.
+- When removing a Nuxt module, grep for its global components and verify a fresh `bun run dev` log; stale component tags can survive as Vue runtime warnings.
+- For Nuxt Icon, installing/replacing icons is not enough; set a local client bundle with API fallback disabled and E2E-block `api.iconify.design` requests.
+- For editor-rendered announcements, test double-encoded API payloads in browser; rendered HTML must decode entities before sanitizing.

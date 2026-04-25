@@ -21,11 +21,7 @@ class UploadGalleryImageRequest extends FormRequest
 	 */
 	public function authorize(): bool
 	{
-		// Example: Check if the user can update the specific gallery
-		// $gallery = $this->route('gallery'); // Get the gallery from the route model binding
-		// return $this->user()->can('update', $gallery); // Assumes you have a GalleryPolicy
-
-		return true; // Placeholder: Allow for now, implement real authorization
+		return $this->user()?->isAdmin() === true;
 	}
 
 	/**
@@ -48,9 +44,8 @@ class UploadGalleryImageRequest extends FormRequest
 				'file',     // Each item must be a successfully uploaded file
 				'image',    // Each item must be an image (jpeg, png, bmp, gif, svg, or webp)
 				'mimes:jpeg,png,gif,webp', // Restrict to specific image MIME types GD can handle
-				'max:10240', // Maximum file size: 10240 KB = 10 MB (adjust as needed)
-				// You could add dimension rules here too if needed:
-				// 'dimensions:min_width=100,min_height=100,max_width=5000,max_height=5000',
+				'max:5120',
+				'dimensions:min_width=1,min_height=1,max_width=4000,max_height=4000',
 			],
 		];
 	}
@@ -69,8 +64,8 @@ class UploadGalleryImageRequest extends FormRequest
 			'files.*.file' => 'One of the uploads was not a valid file.',
 			'files.*.image' => 'One of the files is not a valid image.',
 			'files.*.mimes' => 'Only JPEG, PNG, GIF, and WEBP images are allowed.',
-			'files.*.max' => 'One of the images exceeds the maximum file size of 10MB.',
-			// Add messages for dimension rules if you use them
+			'files.*.max' => 'One of the images exceeds the maximum file size of 5MB.',
+			'files.*.dimensions' => 'One of the images exceeds the maximum dimensions of 4000 by 4000 pixels.',
 		];
 	}
 }

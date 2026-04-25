@@ -23,7 +23,7 @@
             to="/school-updates"
             class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:border-blue-300/40 dark:hover:bg-blue-400/10"
           >
-            <Icon name="lucide:newspaper" class="size-4" aria-hidden="true" />
+            <Icon name="solar:document-text-linear" class="size-4" aria-hidden="true" />
             Manage news
           </NuxtLink>
           <NuxtLink
@@ -31,7 +31,7 @@
             to="/school-calendar"
             class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:border-blue-300/40 dark:hover:bg-blue-400/10"
           >
-            <Icon name="lucide:calendar-plus" class="size-4" aria-hidden="true" />
+            <Icon name="solar:calendar-add-linear" class="size-4" aria-hidden="true" />
             Manage events
           </NuxtLink>
         </div>
@@ -92,7 +92,7 @@
               </p>
               <span class="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-bold text-blue-700 dark:text-blue-300">
                 Read more
-                <Icon name="lucide:arrow-right" class="size-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
+                <Icon name="solar:round-arrow-right-linear" class="size-4 transition group-hover:translate-x-0.5" aria-hidden="true" />
               </span>
             </div>
           </NuxtLink>
@@ -103,7 +103,7 @@
         v-else
         class="rounded-xl border border-dashed border-slate-300 bg-white p-8 text-center dark:border-white/15 dark:bg-white/5"
       >
-        <Icon name="lucide:inbox" class="mx-auto size-10 text-slate-400" aria-hidden="true" />
+        <Icon name="solar:inbox-linear" class="mx-auto size-10 text-slate-400" aria-hidden="true" />
         <h3 class="mt-4 text-lg font-black text-slate-950 dark:text-white">
           No recent updates available
         </h3>
@@ -229,7 +229,7 @@ function normalizeEvents(events: SchoolCalendar[]): RecentActivityItem[] {
     sortDate: sortableDate(event.start),
     formattedDate: formatDate(event.start),
     category: 'Event',
-    icon: 'lucide:calendar-days',
+    icon: 'solar:calendar-date-linear',
     image: calendarImage(event),
     imageAlt: `${event.title} event image`,
     path: '/school-calendar',
@@ -248,7 +248,7 @@ function normalizeGalleries(galleries: Gallery[]): RecentActivityItem[] {
       sortDate: sortableDate(gallery.start),
       formattedDate: formatDate(gallery.start),
       category: 'Gallery',
-      icon: 'lucide:images',
+      icon: 'solar:gallery-linear',
       image: galleryCoverImage(gallery),
       imageAlt: `${gallery.title} gallery cover`,
       path: '/galleries',
@@ -268,7 +268,7 @@ function previewItems(): RecentActivityItem[] {
       sortDate: today.valueOf(),
       formattedDate: today.format('MMM DD, YYYY'),
       category: 'News',
-      icon: 'lucide:newspaper',
+      icon: 'solar:document-text-linear',
       image: '/images/banner2.webp',
       imageAlt: 'School campus preview image',
       path: '/school-updates',
@@ -282,7 +282,7 @@ function previewItems(): RecentActivityItem[] {
       sortDate: today.add(7, 'day').valueOf(),
       formattedDate: today.add(7, 'day').format('MMM DD, YYYY'),
       category: 'Event',
-      icon: 'lucide:calendar-days',
+      icon: 'solar:calendar-date-linear',
       image: '/images/school_calendar.webp',
       imageAlt: 'School event preview image',
       path: '/school-calendar',
@@ -296,7 +296,7 @@ function previewItems(): RecentActivityItem[] {
       sortDate: today.subtract(3, 'day').valueOf(),
       formattedDate: today.subtract(3, 'day').format('MMM DD, YYYY'),
       category: 'Gallery',
-      icon: 'lucide:images',
+      icon: 'solar:gallery-linear',
       image: '/images/banner3.webp',
       imageAlt: 'Campus life gallery preview image',
       path: '/galleries',
@@ -333,7 +333,7 @@ function calendarImage(event: SchoolCalendar) {
 function galleryCoverImage(gallery: Gallery) {
   const imageIndex = (Number(gallery.id) % gallery.image_count) + 1
 
-  return useResolvedImage(`/storage/galleries/${gallery.id}/${imageIndex}.webp`)
+  return mediaUrl(`/storage/galleries/${gallery.id}/${imageIndex}.webp`)
 }
 
 function updateTypeLabel(type: string) {
@@ -349,13 +349,13 @@ function updateTypeLabel(type: string) {
 
 function updateTypeIcon(type: string) {
   const icons: Record<string, string> = {
-    news: 'lucide:newspaper',
-    announcement: 'lucide:megaphone',
-    blog: 'lucide:book-open-text',
-    event: 'lucide:calendar-days',
+    news: 'solar:document-text-linear',
+    announcement: 'solar:bell-bing-linear',
+    blog: 'solar:book-bookmark-linear',
+    event: 'solar:calendar-date-linear',
   }
 
-  return icons[type] ?? 'lucide:newspaper'
+  return icons[type] ?? 'solar:document-text-linear'
 }
 
 function excerpt(value = '') {

@@ -19,7 +19,7 @@
             <div
               class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-white text-blue-800"
             >
-              <Icon name="lucide:megaphone" class="size-6" />
+              <Icon name="solar:bell-bing-linear" class="size-6" />
             </div>
             <div class="min-w-0">
               <p class="text-xs font-semibold uppercase text-blue-200">
@@ -134,11 +134,11 @@
               <template #body="{ data }">
                 <div class="space-y-1 text-sm">
                   <div class="flex items-center gap-2 text-slate-700 dark:text-surface-200">
-                    <Icon name="lucide:calendar-days" class="size-4 text-blue-700 dark:text-blue-300" />
+                    <Icon name="solar:calendar-date-linear" class="size-4 text-blue-700 dark:text-blue-300" />
                     <span>{{ formatDate(data.start) }}</span>
                   </div>
                   <div class="flex items-center gap-2 text-slate-500 dark:text-surface-400">
-                    <Icon name="lucide:flag" class="size-4" />
+                    <Icon name="solar:flag-linear" class="size-4" />
                     <span>{{ formatDate(data.end) }}</span>
                   </div>
                 </div>
@@ -191,7 +191,7 @@
             <template #empty>
               <div class="px-4 py-12 text-center">
                 <Icon
-                  name="lucide:megaphone-off"
+                  name="solar:bell-off-linear"
                   class="mx-auto size-10 text-slate-400"
                 />
                 <h3 class="mt-4 text-lg font-bold text-slate-950 dark:text-white">

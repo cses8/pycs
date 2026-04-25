@@ -14,6 +14,9 @@ class User extends Authenticatable
 	/** @use HasFactory<\Database\Factories\UserFactory> */
 	use TwoFactorAuthenticatable, HasApiTokens, HasFactory, Notifiable;
 
+	public const ROLE_ADMIN = 'admin';
+	public const ROLE_STAFF = 'staff';
+
 	/**
 	 * The attributes that are mass assignable.
 	 *
@@ -22,6 +25,7 @@ class User extends Authenticatable
 	protected $fillable = [
 		'name',
 		'email',
+		'role',
 		'password',
 	];
 
@@ -46,5 +50,10 @@ class User extends Authenticatable
 			'email_verified_at' => 'datetime',
 			'password' => 'hashed',
 		];
+	}
+
+	public function isAdmin(): bool
+	{
+		return $this->role === self::ROLE_ADMIN;
 	}
 }

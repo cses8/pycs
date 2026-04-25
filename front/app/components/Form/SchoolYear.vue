@@ -74,7 +74,7 @@
               <div
                 class="flex size-11 shrink-0 items-center justify-center rounded-lg bg-red-50 text-red-700 dark:bg-red-950/60 dark:text-red-300"
               >
-                <Icon name="lucide:trash-2" class="size-5" />
+                <Icon name="solar:trash-bin-minimalistic-linear" class="size-5" />
               </div>
               <div>
                 <h3 class="text-lg font-bold text-slate-950 dark:text-white">
@@ -213,14 +213,14 @@ const operationLabel = computed(() => {
 
 const operationIcon = computed(() => {
   if (operation.value === 'create') {
-    return 'lucide:plus'
+    return 'solar:add-circle-linear'
   }
 
   if (operation.value === 'delete') {
-    return 'lucide:trash-2'
+    return 'solar:trash-bin-minimalistic-linear'
   }
 
-  return 'lucide:pencil'
+  return 'solar:pen-2-linear'
 })
 
 const dialogTitle = computed(() => {

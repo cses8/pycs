@@ -85,7 +85,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="material-symbols:circle"
+                          name="solar:record-circle-linear"
                           size="1.5rem"
                           class="text-red-500"
                         />
@@ -121,7 +121,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="material-symbols:circle"
+                          name="solar:record-circle-linear"
                           size="1.5rem"
                           class="text-red-500"
                         />
@@ -150,7 +150,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="material-symbols:circle"
+                          name="solar:record-circle-linear"
                           size="1.5rem"
                           class="text-red-500"
                         />
@@ -178,7 +178,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="material-symbols:circle"
+                          name="solar:record-circle-linear"
                           size="1.5rem"
                           class="text-red-500"
                         />
@@ -215,7 +215,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="material-symbols:circle"
+                          name="solar:record-circle-linear"
                           size="1.5rem"
                           class="text-red-500"
                         />
@@ -264,7 +264,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="material-symbols:circle"
+                          name="solar:record-circle-linear"
                           size="1.5rem"
                           class="text-red-500"
                         />
@@ -293,7 +293,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="material-symbols:circle"
+                          name="solar:record-circle-linear"
                           size="1.5rem"
                           class="text-red-500"
                         />
@@ -324,7 +324,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="material-symbols:circle"
+                          name="solar:record-circle-linear"
                           size="1.5rem"
                           class="text-red-500"
                         />
@@ -354,7 +354,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="material-symbols:circle"
+                          name="solar:record-circle-linear"
                           size="1.5rem"
                           class="text-red-500"
                         />
@@ -382,7 +382,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="material-symbols:circle"
+                          name="solar:record-circle-linear"
                           size="1.5rem"
                           class="text-red-500"
                         />
@@ -411,7 +411,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="material-symbols:circle"
+                          name="solar:record-circle-linear"
                           size="1.5rem"
                           class="text-red-500"
                         />
@@ -438,7 +438,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="material-symbols:circle"
+                          name="solar:record-circle-linear"
                           size="1.5rem"
                           class="text-red-500"
                         />
@@ -468,7 +468,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="material-symbols:circle"
+                          name="solar:record-circle-linear"
                           size="1.5rem"
                           class="text-red-500"
                         />
@@ -495,7 +495,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="material-symbols:circle"
+                          name="solar:record-circle-linear"
                           size="1.5rem"
                           class="text-red-500"
                         />
@@ -521,7 +521,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="material-symbols:circle"
+                          name="solar:record-circle-linear"
                           size="1.5rem"
                           class="text-red-500"
                         />
@@ -551,7 +551,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="material-symbols:circle"
+                          name="solar:record-circle-linear"
                           size="1.5rem"
                           class="text-red-500"
                         />
@@ -578,7 +578,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="material-symbols:circle"
+                          name="solar:record-circle-linear"
                           size="1.5rem"
                           class="text-red-500"
                         />
@@ -606,7 +606,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="material-symbols:circle"
+                          name="solar:record-circle-linear"
                           size="1.5rem"
                           class="text-red-500"
                         />
@@ -658,7 +658,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="material-symbols:circle"
+                          name="solar:record-circle-linear"
                           size="1.5rem"
                           class="text-red-500"
                         />
@@ -695,7 +695,7 @@
                     <div class="inline-flex">
                       <span>
                         <Icon
-                          name="material-symbols:circle"
+                          name="solar:record-circle-linear"
                           size="1.5rem"
                           class="text-red-500"
                         />

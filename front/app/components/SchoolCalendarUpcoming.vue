@@ -14,17 +14,17 @@
       >
       <div class="space-y-3 p-4">
         <div class="inline-flex items-center gap-2 rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-800 dark:bg-blue-400/15 dark:text-blue-200">
-          <Icon name="lucide:clock-3" class="size-3.5" />
+          <Icon name="solar:clock-circle-linear" class="size-3.5" />
           {{ formatRange(schoolCalendar.start, schoolCalendar.end) }}
         </div>
         <h3 class="text-base font-black leading-5 text-slate-950 dark:text-white">
           {{ schoolCalendar.title }}
         </h3>
-        <p
-          v-if="schoolCalendar.description"
-          class="line-clamp-4 text-sm leading-6 text-slate-600 dark:text-slate-300"
-          v-html="schoolCalendar.description"
-        />
+<AppSafeHtml
+v-if="schoolCalendar.description"
+class="line-clamp-4 text-sm leading-6 text-slate-600 dark:text-slate-300"
+ :html="schoolCalendar.description"
+/>
       </div>
     </article>
   </div>

@@ -49,7 +49,7 @@ test('public school updates only include currently published content', function 
 });
 
 test('authenticated users can manage school updates', function () {
-	$user = User::factory()->create();
+$user = User::factory()->admin()->create();
 	Sanctum::actingAs($user);
 
 	$createResponse = $this->postJson('/api/school-updates', schoolUpdatePayload())
@@ -87,7 +87,7 @@ test('unauthenticated users cannot mutate school updates', function () {
 });
 
 test('school update validation rejects invalid payloads', function () {
-	Sanctum::actingAs(User::factory()->create());
+	Sanctum::actingAs(User::factory()->admin()->create());
 
 	$this->postJson('/api/school-updates', schoolUpdatePayload([
 		'title' => '',
@@ -125,7 +125,7 @@ test('school updates support search type category and tag filtering', function (
 });
 
 test('school update slugs remain unique', function () {
-	Sanctum::actingAs(User::factory()->create());
+	Sanctum::actingAs(User::factory()->admin()->create());
 
 	$this->postJson('/api/school-updates', schoolUpdatePayload(['title' => 'Shared Title']))->assertCreated();
 	$this->postJson('/api/school-updates', schoolUpdatePayload(['title' => 'Shared Title']))->assertCreated();
@@ -135,7 +135,7 @@ test('school update slugs remain unique', function () {
 
 test('authenticated users can upload featured images', function () {
 	Storage::fake('public');
-	Sanctum::actingAs(User::factory()->create());
+	Sanctum::actingAs(User::factory()->admin()->create());
 	$schoolUpdate = SchoolUpdate::factory()->create();
 
 	$response = $this->postJson("/api/upload/school-updates/{$schoolUpdate->id}/featured-image", [
