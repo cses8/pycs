@@ -174,3 +174,18 @@
 - Replaced it with an explicit `! $request->user() || ! $request->user()->isAdmin()` check.
 - Added direct middleware tests for unauthenticated, non-admin, and admin users.
 - Verified `cd back && bun run quality:check`.
+
+## Legacy Bcrypt Login Compatibility
+
+- [x] Verify Argon2id login failure for existing bcrypt password hashes.
+- [x] Add Fortify authentication compatibility for bcrypt and Argon2id only.
+- [x] Rehash legacy bcrypt passwords to the configured driver after successful login.
+- [x] Add login regression coverage.
+- [x] Run mandatory `cd back && bun run quality:check`.
+
+### Review
+
+- Confirmed the failure mode: `HASH_DRIVER=argon2id` with hash verification rejects existing bcrypt password rows before Fortify can authenticate.
+- Added a Fortify custom authenticator that accepts only bcrypt and Argon2id hashes, rejects invalid credentials normally, and rehashes legacy bcrypt passwords to the configured driver after a successful login.
+- Added regression tests for successful legacy bcrypt login and invalid legacy bcrypt login.
+- Verified `cd back && bun run quality:check`.
