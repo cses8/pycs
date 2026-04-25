@@ -56,6 +56,7 @@
           <LazyAppOurAcademicProgram />
         </div>
       </div>
+      <LazyAppRecentActivity />
       <div
         class="relative flex flex-col items-center justify-center gap-8 bg-white px-6 py-12 md:px-8 lg:px-10 dark:bg-surface-900"
       >
