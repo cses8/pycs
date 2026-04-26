@@ -59,14 +59,6 @@ export default defineNuxtConfig({
   ],
 
   routeRules: {
-    ...(isProduction
-      ? {
-          '/': { swr: 300 },
-          '/school-updates/**': { swr: 120 },
-          '/galleries': { swr: 300 },
-          '/school-calendar/**': { swr: 300 },
-        }
-      : {}),
     '/**': {
       headers: {
         'X-Content-Type-Options': 'nosniff',

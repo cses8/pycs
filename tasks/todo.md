@@ -301,3 +301,27 @@
 - Added active-filter state and a clear-filter action without changing the existing fetch, CRUD, or reader behavior.
 - Verified `cd front && bun run quality:check` passes; the repo still reports its existing 230 lint warnings and low coverage summary.
 - Browser-verified `http://localhost:4000/school-updates` at desktop and 390px mobile widths with no console warnings/errors and no horizontal overflow on mobile.
+
+## SSG Navigation Failure
+
+- [x] Inspect Nuxt routing, SSG configuration, route rules, and base URL settings.
+- [x] Inspect navigation components and NuxtLink/href definitions.
+- [x] Reproduce navigation in dev and generated production output with browser console/network checks.
+- [x] Verify generated static files exist for key internal routes.
+- [x] Implement the smallest root-cause fix.
+- [x] Run mandatory `cd front && bun run quality:check`.
+- [x] Verify generated SSG navigation works with URL/history updates.
+- [x] Record root cause and verification results.
+
+### Review
+
+- Root cause: production-only `swr` route rules cached SSG HTML for `/`, `/galleries`, `/school-calendar/**`, and `/school-updates/**`. A later generate emitted new `_nuxt` assets but served stale HTML with old build IDs and old asset hashes, so the browser 404'd the client bundle and Vue Router never hydrated.
+- Confirmed `NuxtLink` hrefs and generated route files were valid; the failure was an HTML/assets mismatch in static output, not a bad link definition.
+- Removed the SSG-incompatible SWR route rules from `front/nuxt.config.ts` while keeping the global security headers.
+- Verified `bun run generate` succeeds and generated HTML no longer references stale assets such as `entry.ekFPX4Y6.css` or old JS chunks.
+- Verified generated files exist for `/`, `/about/humble-beginnings-pycs`, `/school-calendar`, `/school-updates`, and `/galleries`.
+- Browser-verified generated static navigation from `http://127.0.0.1:4173/` to `/about/humble-beginnings-pycs`, `/school-calendar`, `/school-updates`, and `/galleries`; URLs update and target pages render.
+- Browser-verified all `_nuxt` script/style assets return 200 on the sampled generated pages.
+- Browser-verified dev navigation from `http://localhost:4000/` to `/about/humble-beginnings-pycs` still works.
+- `cd front && bun run quality:check` passes with the repo's existing 230 lint warnings and 6 passing unit tests.
+- Remaining local static-preview console errors are API CORS errors from `127.0.0.1:4173` against `https://api.pycs.school`, not Nuxt routing or missing build assets.
