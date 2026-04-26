@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "deploy": "bun deploy.mjs",
+    "deploy:bundle": "bun ops/create-deployment.mjs",
+    "deploy:generate": "bun deploy.mjs",
+    "front:generate": "bun run --cwd front generate",
+    "front:quality": "bun run --cwd front quality:check",
+    "back:quality": "bun run --cwd back quality:check"
+  }
+}

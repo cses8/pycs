@@ -189,3 +189,63 @@
 - Added a Fortify custom authenticator that accepts only bcrypt and Argon2id hashes, rejects invalid credentials normally, and rehashes legacy bcrypt passwords to the configured driver after a successful login.
 - Added regression tests for successful legacy bcrypt login and invalid legacy bcrypt login.
 - Verified `cd back && bun run quality:check`.
+
+## Deployment Bundle Script
+
+- [x] Confirm the expected deployment bundle shape for backend source and frontend static output.
+- [x] Add a repo-level script that creates `back/` plus `front/` from `front/.output/public`.
+- [x] Make backend source collection respect declared Git ignore rules.
+- [x] Add a direct command for running the deployment packager.
+- [x] Verify the generated bundle structure and ignored-file behavior.
+
+### Review
+
+- Added `ops/create-deployment.mjs`, runnable with `bun ops/create-deployment.mjs`.
+- The script creates `deployment/back` from backend source files while applying Git ignore rules, including strict filtering for paths declared ignored.
+- The script creates `deployment/front` from the contents of `front/.output/public`.
+- Added root `.gitignore` coverage for `/deployment/` so generated bundles are not committed accidentally.
+- Verified with `bun ops/create-deployment.mjs --out $env:TEMP/pycs-deployment-check`: output contains only `back/` and `front/`; backend `.env`, `vendor`, and `node_modules` are absent; `back/artisan`, `back/composer.json`, `front/index.html`, and `front/_nuxt` are present.
+
+## Root Deployment Commands
+
+- [x] Add root-level Bun command shortcuts for deployment packaging.
+- [x] Keep the root shortcut delegated to the existing `ops/create-deployment.mjs` implementation.
+- [x] Verify the root command creates the same bundle shape.
+
+### Review
+
+- Added `deploy.mjs` at the repo root, so `bun deploy.mjs` runs the deployment packager.
+- Added root `package.json` scripts: `deploy`, `deploy:bundle`, `deploy:generate`, `front:generate`, `front:quality`, and `back:quality`.
+- Verified `bun deploy.mjs --out $env:TEMP/pycs-root-deploy-direct`.
+- Verified `bun run deploy --out $env:TEMP/pycs-root-deploy-script`.
+- Confirmed the root command output includes `back/artisan` and `front/index.html`, while excluding backend `.env` and `vendor`.
+
+## Deploy Generates Frontend
+
+- [x] Make the default root deploy command run frontend generation first.
+- [x] Keep a packaging-only command for reusing an existing `front/.output/public`.
+- [x] Verify deploy still creates the expected bundle shape.
+
+### Review
+
+- Updated `deploy.mjs` so the default root deploy flow runs `bun run --cwd front generate` before packaging.
+- Updated root `package.json` so `bun run deploy` and `bun run deploy:generate` run generate plus bundle, while `bun run deploy:bundle` only packages existing output.
+- Verified `bun run deploy --out $env:TEMP/pycs-deploy-generates-front`; it generated `front/.output/public` and created the deployment bundle.
+- Confirmed the bundle includes `back/artisan` and `front/index.html`, while excluding backend `.env` and `vendor`.
+- Checked exact `bun deploy`; Bun rejects it as a reserved future subcommand and tells callers to use `bun run deploy`.
+
+## Deployment Zip Artifact
+
+- [x] Create a zip file when the deployment bundle is generated.
+- [x] Keep backend files inside the zip under top-level `back/`.
+- [x] Keep frontend static files inside the zip under top-level `front/`.
+- [x] Verify the zip file exists and contains expected backend/frontend entries.
+
+### Review
+
+- Updated `ops/create-deployment.mjs` so every deployment bundle also creates a sibling `.zip` file.
+- The default output now produces both `deployment/` and `deployment.zip`.
+- Verified `bun run deploy:bundle --out $env:TEMP/pycs-deployment-zip-check` creates `pycs-deployment-zip-check.zip`.
+- Verified full `bun run deploy --out $env:TEMP/pycs-deployment-full-zip-check` runs frontend generation, creates the bundle, and creates `pycs-deployment-full-zip-check.zip`.
+- Confirmed zip entries include `back/artisan`, `back/composer.json`, and `front/index.html`, while excluding backend `.env` and `vendor`.
+- Noted Nuxt generation still logs the existing production API 404 for `/api/school-updates`, but exits successfully and produces the artifact.
