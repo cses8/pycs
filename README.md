@@ -44,6 +44,8 @@ The release-blocking dependency gate checks high-severity advisories. Full `bun 
 - Run Laravel deploy steps atomically: `composer install --no-dev --optimize-autoloader`, `php artisan migrate --force`, `php artisan config:cache`, `php artisan route:cache`, and `php artisan storage:link`.
 - Build the frontend with production environment values and serve the Nuxt Nitro output from `front/.output/server/index.mjs`.
 - Keep production `APP_DEBUG=false`, `SESSION_SECURE_COOKIE=true`, explicit CORS origins, and HTTPS-only cookies.
+- For Sanctum login, the frontend origin must exactly match `CORS_ALLOWED_ORIGINS`, its host must be listed in `SANCTUM_STATEFUL_DOMAINS`, and `SESSION_DOMAIN` must be shared by the frontend and API when they run on different subdomains, for example `.example.com`.
+- After changing production auth or cookie env values, rebuild/cache config with `php artisan config:clear && php artisan config:cache`.
 - Use blue-green or rolling deploys with health checks against Laravel `/up` and a Nuxt route smoke test before traffic promotion.
 
 ## Scaling Targets

@@ -249,3 +249,39 @@
 - Verified full `bun run deploy --out $env:TEMP/pycs-deployment-full-zip-check` runs frontend generation, creates the bundle, and creates `pycs-deployment-full-zip-check.zip`.
 - Confirmed zip entries include `back/artisan`, `back/composer.json`, and `front/index.html`, while excluding backend `.env` and `vendor`.
 - Noted Nuxt generation still logs the existing production API 404 for `/api/school-updates`, but exits successfully and produces the artifact.
+## Plain-Language Changelog
+- [x] Review recent commit messages and existing documentation for user-facing changes.
+- [x] Create a layperson-friendly changelog file.
+- [x] Cross-check the changelog against the commit history.
+### Review
+- Added `CHANGELOG.md` with a non-technical summary of recent changes through April 26, 2026.
+- Cross-checked sections against recent commit messages for school updates, school years, calendar, galleries, homepage activity, security, login compatibility, frontend/backend foundations, deployment packaging, and maintenance work.
+- No frontend or backend code changed, so `bun run quality:check` was not required.
+
+## Production Login CSRF Mismatch
+- [x] Inspect backend session, CORS, Sanctum, and login route configuration.
+- [x] Inspect frontend login API flow and deployed runtime config assumptions.
+- [x] Patch the smallest root-cause fix for production CSRF token mismatch.
+- [x] Run mandatory backend quality checks for touched backend config.
+- [x] Confirm browser verification is not required because no `front/` files changed.
+
+### Review
+- Confirmed login is Fortify's `POST /login` behind web CSRF, while the Nuxt app uses `nuxt-auth-sanctum` cookie mode.
+- Updated Sanctum defaults to include the configured frontend host when `SANCTUM_STATEFUL_DOMAINS` is not set.
+- Added production env guidance for shared `SESSION_DOMAIN`, exact CORS origin, stateful domains, secure cookies, and config cache refresh.
+- Verified `cd back && bun run quality:check` passes with 26 tests.
+- Verified Laravel registers Fortify `POST /login` and Sanctum `GET /sanctum/csrf-cookie`.
+- Verified Sanctum config now includes the configured frontend/app hosts without malformed comma-prefixed entries.
+
+## PYCS Production Env Files
+- [x] Check existing backend/frontend env files.
+- [x] Create production env files for `pycs.school` and `api.pycs.school`.
+- [x] Review the files for CSRF/Sanctum correctness.
+
+### Review
+- Added `back/.env.pycs.production` for the production API host `https://api.pycs.school`.
+- Updated `front/.env.prod` to use `https://pycs.school` and `NUXT_SITE_ENV="production"`.
+- Confirmed frontend production scripts load `front/.env.prod`.
+- Verified `cd front && bun run quality:check` passes with existing warnings.
+- Verified `cd front && bun run generate` completes with existing CSS/chunk warnings.
+- Browser-verified `http://localhost:4000/` loads with page title `PYCS`.
