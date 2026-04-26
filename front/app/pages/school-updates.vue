@@ -1,89 +1,110 @@
 <template>
-  <main class="bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-white">
-    <section class="border-b border-slate-200 bg-white pt-24 dark:border-white/10 dark:bg-slate-900">
-      <div class="mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:px-8 lg:grid-cols-[minmax(0,1fr)_24rem] lg:px-10">
-        <div class="min-w-0">
-          <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-bold uppercase text-blue-800 dark:border-blue-300/20 dark:bg-blue-400/10 dark:text-blue-200">
-            <Icon name="solar:document-text-linear" class="size-4" />
-            School Updates
-          </div>
-          <h1 class="max-w-4xl text-4xl font-black leading-tight text-slate-950 sm:text-5xl dark:text-white">
-            News, announcements, stories, and events from PYCS
-          </h1>
-          <p class="mt-5 max-w-3xl text-base leading-7 text-slate-600 sm:text-lg dark:text-slate-300">
-            A central place for official campus updates, community stories, scheduled programs, and timely information for students and families.
-          </p>
+  <main class="overflow-x-hidden bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-white">
+    <section
+      class="relative isolate overflow-hidden bg-cover bg-center"
+      style="background-image: url('/images/banner1.webp')"
+    >
+      <div class="absolute inset-0 bg-slate-950/72" />
+      <div
+        class="absolute inset-0 bg-[linear-gradient(90deg,rgba(15,23,42,0.96)_0%,rgba(30,64,175,0.76)_54%,rgba(15,23,42,0.88)_100%)]"
+      />
 
-          <div class="mt-6 flex flex-wrap gap-2">
-            <button
-              v-for="type in updateTypes"
-              :key="type.value"
-              type="button"
-              :class="typeButtonClass(type.value)"
-              @click="filters.type = type.value"
-            >
-              <Icon :name="type.icon" class="size-4" />
-              {{ type.label }}
-            </button>
-          </div>
-        </div>
+      <div class="relative mx-auto max-w-7xl px-5 pb-16 pt-28 sm:px-8 sm:pt-24 lg:px-10 lg:pb-20 lg:pt-28">
+        <div class="grid items-end gap-8 lg:grid-cols-[minmax(0,1fr)_380px]">
+          <div class="min-w-0 max-w-3xl">
+            <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-100">
+              <Icon name="solar:document-text-linear" class="size-4" />
+              School Updates
+            </div>
+            <h1 class="text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
+              News, announcements, stories, and events from PYCS
+            </h1>
+            <p class="mt-5 max-w-2xl text-base leading-7 text-blue-50 sm:text-lg">
+              A central place for official campus updates, community stories, scheduled programs, and timely information for students and families.
+            </p>
 
-        <aside class="rounded-xl border border-slate-200 bg-slate-50 p-5 shadow-sm dark:border-white/10 dark:bg-white/5">
-          <div class="flex items-center gap-3">
-            <div class="flex size-11 items-center justify-center rounded-lg bg-blue-700 text-white dark:bg-blue-500">
-              <Icon name="solar:radio-linear" class="size-5" />
-            </div>
-            <div>
-              <p class="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">
-                Latest Feed
-              </p>
-              <p class="text-2xl font-black text-slate-950 dark:text-white">
-                {{ totalRecords }}
-              </p>
-            </div>
-          </div>
-          <div class="mt-5 grid grid-cols-2 gap-3 text-sm">
-            <div
-              v-for="type in visibleTypeCounts"
-              :key="type.value"
-              class="rounded-lg border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/50"
-            >
-              <p class="font-black text-slate-950 dark:text-white">{{ type.count }}</p>
-              <p class="mt-1 text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">
+            <div class="mt-7 flex flex-wrap gap-2">
+              <button
+                v-for="type in updateTypes"
+                :key="type.value"
+                type="button"
+                :class="typeButtonClass(type.value)"
+                @click="filters.type = type.value"
+              >
+                <Icon :name="type.icon" class="size-4" />
                 {{ type.label }}
-              </p>
+              </button>
             </div>
           </div>
-          <Button
-            v-if="isAuthenticated"
-            icon="pi pi-plus"
-            label="Add update"
-            class="mt-5 w-full"
-            @click="openCreateForm"
-          />
-        </aside>
+
+          <aside class="rounded-2xl border border-white/15 bg-white/10 p-5 text-white shadow-2xl shadow-slate-950/30 backdrop-blur">
+            <div class="flex items-center gap-3">
+              <div class="flex size-11 items-center justify-center rounded-xl bg-white text-blue-900">
+                <Icon name="solar:radio-linear" class="size-5" />
+              </div>
+              <div class="min-w-0">
+                <p class="text-xs font-semibold uppercase text-blue-100">
+                  Latest Feed
+                </p>
+                <p class="text-3xl font-black leading-none text-white">
+                  {{ totalRecords }}
+                </p>
+                <p class="mt-1 text-sm text-blue-50">
+                  {{ activeType.label }} updates
+                </p>
+              </div>
+            </div>
+            <div class="mt-5 grid grid-cols-2 gap-3 text-sm">
+              <div
+                v-for="type in visibleTypeCounts"
+                :key="type.value"
+                class="rounded-xl border border-white/15 bg-white/10 p-3"
+              >
+                <div class="flex items-center justify-between gap-2">
+                  <p class="text-lg font-black text-white">{{ type.count }}</p>
+                  <Icon :name="type.icon" class="size-4 text-blue-100" />
+                </div>
+                <p class="mt-1 text-xs font-semibold uppercase text-blue-100">
+                  {{ type.label }}
+                </p>
+              </div>
+            </div>
+            <div class="mt-5 flex items-center gap-2 rounded-xl border border-white/15 bg-slate-950/20 p-3 text-sm leading-6 text-blue-50">
+              <Icon name="solar:clock-circle-linear" class="size-5 shrink-0 text-blue-100" />
+              <span>Published items refresh automatically while this page is open.</span>
+            </div>
+            <Button
+              v-if="isAuthenticated"
+              icon="pi pi-plus"
+              label="Add update"
+              class="mt-5 w-full !border-white/20 !bg-white !text-blue-900 hover:!bg-blue-50"
+              @click="openCreateForm"
+            />
+          </aside>
+        </div>
       </div>
     </section>
 
-    <section class="mx-auto max-w-7xl px-5 py-8 sm:px-8 lg:px-10">
+    <section id="school-updates-feed" class="mx-auto max-w-7xl px-5 py-8 sm:px-8 lg:px-10 lg:py-10">
       <div class="grid gap-5 lg:grid-cols-[minmax(0,1fr)_20rem]">
         <div class="min-w-0 space-y-5">
           <article
             v-if="featuredUpdate"
-            class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-white/10 dark:bg-white/5"
+            class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-white/10 dark:bg-white/5"
           >
             <div class="grid lg:grid-cols-[minmax(0,1fr)_25rem]">
               <button
                 type="button"
-                class="relative min-h-72 overflow-hidden bg-slate-200 text-left dark:bg-slate-800"
+                class="relative min-h-80 overflow-hidden bg-slate-200 text-left dark:bg-slate-800"
                 @click="openReader(featuredUpdate)"
               >
                 <img
                   :src="featuredImage(featuredUpdate)"
                   :alt="featuredUpdate.title"
-                  class="size-full object-cover"
+                  class="size-full object-cover transition duration-500 hover:scale-105"
                   @error="replaceWithFallbackImage"
                 >
+                <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-slate-950/70 to-transparent" />
                 <span class="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 text-xs font-bold uppercase text-blue-800 shadow-sm">
                   <Icon :name="typeIcon(featuredUpdate.type)" class="size-4" />
                   Featured {{ typeLabel(featuredUpdate.type) }}
@@ -120,7 +141,26 @@
             </div>
           </article>
 
-          <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5">
+          <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5 sm:p-5">
+            <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p class="text-xs font-semibold uppercase text-blue-700 dark:text-blue-300">
+                  Browse Feed
+                </p>
+                <h2 class="text-2xl font-black text-slate-950 dark:text-white">
+                  Latest school updates
+                </h2>
+              </div>
+              <Button
+                v-if="hasActiveFilters"
+                label="Clear filters"
+                icon="pi pi-filter-slash"
+                severity="secondary"
+                outlined
+                size="small"
+                @click="clearFilters"
+              />
+            </div>
             <div class="grid gap-3 md:grid-cols-[minmax(0,1fr)_12rem_12rem]">
               <span class="relative">
                 <i class="pi pi-search pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
@@ -175,7 +215,7 @@
             <div
               v-for="index in 6"
               :key="index"
-              class="h-96 rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5"
+              class="h-96 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5"
             >
               <Skeleton height="13rem" class="!rounded-lg" />
               <Skeleton height="1.5rem" class="!mt-5" />
@@ -198,7 +238,7 @@
             <article
               v-for="update in updates"
               :key="update.id"
-              class="group flex min-h-[26rem] flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:border-blue-200 hover:shadow-lg dark:border-white/10 dark:bg-white/5 dark:hover:border-blue-300/40"
+              class="group flex min-h-[26rem] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-lg dark:border-white/10 dark:bg-white/5 dark:hover:border-blue-300/40"
             >
               <button
                 type="button"
@@ -258,30 +298,44 @@
 
           <div
             v-else
-            class="rounded-xl border border-dashed border-slate-300 bg-white p-10 text-center shadow-sm dark:border-white/15 dark:bg-white/5"
+            class="overflow-hidden rounded-2xl border border-dashed border-slate-300 bg-white text-center shadow-sm dark:border-white/15 dark:bg-white/5"
           >
-            <Icon name="solar:document-text-linear" class="mx-auto size-11 text-slate-400" />
-            <h2 class="mt-4 text-xl font-black text-slate-950 dark:text-white">
-              No updates found
-            </h2>
-            <p class="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-600 dark:text-slate-300">
-              Published school updates will appear here when they match the selected filters.
-            </p>
-            <Button
-              v-if="isAuthenticated"
-              label="Add first update"
-              icon="pi pi-plus"
-              class="mt-5"
-              @click="openCreateForm"
-            />
+            <div class="bg-slate-950 px-6 py-8 text-white">
+              <Icon name="solar:document-text-linear" class="mx-auto size-11 text-blue-100" />
+              <h2 class="mt-4 text-2xl font-black">
+                No updates found
+              </h2>
+              <p class="mx-auto mt-2 max-w-md text-sm leading-6 text-blue-50">
+                Published school updates will appear here when they match the selected filters.
+              </p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-2 p-5">
+              <Button
+                v-if="isAuthenticated"
+                label="Add first update"
+                icon="pi pi-plus"
+                @click="openCreateForm"
+              />
+              <Button
+                v-if="hasActiveFilters"
+                label="Clear filters"
+                icon="pi pi-filter-slash"
+                severity="secondary"
+                outlined
+                @click="clearFilters"
+              />
+            </div>
           </div>
         </div>
 
         <aside class="space-y-5">
-          <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-white/5">
-            <h2 class="text-base font-black text-slate-950 dark:text-white">
-              Categories
-            </h2>
+          <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-white/5">
+            <div class="flex items-center gap-2">
+              <Icon name="solar:folder-with-files-linear" class="size-5 text-blue-700 dark:text-blue-300" />
+              <h2 class="text-base font-black text-slate-950 dark:text-white">
+                Categories
+              </h2>
+            </div>
             <div class="mt-4 space-y-2">
               <button
                 v-for="category in categoryOptions"
@@ -296,16 +350,24 @@
             </div>
           </div>
 
-          <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-white/5">
-            <h2 class="text-base font-black text-slate-950 dark:text-white">
-              Upcoming Events
-            </h2>
-            <div v-if="upcomingEvents.length" class="mt-4 space-y-3">
+          <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-white/5">
+            <div class="mb-4 flex items-center justify-between gap-3">
+              <div>
+                <p class="text-xs font-semibold uppercase text-blue-700 dark:text-blue-300">
+                  Next Up
+                </p>
+                <h2 class="text-xl font-black text-slate-950 dark:text-white">
+                  Upcoming Events
+                </h2>
+              </div>
+              <Icon name="solar:calendar-date-linear" class="size-5 text-slate-400" />
+            </div>
+            <div v-if="upcomingEvents.length" class="space-y-3">
               <button
                 v-for="event in upcomingEvents"
                 :key="event.id"
                 type="button"
-                class="w-full rounded-lg border border-slate-200 bg-slate-50 p-3 text-left transition hover:border-blue-200 hover:bg-blue-50 dark:border-white/10 dark:bg-slate-950/50 dark:hover:border-blue-300/40 dark:hover:bg-blue-400/10"
+                class="w-full rounded-xl border border-slate-200 bg-slate-50 p-3 text-left shadow-sm transition hover:border-blue-200 hover:bg-blue-50 dark:border-white/10 dark:bg-slate-950/50 dark:hover:border-blue-300/40 dark:hover:bg-blue-400/10"
                 @click="openReader(event)"
               >
                 <p class="text-xs font-bold uppercase text-blue-700 dark:text-blue-300">
@@ -780,6 +842,18 @@ const tagOptions = computed(() => [
   ...meta.value.tags.map(tag => ({ label: `#${tag}`, value: tag })),
 ])
 
+const activeType = computed(() => {
+  return updateTypes.find(type => type.value === filters.type) ?? { label: 'All', value: 'all', icon: 'solar:widget-4-linear' }
+})
+
+const hasActiveFilters = computed(() =>
+  Boolean(filters.search.trim()) ||
+  filters.type !== 'all' ||
+  filters.category !== 'all' ||
+  filters.tag !== 'all' ||
+  (isAuthenticated.value && filters.status !== 'all')
+)
+
 const featuredUpdate = computed(() => updates.value[0] ?? null)
 const upcomingEvents = computed(() =>
   updates.value
@@ -962,6 +1036,14 @@ function openEditForm(update: SchoolUpdate) {
 function openReader(update: SchoolUpdate) {
   readerUpdate.value = update
   showReader.value = true
+}
+
+function clearFilters() {
+  filters.search = ''
+  filters.type = 'all'
+  filters.category = 'all'
+  filters.tag = 'all'
+  filters.status = 'all'
 }
 
 async function saveUpdate() {

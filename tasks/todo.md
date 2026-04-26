@@ -285,3 +285,19 @@
 - Verified `cd front && bun run quality:check` passes with existing warnings.
 - Verified `cd front && bun run generate` completes with existing CSS/chunk warnings.
 - Browser-verified `http://localhost:4000/` loads with page title `PYCS`.
+
+## School Updates UI Refresh
+
+- [x] Compare `/school-updates` with `/school-calendar` and identify the plain areas.
+- [x] Refresh the School Updates hero, stat/action panel, filters, feed cards, and sidebar while preserving existing data behavior.
+- [x] Keep the design aligned with `DESIGN.md` and existing welcome-page styling.
+- [x] Run mandatory `cd front && bun run quality:check`.
+- [x] Browser-verify `http://localhost:4000/school-updates`.
+- [x] Record review/results.
+
+### Review
+
+- Reworked the School Updates page to use an image-backed hero, glass stat/action panel, stronger featured-update treatment, clearer feed filtering, and rounded sidebar panels aligned with School Calendar.
+- Added active-filter state and a clear-filter action without changing the existing fetch, CRUD, or reader behavior.
+- Verified `cd front && bun run quality:check` passes; the repo still reports its existing 230 lint warnings and low coverage summary.
+- Browser-verified `http://localhost:4000/school-updates` at desktop and 390px mobile widths with no console warnings/errors and no horizontal overflow on mobile.
