@@ -22,3 +22,4 @@
 - For Nuxt Icon, installing/replacing icons is not enough; set a local client bundle with API fallback disabled and E2E-block `api.iconify.design` requests.
 - For editor-rendered announcements, test double-encoded API payloads in browser; rendered HTML must decode entities before sanitizing.
 - When changing Laravel's hash driver, preserve legacy-hash login compatibility and rehash forward instead of assuming existing passwords match the new algorithm.
+- Even when LeanCTX quoting is inconvenient, do not run direct shell commands; create or reuse a small checked script and execute it through `lean-ctx -c`.

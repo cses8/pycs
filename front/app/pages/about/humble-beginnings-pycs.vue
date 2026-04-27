@@ -117,17 +117,17 @@
             </p>
 
             <div
-              class="founders-showcase bg-surface-100 px-5 py-16 dark:bg-surface-900 sm:px-6 md:px-10 lg:px-12"
+              class="founders-showcase w-full rounded-lg border border-surface-200 bg-surface-100 px-4 py-10 dark:border-surface-700 dark:bg-surface-900 sm:px-6 md:px-8 lg:py-12"
             >
-              <div class="flex flex-col items-center gap-10 lg:gap-14">
-                <div class="flex flex-col items-center gap-4">
+              <div class="flex flex-col gap-8 lg:gap-10">
+                <div class="flex flex-col gap-3">
                   <h2
-                    class="max-w-4xl text-center text-3xl font-semibold leading-tight text-surface-900 dark:text-surface-0 sm:text-4xl lg:text-[2.75rem]"
+                    class="text-2xl font-semibold leading-tight text-surface-900 dark:text-surface-0 sm:text-3xl"
                   >
                     Founders of Philippine Yuh Chiau School
                   </h2>
                   <div
-                    class="max-w-[42rem] text-center text-base leading-relaxed text-surface-600 dark:text-surface-300 sm:text-lg"
+                    class="max-w-[42rem] text-base leading-relaxed text-surface-600 dark:text-surface-300"
                   >
                     Founded in 1946 by Chinese migrants seeking to preserve
                     culture, the school started small, grew significantly, and
@@ -137,12 +137,12 @@
                 </div>
 
                 <div
-                  class="mx-auto grid w-full max-w-[1048px] grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4"
+                  class="founder-grid grid w-full gap-5"
                 >
                   <div
                     v-for="(member, index) of teams"
                     :key="index"
-                    class="founder-card group relative overflow-hidden rounded-b-2xl bg-surface-200 shadow-sm"
+                    class="founder-card group relative overflow-hidden rounded-lg bg-surface-200 shadow-sm"
                   >
                     <Image
                       class="founder-card__image block w-full object-cover"
@@ -454,19 +454,19 @@ useSeoMeta({
 </script>
 <style scoped>
 .founders-showcase {
-  position: relative;
-  left: 50%;
-  width: min(1120px, calc(100vw - 32px));
-  transform: translateX(-50%);
-  z-index: 1;
+  min-width: 0;
+}
+
+.founder-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
 }
 
 .founder-card {
-  min-height: 300px;
+  min-height: 280px;
 }
 
 .founder-card__image {
-  height: 300px;
+  height: 280px;
 }
 
 .founder-card__details {
@@ -501,17 +501,18 @@ useSeoMeta({
 
 @media (max-width: 639px) {
   .founders-showcase {
-    width: min(360px, calc(100vw - 32px));
+    margin-inline: -0.5rem;
+    width: calc(100% + 1rem);
   }
 }
 
 @media (min-width: 1280px) {
   .founder-card {
-    min-height: 310px;
+    min-height: 300px;
   }
 
   .founder-card__image {
-    height: 310px;
+    height: 300px;
   }
 }
 </style>

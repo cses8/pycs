@@ -161,7 +161,7 @@ export default defineNuxtConfig({
   sanctum: {
     baseUrl: backendBaseUrl,
     client: {
-      initialRequest: false,
+      initialRequest: true,
     },
   },
 

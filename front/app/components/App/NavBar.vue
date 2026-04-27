@@ -202,7 +202,7 @@
   </div>
 </template>
 <script setup lang="ts">
-const { isAuthenticated } = useSanctumAuth()
+const { isAuthenticated, refreshIdentity } = useSanctumAuth()
 
 const hoveredItem: Ref = ref(null)
 const selectedItem: Ref = ref(null)
@@ -215,6 +215,18 @@ const darkOrLightMode = ref(isDark)
 
 watch(darkOrLightMode, val => {
   isDark.value = val
+})
+
+onMounted(async () => {
+  if (isAuthenticated.value) {
+    return
+  }
+
+  try {
+    await refreshIdentity()
+  } catch {
+    // Guest page loads are expected to have no authenticated identity.
+  }
 })
 
 function setActiveItem(item: Navs) {

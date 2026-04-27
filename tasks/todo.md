@@ -1,5 +1,17 @@
 # Audit Remediation Plan
 
+## Humble Beginnings Founders UI Fix
+- [x] Inspect the reported `/about/humble-beginnings-pycs/` founders section and identify the layout cause.
+- [x] Keep the founders section inside the main content column without overlapping the sidebar.
+- [x] Tune founder cards for stable desktop and mobile rendering.
+- [x] Run `cd front && bun run quality:check`.
+- [x] Browser-verify `/about/humble-beginnings-pycs/` on `http://localhost:4000` at desktop and mobile widths.
+### Review
+- Root cause: `.founders-showcase` used viewport breakout positioning (`left: 50%`, wide viewport-based width, and translate centering) while nested inside the main article column, so it crossed into the right sidebar at laptop widths.
+- Fixed the section to stay within the article column, added a calm bordered panel treatment, and changed the founder cards to an auto-fit grid with a 260px minimum card width.
+- Verified `cd front && bun run quality:check` passes with the existing 230 warnings and 6 unit tests passing.
+- Browser-verified `http://localhost:4000/about/humble-beginnings-pycs/` at 1440px and 390px: 9 cards/images rendered, horizontal overflow was 0, and the desktop founders panel no longer overlapped the sidebar.
+
 - [x] Reconfirm current frontend/backend audit gaps and affected files.
 - [x] Fix frontend dependency audit by upgrading or overriding vulnerable packages without breaking Nuxt build.
 - [x] Harden backend authorization: add user roles, enforce admin-only mutations/uploads, and test forbidden paths.
@@ -401,3 +413,40 @@
 - Frontend quality passed via `cd front && bun run quality:check` with the existing 230 warnings and 6 unit tests passing.
 - Applied the local backend migration with `php artisan migrate --force`.
 - Browser regression used mocked API data with both `SY 2025-2026` and `SY 2026-2027`: selected year stayed `SY 2026-2027`, visible galleries excluded the old SY, and the intercepted create request included `school_year_id: 11`, `start: 2026-06-01 00:00:00`, and `end: 2026-06-01 23:59:59`.
+
+## Login Refresh Persistence Bug
+- [x] Reproduce login becoming unauthenticated after refresh.
+- [x] Inspect frontend Sanctum identity initialization and cookie/session handling.
+- [x] Inspect backend Sanctum/session/CORS config.
+- [x] Fix auth persistence after refresh.
+- [x] Run mandatory backend/frontend quality checks for touched areas.
+- [x] Browser-verify login remains authenticated after refresh.
+### Review
+- Root cause: Nuxt Sanctum was configured with `initialRequest: false`, so a hard refresh did not reliably rehydrate the authenticated user. Authenticated UI derived from `useSanctumAuth().user` could reset to guest state even though the browser still had the session cookie.
+- Fix: enabled Sanctum's initial identity request, added a client boot init plugin, and made the navbar explicitly call `refreshIdentity()` on mount when the local auth state is empty. Guest refresh failures are swallowed so normal unauthenticated page loads still work.
+- Verification: `cd front && bun run quality:check` passed with the existing warnings and 6 tests passing.
+- Browser verification: `lean-ctx -c "node tasks/auth-refresh-check.cjs http://localhost:4013"` returned `AUTH_REFRESH_CHECK before=true after=true mock=true userRequests=2 errors=0`.
+- Note: browser verification used `http://localhost:4013` because the existing `localhost:4000` process could not be stopped on Windows due access denial. Auth endpoints were mocked because the local login credentials returned `/login` 422, isolating the frontend refresh-persistence behavior.
+
+## Announcement Banner Placeholder Size
+- [x] Locate the homepage announcement banner image rendering path.
+- [x] Make the fallback/no-image placeholder fill the same frame as real images.
+- [x] Run mandatory frontend quality check.
+- [x] Browser-verify the homepage announcement banner at the reported viewport.
+### Review
+- Root cause: the announcement card reserved a tall fixed frame, but the PrimeVue `Image` root and fallback SVG could still render from the placeholder image's square intrinsic sizing.
+- Fix: scoped the banner image wrapper and forced the PrimeVue `.p-image` root plus inner `img` to fill the same height and width as the announcement frame.
+- Verification: `cd front && bun run quality:check` passed with the existing 230 lint warnings and 6 unit tests passing.
+- Browser verification: `lean-ctx -c "node tasks/announcement-placeholder-check.cjs http://localhost:4013"` returned `ANNOUNCEMENT_PLACEHOLDER_CHECK frame=330x460 root=330x460 image=330x460`.
+
+## Announcement Banner Mobile Image Ratio
+- [x] Inspect the responsive announcement banner image frame.
+- [x] Make the mobile/tablet image use a tall poster ratio when stacked under the hero text.
+- [x] Update the browser regression check for mobile/tablet sizing.
+- [x] Run mandatory frontend quality check.
+- [x] Browser-verify the homepage announcement banner at mobile/tablet widths.
+### Review
+- Root cause: the stacked mobile/tablet banner used `h-64 sm:h-72 w-full`, which made announcement images render as a wide shallow rectangle below the hero text.
+- Fix: changed the announcement image frame to a centered tall poster ratio, capped at `330px` wide, and kept the existing `330x460` desktop sizing.
+- Verification: `cd front && bun run quality:check` passed with the existing 230 lint warnings and 6 unit tests passing.
+- Browser verification: `lean-ctx -c "node tasks/announcement-placeholder-check.cjs http://localhost:4013"` returned `ANNOUNCEMENT_PLACEHOLDER_CHECK mobile=328x457 tablet=330x460 desktop=330x460`.

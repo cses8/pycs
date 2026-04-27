@@ -5,7 +5,7 @@
     <div class="relative grid min-w-0 grid-cols-1 gap-5 xl:grid-cols-[330px_minmax(0,1fr)]">
       <div class="min-w-0">
         <div
-          class="relative h-64 w-full overflow-hidden rounded-lg sm:h-72 xl:h-[460px] xl:w-[330px]"
+          class="relative mx-auto aspect-[33/46] w-full max-w-[330px] overflow-hidden rounded-lg xl:mx-0 xl:h-[460px] xl:w-[330px] xl:max-w-none"
         >
           <Motion
             v-for="(testimonial, index) in props.testimonials"
@@ -37,7 +37,7 @@
             }"
             class="absolute inset-0 origin-bottom"
           >
-            <div class="h-full rounded-lg">
+            <div class="announcement-banner-image h-full rounded-lg">
               <Image
                 :src="getTestimonialImage(testimonial)"
                 :alt="testimonial.name"
@@ -212,3 +212,19 @@ function isActive(index: number) {
   return active.value === index
 }
 </script>
+
+<style scoped>
+.announcement-banner-image :deep(.p-image) {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.announcement-banner-image :deep(img) {
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+  object-position: center;
+}
+</style>
