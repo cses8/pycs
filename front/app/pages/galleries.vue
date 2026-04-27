@@ -1,6 +1,7 @@
 <template>
   <main class="bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-white">
     <FormGallery
+      :key="`${galleryFormOperation}-${selectedGallery.id}-${selectedGallery.start}`"
       v-model:visible="showGalleryForm"
       v-model:gallery="selectedGallery"
       v-model:operation="galleryFormOperation"
@@ -222,26 +223,29 @@ definePageMeta({
 const galleriesInit = ref<number>(0)
 const showFullGallery = ref<boolean>(false)
 const showGalleryForm = ref<boolean>(false)
-const selectedGallery = ref<Gallery>(GALLERY)
+const selectedGallery = ref<Gallery>(createGalleryDraft())
 const galleryFormOperation = ref<'create' | 'update'>('create')
-const galleryData = ref(GALLERY)
+const galleryData = ref(createGalleryDraft())
 const fallbackImage = '/images/no-image.svg'
 
 const schoolYears = computedAsync<SchoolYear[]>(async () => {
   const response = await useGetFetch<SchoolYear[]>('api/school-years')
 
   if (Array.isArray(response)) {
-    const reversed = response.reverse()
+    const sorted = [...response].sort((a, b) => {
+      return getSchoolYearStartYear(b.description) - getSchoolYearStartYear(a.description)
+    })
 
     if (
-      !reversed.some((schoolYear) => {
+      sorted.length &&
+      !sorted.some((schoolYear) => {
         return schoolYear.id === schoolYearStore.selectedSchoolYear?.id
       })
     ) {
-      schoolYearStore.selectedSchoolYear = reversed[0]
+      schoolYearStore.selectedSchoolYear = sorted[0]
     }
 
-    return reversed as SchoolYear[]
+    return sorted as SchoolYear[]
   }
 
   return []
@@ -277,6 +281,13 @@ const displayedGalleries = computed(() => {
   }
 
   return galleries.value.filter((gallery) => {
+    if (
+      schoolYearStore.selectedSchoolYear?.id &&
+      gallery.school_year_id != null
+    ) {
+      return gallery.school_year_id === schoolYearStore.selectedSchoolYear.id
+    }
+
     const start = dayjs(gallery.start)
 
     return (
@@ -315,15 +326,43 @@ function getSchoolYearRange(description: string) {
   }
 }
 
+function getSchoolYearStartYear(description: string) {
+  const match = description.match(/(\d{4})/)
+
+  return match ? Number(match[1]) : 0
+}
+
+function createGalleryDraft(): Gallery {
+  const selectedSchoolYear = schoolYearStore.selectedSchoolYear
+  const selectedRange = getSchoolYearRange(selectedSchoolYear?.description || '')
+  const today = dayjs()
+  const draftDate =
+    selectedRange &&
+    today.isValid() &&
+    (today.isSame(selectedRange.start) ||
+      today.isSame(selectedRange.end) ||
+      (today.isAfter(selectedRange.start) && today.isBefore(selectedRange.end)))
+      ? today
+      : selectedRange?.start || today
+
+  return {
+    ...GALLERY,
+    id: randomIntRange(1, 9999999999),
+    school_year_id: selectedSchoolYear?.id || null,
+    start: draftDate.startOf('day').format('YYYY-MM-DD HH:mm:ss'),
+    end: draftDate.endOf('day').format('YYYY-MM-DD HH:mm:ss'),
+  }
+}
+
 function openFullGallery(gallery: Gallery) {
-  showFullGallery.value = true
   galleryData.value = gallery
+  showFullGallery.value = true
 }
 
 function editThisGallery(gallery: Gallery) {
-  showGalleryForm.value = true
   galleryFormOperation.value = 'update'
   selectedGallery.value = gallery
+  showGalleryForm.value = true
 }
 
 async function deleteThisGallery(gallery: Gallery) {
@@ -341,8 +380,8 @@ async function deleteThisGallery(gallery: Gallery) {
 }
 
 function addThisGallery() {
-  showGalleryForm.value = true
   galleryFormOperation.value = 'create'
-  selectedGallery.value = GALLERY
+  selectedGallery.value = createGalleryDraft()
+  showGalleryForm.value = true
 }
 </script>

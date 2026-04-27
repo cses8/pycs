@@ -22,6 +22,7 @@ class UpdateGalleryRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
+			'school_year_id' => ['nullable', 'integer', 'exists:school_years,id'],
 			'title' => 'required|string|max:255',
 			'description' => 'required|string',
 			'start' => 'required|date|before_or_equal:end',

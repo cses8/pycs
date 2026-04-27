@@ -1,33 +1,35 @@
 <template>
   <div
-    class="mx-auto w-full max-w-2xl overflow-hidden rounded-xl border border-white/15 bg-white/10 p-4 text-left font-sans antialiased shadow-2xl shadow-slate-950/20 backdrop-blur sm:p-5"
+    class="mx-auto w-full max-w-[45rem] overflow-hidden rounded-xl border border-white/15 bg-white/10 p-4 text-left font-sans antialiased shadow-2xl shadow-slate-950/20 backdrop-blur sm:p-5 xl:mx-0 xl:w-[680px] xl:max-w-none"
   >
-    <div class="relative grid min-w-0 grid-cols-1 gap-5 xl:grid-cols-[180px_minmax(0,1fr)]">
+    <div class="relative grid min-w-0 grid-cols-1 gap-5 xl:grid-cols-[330px_minmax(0,1fr)]">
       <div class="min-w-0">
-        <div class="relative h-48 w-full overflow-hidden rounded-lg sm:h-56 xl:h-full">
+        <div
+          class="relative h-64 w-full overflow-hidden rounded-lg sm:h-72 xl:h-[460px] xl:w-[330px]"
+        >
           <Motion
             v-for="(testimonial, index) in props.testimonials"
             :key="testimonial.image"
             as="div"
             :initial="{
               opacity: 0,
-              scale: 0.9,
+              scale: 1,
               z: -100,
-              rotate: randomRotateY(),
+              rotate: 0,
             }"
             :animate="{
               opacity: isActive(index) ? 1 : 0.7,
-              scale: isActive(index) ? 1 : 0.95,
+              scale: 1,
               z: isActive(index) ? 0 : -100,
-              rotate: isActive(index) ? 0 : randomRotateY(),
+              rotate: 0,
               zIndex: isActive(index) ? 40 : testimonials.length + 2 - index,
-              y: isActive(index) ? [0, -80, 0] : 0,
+              y: 0,
             }"
             :exit="{
               opacity: 0,
-              scale: 0.9,
+              scale: 1,
               z: 100,
-              rotate: randomRotateY(),
+              rotate: 0,
             }"
             :transition="{
               duration: 0.4,
@@ -39,10 +41,11 @@
               <Image
                 :src="getTestimonialImage(testimonial)"
                 :alt="testimonial.name"
-                width="500"
-                height="500"
+                width="660"
+                height="920"
                 preview
-                class="size-full rounded-lg object-cover object-center"
+                class="block size-full rounded-lg"
+                image-class="size-full rounded-lg object-fill object-center"
                 @error="markImageAsFailed(testimonial)"
               />
             </div>
@@ -94,10 +97,9 @@
               ease: 'easeInOut',
             }"
           >
-            <AppSafeHtml
-              class="break-words [&_*]:max-w-full [&_a]:break-words [&_a]:text-white [&_a]:underline [&_img]:h-auto [&_img]:max-w-full [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:mb-3 [&_table]:block [&_table]:overflow-x-auto [&_ul]:list-disc [&_ul]:pl-5"
-              :html="props.testimonials[active]?.quote || ''"
-            />
+            <p class="break-words">
+              {{ props.testimonials[active]?.quote }}
+            </p>
           </Motion>
         </Motion>
         <div class="flex gap-3 pt-5">
@@ -208,9 +210,5 @@ function handlePrev() {
 
 function isActive(index: number) {
   return active.value === index
-}
-
-function randomRotateY() {
-  return Math.floor(Math.random() * 21) - 10
 }
 </script>

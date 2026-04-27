@@ -325,3 +325,79 @@
 - Browser-verified dev navigation from `http://localhost:4000/` to `/about/humble-beginnings-pycs` still works.
 - `cd front && bun run quality:check` passes with the repo's existing 230 lint warnings and 6 passing unit tests.
 - Remaining local static-preview console errors are API CORS errors from `127.0.0.1:4173` against `https://api.pycs.school`, not Nuxt routing or missing build assets.
+
+## Homepage Announcement Text Layout
+- [x] Locate the homepage announcement/card component shown in the screenshot.
+- [x] Make the image fill/stretch its visual area without breaking the card layout.
+- [x] Render the announcement body as normal paragraph copy instead of broken short lines.
+- [x] Run `cd front && bun run quality:check`.
+- [x] Browser-verify the reported view at `http://localhost:4000`.
+### Review
+- Updated the active announcement card so the PrimeVue image root and inner image fill the panel; the poster now uses `object-fill` instead of `object-cover`.
+- Flattened homepage announcement descriptions into plain paragraph text before rendering in the card, so line-by-line pasted rich text displays as one readable paragraph.
+- Verified `cd front && bun run quality:check` passes with the existing 230 lint warnings and 6 unit tests passing.
+- Browser-verified `http://localhost:4000` in Chromium. The live API currently returns no active announcements, so the empty state appears with real data; a mocked active-announcement browser check confirmed the stretched image and paragraph rendering.
+
+## Homepage Announcement Fixed Poster Frame
+- [x] Set a fixed desktop poster frame so all announcement images render at the same size.
+- [x] Remove image transition movement that makes the banner feel unfixed.
+- [x] Browser-verify the homepage at exactly 1440px wide.
+- [x] Run `cd front && bun run quality:check`.
+### Review
+- Desktop announcement posters now render in a fixed `260px x 390px` frame at the `xl` breakpoint, so every banner image has the same visible size.
+- Removed scale, rotation, and vertical image motion from the carousel transition so the poster stays fixed while announcements change.
+- Browser-verified a mocked active announcement at `1440px` wide: rendered image and frame both measured `260x390`, paragraph text was flattened, and there were no console warnings/errors.
+- `cd front && bun run quality:check` passes with the repo's existing 230 lint warnings and 6 unit tests passing.
+
+## Homepage Hero Desktop Alignment
+- [x] Move the left hero copy closer to the left desktop edge at 1440px.
+- [x] Enlarge the announcement card and poster frame for the first-screen banner.
+- [x] Give the announcement description column more width toward the right desktop edge.
+- [x] Browser-verify the homepage at exactly 1440px wide.
+- [x] Run `cd front && bun run quality:check`.
+### Review
+- Changed the desktop hero wrapper to a full-width grid with equal side padding at 1440px.
+- Enlarged the announcement card to `680px` wide and fixed the poster at `330px x 420px`.
+- Overrode the card's desktop auto margins so the card aligns to the right hero boundary instead of centering in the right column.
+- Browser-verified a mocked active announcement at `1440px`: hero padding `60px` left/right, left headline `x=60`, card `x=700` to `x=1380`, image `330x420`, and description text from `x=1061` to `x=1361`, with no console warnings/errors.
+- `cd front && bun run quality:check` passes with the repo's existing 230 lint warnings and 6 unit tests passing.
+
+## Homepage Announcement Taller Banner
+- [x] Increase the desktop announcement poster height slightly.
+- [x] Browser-verify the homepage at exactly 1440px wide.
+- [x] Run `cd front && bun run quality:check`.
+### Review
+- Increased the desktop announcement poster from `330px x 420px` to `330px x 460px`.
+- Browser-verified at `1440px` with a mocked active announcement: card stayed `680px` wide, card height became `492px`, image rendered at `330px x 460px`, and the card kept its right edge at `x=1380`.
+- `cd front && bun run quality:check` passes with the repo's existing 230 lint warnings and 6 unit tests passing.
+
+## Gallery School Year Bug
+- [x] Map gallery creation flow and identify where school year is chosen.
+- [x] Fix gallery creation so it uses the currently selected/new SY 2026-2027 instead of defaulting to 2025-2026.
+- [x] Run mandatory quality checks for changed app areas.
+- [x] Browser-verify gallery creation on `http://localhost:4000`.
+### Review
+- Gallery creation was using the module-level `GALLERY` default date, which resolves to the current date and put April 2026 drafts under SY 2025-2026 even when the UI selected SY 2026-2027.
+- New gallery drafts now derive their default date from the selected school-year range, falling back to today only when today belongs to that selected range or no range can be parsed.
+- The gallery form is keyed by operation, draft id, and draft start date so each create/edit open remounts with the correct initial values.
+- Fixed gallery submit normalization so `end` is saved as end-of-day instead of start-of-day.
+- `cd front && bun run quality:check` passes with the repo's existing 230 lint warnings and 6 unit tests passing.
+- Browser-verified `http://localhost:4000/galleries` with selected `SY 2026-2027`; an intercepted create request sent `start: 2026-06-01 00:00:00` and `end: 2026-06-01 23:59:59` without creating a real gallery record.
+
+## Gallery School Year Bug Deep Investigation
+- [x] Reproduce the real create flow with SY 2026-2027 present in school-year data.
+- [x] Trace where selected school year can be reset or lost.
+- [x] Patch the root cause.
+- [x] Run `cd back && bun run quality:check`.
+- [x] Run `cd front && bun run quality:check`.
+- [x] Browser-verify the exact gallery creation flow.
+### Review
+- Root cause: galleries had no `school_year_id`, so the gallery page inferred school year from `start`. That made new-gallery placement depend on date defaults and form state instead of the selected school year.
+- Added nullable `school_year_id` to galleries with a foreign key, model fillable/cast support, request validation, and `SchoolYear`/`Gallery` relationships.
+- The gallery form now carries `school_year_id`; new drafts set it from the selected school year and submit it with the create/update payload.
+- Gallery filtering now prefers explicit `gallery.school_year_id` and only falls back to date-range inference for legacy records without a school-year id.
+- School-year buttons are sorted by parsed start year, so `SY 2026-2027` becomes the default newest year regardless of database insertion order.
+- Backend quality passed via `cd back && bun run quality:check`.
+- Frontend quality passed via `cd front && bun run quality:check` with the existing 230 warnings and 6 unit tests passing.
+- Applied the local backend migration with `php artisan migrate --force`.
+- Browser regression used mocked API data with both `SY 2025-2026` and `SY 2026-2027`: selected year stayed `SY 2026-2027`, visible galleries excluded the old SY, and the intercepted create request included `school_year_id: 11`, `start: 2026-06-01 00:00:00`, and `end: 2026-06-01 23:59:59`.

@@ -2,9 +2,9 @@
   <div class="min-h-screen bg-[#f8fafc] dark:bg-surface-950">
     <div class="BgImgContainer">
       <div
-        class="mx-auto flex min-h-[560px] max-w-7xl flex-col items-center gap-10 px-6 py-12 md:px-8 lg:min-h-[620px] lg:flex-row lg:px-10"
+        class="mx-auto grid min-h-[560px] w-full max-w-none grid-cols-1 items-center gap-10 px-6 py-12 md:px-8 lg:min-h-[620px] lg:px-10 xl:grid-cols-[420px_minmax(0,1fr)] xl:gap-12 xl:px-20"
       >
-        <div class="max-w-2xl flex-1">
+        <div class="max-w-[460px]">
           <div
             class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-sm font-semibold text-white backdrop-blur"
           >
@@ -43,7 +43,7 @@
             </li>
           </ul>
         </div>
-        <div class="w-full flex-1 text-center lg:text-right">
+        <div class="flex w-full min-w-0 justify-center xl:justify-end">
           <AppActiveAnnouncement />
         </div>
       </div>

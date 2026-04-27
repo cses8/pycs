@@ -19,4 +19,9 @@ class SchoolYear extends Model
     {
         return $this->hasMany(SchoolCalendar::class);
     }
+
+    public function galleries(): HasMany
+    {
+        return $this->hasMany(Gallery::class);
+    }
 }

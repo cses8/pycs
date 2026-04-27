@@ -7,6 +7,7 @@ declare type SchoolYear = {
 
 declare type Gallery = {
   id: number
+  school_year_id: number | null
   title: string
   description: string
   start: string

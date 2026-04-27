@@ -78,6 +78,7 @@
                 <div class="grid grid-cols-12 gap-4">
                   <div class="hidden">
                     <InputText id="id" name="id" />
+                    <InputText id="school_year_id" name="school_year_id" />
                   </div>
 
                   <div class="col-span-12 flex flex-col gap-2">
@@ -220,6 +221,7 @@ const operation = defineModel<'create' | 'update'>('operation', {
 
 type GalleryFormValues = {
   id: number
+  school_year_id: number | string | null
   title: string
   description: string
   start: string | Date
@@ -238,6 +240,10 @@ const resolver = ref(
         required_error: 'ID is required',
         invalid_type_error: 'Input must be a number',
       }),
+      school_year_id: z
+        .union([z.number(), z.string()])
+        .nullable()
+        .optional(),
       title: z.string().min(1, { message: 'Title is required.' }),
       description: z.string().min(1, { message: 'Description is required.' }),
       start: z.union([z.string(), z.date()], {
@@ -255,10 +261,14 @@ async function onFormSubmit(e: GalleryFormSubmitEvent) {
     .do(async () => useLoaderStore().processStep('gallery'))
     .do(async () =>
       Object.assign(e.values, {
+        school_year_id:
+          e.values.school_year_id == null || e.values.school_year_id === ''
+            ? null
+            : Number(e.values.school_year_id),
         start: dayjs(e.values.start)
           .startOf('day')
           .format('YYYY-MM-DD HH:mm:ss'),
-        end: dayjs(e.values.end).startOf('day').format('YYYY-MM-DD HH:mm:ss'),
+        end: dayjs(e.values.end).endOf('day').format('YYYY-MM-DD HH:mm:ss'),
       })
     )
     .do(async () => {

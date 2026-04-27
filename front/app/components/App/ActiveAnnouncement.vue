@@ -33,7 +33,7 @@ const announcements = computed(() => {
     return {
       name: item.title,
       designation: formatDisplayDateRange(item.start, item.end),
-      quote: item.description,
+      quote: plainDescription(item.description),
       image: `${apiUrl(`/storage/announcements/${item.id}/${item.id}.webp`)}`,
     }
   })
@@ -46,6 +46,21 @@ async function fetchActiveAnnouncement() {
   if (Array.isArray(response)) {
     announcementApis.value = response
   }
+}
+
+function plainDescription(value: string) {
+  return (value || '')
+    .replace(/<br\s*\/?>/gi, ' ')
+    .replace(/<\/p>/gi, ' ')
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&#39;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/\s+/g, ' ')
+    .trim()
 }
 
 function formatDisplayDateRange(startStr: string, endStr: string) {
